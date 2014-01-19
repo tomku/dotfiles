@@ -13,5 +13,7 @@ _tomku_load() {
         . $sourcefile.$HOST
     elif [ -n "$HOSTNAME" -a -f $sourcefile.$HOSTNAME ] ; then
         . $sourcefile.$HOSTNAME
+    elif [ -f $sourcefile.$(hostname) ] ; then
+        . $sourcefile.$(hostname)
     fi
 }
