@@ -26,6 +26,7 @@ function setup_git() {
     echo "Initializing git config..."
     git config --global user.name "$ME"
     git config --global user.email "$EMAIL"
+    git config --global push.default simple
 
     # The following four git aliases were adapted from
     # http://pyrtsa.posterous.com/aligning-your-git-logs
