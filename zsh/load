@@ -1,0 +1,17 @@
+#!/bin/sh 
+
+# This is a utility function that sources a given file, but also sources the
+# same file with the machine's hostname appended to allow for machine-specific
+# customization.
+_tomku_load() {
+    local sourcefile=$1
+    if [ -f $sourcefile ] ; then
+        . $sourcefile
+    fi
+
+    if [ -n "$HOST" -a -f $sourcefile.$HOST ] ; then
+        . $sourcefile.$HOST
+    elif [ -n "$HOSTNAME" -a -f $sourcefile.$HOSTNAME ] ; then
+        . $sourcefile.$HOSTNAME
+    fi
+}

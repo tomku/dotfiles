@@ -1,0 +1,557 @@
+" Core vimrc file
+" vi: set tw=78
+"
+" This file contains all of my non-GUI settings for vim. As is the nature of
+" config files, many parts of this were cobbled together from various blog
+" posts, Github repositories and digging around in the Vim docs. Most of the
+" substantial functions (as well as many of the less obvious tweaks) came from
+" Amir Salihefendic's vimrc, available at:
+"
+"   http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
+"
+" Many thanks to him for the well-commented examples.
+
+autocmd!
+
+" Load some sensible defaults from the example vimrc, as well as
+" platform-specific tweaks.
+if filereadable("$VIM\_vimrc")
+    source $VIM\_vimrc
+elseif filereadable("$VIM/vimrc")
+    source $VIM/vimrc
+endif
+
+if filereadable("/home/tom/.opam/system/share/vim/syntax/ocp-indent.vim")
+    source /home/tom/.opam/system/share/vim/syntax/ocp-indent.vim
+endif
+
+
+if filereadable("/home/tom/.opam/system/share/ocamlmerlin/vim/syntax/merlin.vim")
+    let g:syntastic_ocaml_checkers=['merlin']
+    set rtp+=/home/tom/.opam/system/share/ocamlmerlin/vim
+endif
+
+let g:syntastic_json_checkers=['jsonlint']
+
+" Normalize our home directory. GUI Vim tends to start up in strange places,
+" none of which are ever useful.
+if (getcwd() == $VIMRUNTIME) || (getcwd() == "C:\\WINDOWS\\system32")
+    cd $HOME
+endif
+
+" It's the default, but better to be explicit since lots of people remap it.
+" Need to set this early, because <leader> keybinds use the value of leader at
+" the time they're defined.
+let mapleader = "\\"
+let g:mapleader = "\\"
+
+" Vundle requires this in order to load properly.
+filetype off
+
+" Load Vundle.
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle "gmarik/vundle"
+Bundle "sheerun/vim-polyglot"
+
+" Load everything else.
+Bundle "altercation/vim-colors-solarized"
+Bundle "w0ng/vim-hybrid"
+Bundle "argtextobj.vim"
+Bundle "bkad/CamelCaseMotion"
+Bundle "ack.vim"
+"Bundle "c.vim"
+Bundle "closetag.vim"
+"Bundle "dbext.vim"
+Bundle "kana/vim-textobj-user"
+Bundle "michaeljsmith/vim-indent-object"
+"Bundle "mru.vim"
+Bundle "nathanaelkane/vim-indent-guides"
+"Bundle "nelstrom/vim-textobj-rubyblock"
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "scrooloose/syntastic"
+Bundle "tomtom/tlib_vim"
+Bundle "snipmate-snippets"
+Bundle "garbas/vim-snipmate"
+Bundle "godlygeek/tabular"
+Bundle "ervandew/supertab"
+
+" The Tim Pope (tpope) appreciation section.
+Bundle "tpope/vim-surround"
+Bundle "tpope/vim-bundler"
+Bundle "tpope/vim-git"
+Bundle "tpope/vim-abolish"
+Bundle "tpope/vim-endwise"
+Bundle "tpope/vim-markdown"
+Bundle "klen/python-mode"
+Bundle "tpope/vim-commentary"
+Bundle "tpope/vim-fugitive"
+Bundle "tpope/vim-repeat"
+Bundle "tpope/vim-liquid"
+Bundle "tpope/vim-unimpaired"
+Bundle "tpope/vim-vividchalk"
+"Bundle "tpope/vim-haml"
+"Bundle "tpope/vim-rvm"
+"Bundle "tpope/vim-rake"
+"Bundle "kchmck/vim-coffee-script"
+"Bundle "tpope/vim-rails"
+Bundle "kien/ctrlp.vim"
+Bundle "nanotech/jellybeans.vim"
+Bundle "guns/vim-clojure-static"
+Bundle "krisajenkins/vim-pipe"
+Bundle "krisajenkins/vim-postgresql-syntax"
+Bundle "tpope/vim-fireplace"
+Bundle "wlangstroth/vim-racket"
+Bundle "tomku/thesauri"
+Bundle "jcf/vim-latex"
+Bundle "mattn/zencoding-vim"
+Bundle "mattn/webapi-vim"
+Bundle "mattn/gist-vim"
+Bundle "JuliaLang/julia-vim"
+Bundle "xhr/vim-io"
+Bundle "Blackrush/vim-gocode"
+"Bundle "jnwhiteh/vim-golang"
+Bundle "basepi/vim-conque"
+Bundle "YankRing.vim"
+Bundle "scrooloose/nerdtree"
+Bundle "scrooloose/nerdcommenter"
+Bundle "Rykka/riv.vim"
+Bundle "Tagbar"
+Bundle "xolox/vim-session"
+Bundle "xolox/vim-misc"
+Bundle "ZoomWin"
+Bundle "guns/vim-sexp"
+Bundle "kien/rainbow_parentheses.vim"
+Bundle "lukerandall/haskellmode-vim"
+Bundle "bitc/lushtags"
+Bundle "jimenezrick/vimerl"
+Bundle "adimit/prolog.vim"
+Bundle 'jelera/vim-javascript-syntax'
+Bundle "othree/javascript-libraries-syntax.vim"
+Bundle 'pangloss/vim-javascript'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle "elehack/vim-oz"
+
+" Matchit.vim is included with vim, no need to bundle it.
+runtime macros/matchit.vim
+
+" This sets the history limit for ex mode and searches. The default is 20,
+" which is far too low, so let's set it to an arbitrary high number.
+set history=1000
+
+" Pretty colors and fancy formatting should be the default, really...
+syntax enable
+filetype indent plugin on
+
+" Solarized works best in both terminal and GUI in 16 color mode, but it's
+" horribly ugly in the Windows console because cmd.exe sucks.
+set t_Co=16
+set background=dark
+if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
+    " Vivid Chalk is still ugly in cmd.exe, but, well... less so
+    colorscheme vividchalk
+else
+    silent! colorscheme solarized
+endif
+
+" Default to UTF-8 and Unix line endings, but use the existing line endings
+" if the file already has some.
+set encoding=utf8
+set ffs=unix,dos,mac
+try
+    lang en_US
+catch
+endtry
+
+" Disable the toolbar.
+set guioptions-=T
+
+" Show partially-completed commands.
+set showcmd
+
+" Enable hiding buffers without deleting them.
+set hidden
+
+" Get rid of the vi default and let me backspace over newlines
+" and indentation.
+set backspace=indent,eol,start
+
+" Let me move over newlines with h, l and arrow keys.
+set whichwrap+=<,>,h,l,[,]
+
+" Speaking of indentation, let's get it right: width of 4, no tabs.
+" We can override this for certain filetypes later on.
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set smarttab
+
+" Preserve indentation when starting a new line.
+set autoindent
+set smartindent
+
+" Show trailing/unnecessary whitespace
+set list
+set listchars=tab:→\ ,trail:·
+" TODO: Find a new binding for this
+noremap <F11> :set list!<CR>
+
+" Enable completion for ex commands. Stupid option name.
+set wildmenu
+set wildmode=list:longest
+
+" Enable insert-mode completion.
+set completeopt=menuone,longest,preview
+set complete=.,b,u,t
+
+" Enable fake word wrap, no actual wrapping is done to the file.
+set linebreak
+set wrap
+
+" Enable relative line numbering
+set relativenumber
+
+" Ignore case in regular expressions, unless they include upper case.
+set ignorecase
+set smartcase
+
+" Enable incremental search and highlighting search matches.
+set hlsearch
+set incsearch
+
+" Flash matching braces/brackets.
+set showmatch
+set matchtime=2
+
+" Keep three lines of context at the top/bottom of the screen at all times.
+set scrolloff=3
+
+" Enable folding and use indentation. This isn't perfect, but it
+" works with most code that's properly indented, and that's good enough.
+set foldmethod=indent
+set foldlevel=99
+
+" Disable permanent backups, keep temporary backups during writes, disable
+" swap files entirely. I do a lot of editing inside my Dropbox folder, and the
+" popup notifications get annoying very quickly.
+set nobackup
+set writebackup
+set noswapfile
+
+" Set up persistent undo. This is wrapped in a try/catch because it requires
+" vim 7.3 or higher.
+try
+    set undodir=~/.vim/undo
+    set undofile
+catch
+endtry
+
+" Set window titles, and disable the audible bell.
+set title
+set visualbell
+
+" Disable IME by default, otherwise vim switches to Japanese on startup.
+set iminsert=0
+set imsearch=-1
+set noimcmdline
+
+" Reuse open tabs and windows when switching buffers rather than blindly
+" opening new ones.
+set switchbuf=usetab
+
+" Some quick snippet-like shortcuts for opening common locations.
+cnoremap $h edit ~/
+cnoremap $d edit ~/Desktop/
+cnoremap $j edit ./
+cnoremap $c edit <C-\>eCurrentFileDir("edit")<cr>
+
+func! CurrentFileDir(cmd)
+  return a:cmd . " " . expand("%:p:h") . "/"
+endfunc
+
+" Keybinds to make an Emacs user feel a little more at home in ex mode.
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
+" Cheat command for writing to root-owned files.
+cmap w!! %!sudo tee > /dev/null %
+
+" Easy window movement keys.
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+
+" Disable search highlight and redraw screen
+nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
+
+" Make sure we don't abuse the arrows.
+map <up> <nop>
+map <down> <nop>
+map <right> <nop>
+map <left> <nop>
+
+" Create splits going towards the bottom right, not top left
+set splitbelow
+set splitright
+
+" Display more info on the status line, including current directory and a
+" paste indicator.  The conditional is so that I don't get annoying errors
+" if fugitive isn't installed or activated.
+set laststatus=2
+set cmdheight=2
+set ruler
+set statusline=%{HasPaste()}[%n]\ %<%F%m%h\ :%Y:\ %{exists('*fugitive#statusline')?fugitive#statusline():''}\ %w\ \ %h\ \ %=%b\ %B\ Line:\ %l/%L:%c\ [%P]
+
+" Support functions for the status line.
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "g")
+    return curdir
+endfunction
+
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    else
+        return ''
+    endif
+endfunction
+
+" Transpose lines up/down easily with M-j/k.
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Keybindings for plugins.
+nmap <leader>a :Ack! 
+
+" Keybindings for managing tabs.
+map <leader>tt :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
+" Cope settings.
+map <leader>co :botright cope<CR>
+map <leader>j :cn<cr>
+map <leader>k :cp<cr>
+
+" MRU settings.
+"let MRU_Max_Entries = 200
+"map <leader>f :MRU<cr>
+
+" Quick toggle for spell checking.
+map <leader>ss :setlocal spell!<cr>
+
+" Dictionary and thesaurus completion
+set dictionary=~/Dropbox/dotfiles/mobywords-combined.txt
+
+if has("win32")
+    let g:mobythesaurus_file = $HOME . "\\Dropbox\\dotfiles\\mobythesaurus-vim.txt"
+else
+    let g:mobythesaurus_file = $HOME . "/Dropbox/dotfiles/mobythesaurus-vim.txt"
+endif
+"set completefunc=CompleteThesauri
+
+" Python settings.
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+if has("autocmd") && exists("+omnifunc") 
+    autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+endif
+
+" Javascript settings.
+au FileType javascript setl foldenable
+au FileType javascript setl nocindent
+"au FileType javascript call JavaScriptFold()
+
+"function! JavaScriptFold()
+    "setl foldmethod=syntax
+    "setl foldlevelstart=99
+    "syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    "function! FoldText()
+        "return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    "endfunction
+    "setl foldtext=FoldText()
+"endfunction
+let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,sugar,requirejs'
+
+" General skeleton file support
+autocmd BufNewFile * :silent! exec ":0r " . $DOTFILES  . "/vim/templates/" . &ft
+autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+
+" Automatically make scripts executable if they start with a shebang
+function! ConditionalChmod(line1, current_file)
+    if has("unix")
+        if a:line1 =~ '^#!'
+            execute "silent !chmod +x " . a:current_file
+        endif
+    endif
+endfunction
+
+autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
+
+" Coffeescript settings.
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+
+" HTML settings.
+let g:closetag_html_style=1
+
+" Ruby settings.
+autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+autocmd BufNewFile,BufReadPost *.rb setl foldmethod=indent nofoldenable
+autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
+
+" Delete fugitive buffers when they aren't visible.
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" Set filetype to mail when editing emails for mutt.
+autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+
+" Haskell mode setup
+au Bufenter *.hs compiler ghc
+let g:haddock_browser = "firefox"
+
+" Lisp stuff
+autocmd BufNewFile,BufReadPost *.cl set lisp
+
+" Ctrl-P customization
+" Set the max files
+let g:ctrlp_max_files = 10000
+
+" Optimize file searching
+if has("unix")
+    let g:ctrlp_user_command = {
+                \   'types': {
+                \       1: ['.git/', 'cd %s && git ls-files --exclude-standard -co'],
+                \       2: ['.hg/', 'cd %s && hg manifest']
+                \   },
+                \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+                \ }
+endif
+
+if has("win32")
+    let g:ctrlp_user_command = {
+                \   'types': {
+                \       1: ['.git/', 'cd %s && git ls-files --exclude-standard -co'],
+                \       2: ['.hg/', 'cd %s && hg manifest']
+                \   },
+                \   'fallback': 'dir %s /-n /b /s /a-d | findstr /V "\.dropbox\.cache\\ \.git\\ \.hg\\"'
+                \ }
+endif
+
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.dropbox\.cache$\|\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$',
+  \ }
+let g:ctrlp_cmd = 'CtrlPMixed'
+nnoremap <leader>f :CtrlP<CR>
+nnoremap <leader>F :CtrlPCurWD<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>M :CtrlPMRUFiles<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>T :CtrlPBufTag<CR>
+nnoremap <leader>l :CtrlPLine<CR>
+
+" Save and restore window size and position on startup/shutdown
+" 
+" Source: http://vim.wikia.com/wiki/Restore_screen_size_and_position
+" 
+if has("gui_running")
+  function! ScreenFilename()
+    if has('amiga')
+      return "s:.vimsize"
+    elseif has('win32')
+      return $HOME.'\_vimsize'
+    else
+      return $HOME.'/.vimsize'
+    endif
+  endfunction
+
+  function! ScreenRestore()
+    " Restore window size (columns and lines) and position
+    " from values stored in vimsize file.
+    " Must set font first so columns and lines are based on font size.
+    let f = ScreenFilename()
+    if has("gui_running") && g:screen_size_restore_pos && filereadable(f)
+      let vim_instance = (g:screen_size_by_vim_instance==1?(v:servername):'GVIM')
+      for line in readfile(f)
+        let sizepos = split(line)
+        if len(sizepos) == 5 && sizepos[0] == vim_instance
+          silent! execute "set columns=".sizepos[1]." lines=".sizepos[2]
+          silent! execute "winpos ".sizepos[3]." ".sizepos[4]
+          return
+        endif
+      endfor
+    endif
+  endfunction
+
+  function! ScreenSave()
+    " Save window size and position.
+    if has("gui_running") && g:screen_size_restore_pos
+      let vim_instance = (g:screen_size_by_vim_instance==1?(v:servername):'GVIM')
+      let data = vim_instance . ' ' . &columns . ' ' . &lines . ' ' .
+            \ (getwinposx()<0?0:getwinposx()) . ' ' .
+            \ (getwinposy()<0?0:getwinposy())
+      let f = ScreenFilename()
+      if filereadable(f)
+        let lines = readfile(f)
+        call filter(lines, "v:val !~ '^" . vim_instance . "\\>'")
+        call add(lines, data)
+      else
+        let lines = [data]
+      endif
+      call writefile(lines, f)
+    endif
+  endfunction
+
+  if !exists('g:screen_size_restore_pos')
+    let g:screen_size_restore_pos = 1
+  endif
+  if !exists('g:screen_size_by_vim_instance')
+    let g:screen_size_by_vim_instance = 1
+  endif
+  autocmd VimEnter * if g:screen_size_restore_pos == 1 | call ScreenRestore() | endif
+  autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call ScreenSave() | endif
+endif
+
+" vim-latex settings
+let g:Tex_DefaultTargetFormat="pdf"
+let g:Tex_MultipleCompileFormats="dvi,pdf"
+let g:Tex_ViewRule_pdf="sumatrapdf -reuse-instance"
+let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
+let g:Tex_AutoFolding=0
+let g:tex_flavor='latex'
+
+au FileType clojure RainbowParenthesesActivate
+au FileType clojure RainbowParenthesesLoadRound
+au FileType clojure RainbowParenthesesLoadSquare
+
+let g:session_autosave = "yes"
+let g:session_autoload = "yes"
+
+let g:yankring_history_dir = '~/.vim'
+
+set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
+
+" Load machine-specific settings
+if filereadable(glob("~/.vimrc.local")) 
+    source ~/.vimrc.local
+endif
+
