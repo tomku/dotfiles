@@ -15,5 +15,6 @@ echo Installing _gvimrc
 echo source %CD%\vim\gvimrc > %USERPROFILE%\_gvimrc
 
 :END
+echo Done!
 popd
 
