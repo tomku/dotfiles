@@ -10,8 +10,8 @@ echo set rtp+=%CD%\vim> %USERPROFILE%\_vimrc
 echo source %CD%\vim\vimrc >> %USERPROFILE%\_vimrc
 
 :GVIMRC
-echo Installing _gvimrc
 if exist %USERPROFILE%\_gvimrc goto END
+echo Installing _gvimrc
 echo source %CD%\vim\gvimrc > %USERPROFILE%\_gvimrc
 
 :END
