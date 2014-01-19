@@ -2,15 +2,17 @@
 pushd %cd%
 %~d0
 cd %~dp0
-cd ..
+echo Temporarily changing directory to %~dp0
 
 if exist %USERPROFILE%\_vimrc goto GVIMRC
-echo set rtp+=%CD%\dotfiles\vim> %USERPROFILE%\_vimrc
-echo source %CD%\dotfiles\vim\vimrc >> %USERPROFILE%\_vimrc
+echo Installing _vimrc
+echo set rtp+=%CD%\vim> %USERPROFILE%\_vimrc
+echo source %CD%\vim\vimrc >> %USERPROFILE%\_vimrc
 
 :GVIMRC
+echo Installing _gvimrc
 if exist %USERPROFILE%\_gvimrc goto END
-echo source %CD%\dotfiles\vim\gvimrc > %USERPROFILE%\_gvimrc
+echo source %CD%\vim\gvimrc > %USERPROFILE%\_gvimrc
 
 :END
 popd
