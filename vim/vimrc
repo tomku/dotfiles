@@ -545,6 +545,7 @@ au FileType clojure RainbowParenthesesLoadSquare
 
 let g:session_autosave = "yes"
 let g:session_autoload = "yes"
+let g:session_directory = "~/.vim/sessions"
 
 let g:yankring_history_dir = '~/.vim'
 
