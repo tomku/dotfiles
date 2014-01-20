@@ -11,6 +11,9 @@ if [ -f $DOTFILES/zsh/zshrc ] ; then
     export ME="$ME"
     export EMAIL="$EMAIL"
     export DOTFILES=$DOTFILES
+    if [ -z "\$DROPBOX" -a -d ~/Dropbox ] ; then
+        export DROPBOX=~/Dropbox
+    fi
     source $DOTFILES/zsh/zshrc
 fi
 EOF
