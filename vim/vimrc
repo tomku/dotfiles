@@ -133,6 +133,7 @@ Bundle "othree/javascript-libraries-syntax.vim"
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "elehack/vim-oz"
+Bundle "derekwyatt/vim-sbt"
 
 " Matchit.vim is included with vim, no need to bundle it.
 runtime macros/matchit.vim
@@ -204,7 +205,7 @@ set wildmode=list:longest
 
 " Enable insert-mode completion.
 set completeopt=menuone,longest,preview
-set complete=.,b,u,t
+set complete=.,w,b,u,t
 
 " Enable fake word wrap, no actual wrapping is done to the file.
 set linebreak
