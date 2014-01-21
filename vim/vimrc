@@ -553,6 +553,8 @@ let g:yankring_history_dir = '~/.vim'
 
 set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
 
+set tags=tags;/
+
 " Load machine-specific settings
 if filereadable(glob("~/.vimrc.local")) 
     source ~/.vimrc.local
