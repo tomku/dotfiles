@@ -415,7 +415,7 @@ autocmd BufRead,BufNewFile *mutt-* setfiletype mail
 
 " Haskell mode setup
 au Bufenter *.hs compiler ghc
-let g:haddock_browser = "firefox"
+let g:haddock_browser = "google-chrome"
 
 " Lisp stuff
 autocmd BufNewFile,BufReadPost *.cl set lisp
