@@ -21,14 +21,21 @@ elseif filereadable("$VIM/vimrc")
     source $VIM/vimrc
 endif
 
-if filereadable("/home/tom/.opam/system/share/vim/syntax/ocp-indent.vim")
-    source /home/tom/.opam/system/share/vim/syntax/ocp-indent.vim
-endif
+if executable("opam")
+    let g:opam_share = system("opam config var share")
+    let g:opam_share = substitute(g:opam_share, '[\r\n]*$', '', '')
+    let g:ocp_indent_vimfile = g:opam_share . "/vim/syntax/ocp-indent.vim"
 
+    if filereadable(g:ocp_indent_vimfile)
+        autocmd FileType ocaml exec "source " . g:ocp_indent_vimfile
+    endif
 
-if filereadable("/home/tom/.opam/system/share/ocamlmerlin/vim/syntax/merlin.vim")
-    let g:syntastic_ocaml_checkers=['merlin']
-    set rtp+=/home/tom/.opam/system/share/ocamlmerlin/vim
+    let g:merlin_vimfile = g:opam_share . "/ocamlmerlin/vim/syntax/merlin.vim"
+    if filereadable(g:merlin_vimfile)
+        let g:syntastic_ocaml_checkers=['merlin']
+        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vim"
+        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vimbufsync"
+    endif
 endif
 
 let g:syntastic_json_checkers=['jsonlint']
