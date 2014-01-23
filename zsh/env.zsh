@@ -84,7 +84,7 @@ if [ -d "$HOME/.phpenv/bin" ] ; then
 fi
 
 if [ -r "$HOME/.opam/opam-init/init.zsh" ] ; then
-    source $HOME/.opam/opam-init/init.zsh
+    . $HOME/.opam/opam-init/init.zsh
 fi
 
 if [ -n "$PRIVACY" ] ; then
