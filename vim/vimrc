@@ -338,6 +338,7 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Keybindings for plugins.
 nmap <leader>a :Ack! 
+nmap <leader>n :NERDTreeFocus<cr>
 
 " Keybindings for managing tabs.
 map <leader>tt :tabnew<cr>
@@ -371,6 +372,10 @@ else
     let g:mobythesaurus_file = $HOME . "/Dropbox/dotfiles/mobythesaurus-vim.txt"
 endif
 "set completefunc=CompleteThesauri
+
+let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeDirArrows = 1
 
 " Python settings.
 autocmd FileType python set omnifunc=pythoncomplete#Complete
