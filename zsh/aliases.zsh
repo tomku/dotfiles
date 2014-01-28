@@ -92,5 +92,5 @@ update-repos() {
     done
 }
 
-alias ansible_setup='ansible all -c local -i "127.0.0.1," -m setup'
-alias ansible_reload='ansible-playbook -c local -i "127.0.0.1,"'
+alias ansible-setup='ansible all -c local -i "127.0.0.1," -m setup'
+alias ansible-reload='ansible-playbook -c local -i "127.0.0.1,"'
