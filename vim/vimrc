@@ -61,7 +61,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle "gmarik/vundle"
-Bundle "sheerun/vim-polyglot"
 
 " Load everything else.
 Bundle "altercation/vim-colors-solarized"
@@ -88,10 +87,10 @@ Bundle "ervandew/supertab"
 " The Tim Pope (tpope) appreciation section.
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-bundler"
-Bundle "tpope/vim-git"
+"Bundle "tpope/vim-git"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-endwise"
-Bundle "tpope/vim-markdown"
+"Bundle "tpope/vim-markdown"
 Bundle "klen/python-mode"
 Bundle "tpope/vim-commentary"
 Bundle "tpope/vim-fugitive"
@@ -106,7 +105,7 @@ Bundle "tpope/vim-vividchalk"
 "Bundle "tpope/vim-rails"
 Bundle "kien/ctrlp.vim"
 Bundle "nanotech/jellybeans.vim"
-Bundle "guns/vim-clojure-static"
+"Bundle "guns/vim-clojure-static"
 Bundle "krisajenkins/vim-pipe"
 Bundle "krisajenkins/vim-postgresql-syntax"
 Bundle "tpope/vim-fireplace"
@@ -137,10 +136,11 @@ Bundle "jimenezrick/vimerl"
 Bundle "adimit/prolog.vim"
 Bundle 'jelera/vim-javascript-syntax'
 Bundle "othree/javascript-libraries-syntax.vim"
-Bundle 'pangloss/vim-javascript'
+"Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "elehack/vim-oz"
-Bundle "derekwyatt/vim-sbt"
+"Bundle "derekwyatt/vim-sbt"
+Bundle "sheerun/vim-polyglot"
 
 " Matchit.vim is included with vim, no need to bundle it.
 runtime macros/matchit.vim
