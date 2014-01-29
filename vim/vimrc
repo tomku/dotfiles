@@ -363,6 +363,9 @@ map <leader>k :cp<cr>
 " Quick toggle for spell checking.
 map <leader>ss :setlocal spell!<cr>
 
+" Quick toggle for paste mode
+nmap cop :set paste!<cr>
+
 " Dictionary and thesaurus completion
 set dictionary=~/Dropbox/dotfiles/mobywords-combined.txt
 
