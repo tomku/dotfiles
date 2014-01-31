@@ -83,6 +83,7 @@ Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle "godlygeek/tabular"
 Bundle "ervandew/supertab"
+Bundle "Raimondi/delimitMate"
 
 " The Tim Pope (tpope) appreciation section.
 Bundle "tpope/vim-surround"
@@ -105,6 +106,7 @@ Bundle "tpope/vim-vividchalk"
 "Bundle "tpope/vim-rails"
 Bundle "kien/ctrlp.vim"
 Bundle "nanotech/jellybeans.vim"
+Bundle "jnurmine/Zenburn"
 "Bundle "guns/vim-clojure-static"
 Bundle "krisajenkins/vim-pipe"
 Bundle "krisajenkins/vim-postgresql-syntax"
@@ -137,7 +139,6 @@ Bundle "adimit/prolog.vim"
 Bundle 'jelera/vim-javascript-syntax'
 Bundle "othree/javascript-libraries-syntax.vim"
 "Bundle 'pangloss/vim-javascript'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "elehack/vim-oz"
 "Bundle "derekwyatt/vim-sbt"
 Bundle "sheerun/vim-polyglot"
@@ -501,6 +502,9 @@ let g:yankring_history_dir = '~/.vim'
 set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
 
 set tags=tags;/
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:SuperTabCrMapping = 0
 
 " Load machine-specific settings
 if filereadable(glob("~/.vimrc.local")) 
