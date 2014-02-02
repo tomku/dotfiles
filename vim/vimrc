@@ -426,6 +426,9 @@ autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
 " Delete fugitive buffers when they aren't visible.
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+" Delete Vundle buffers when they aren't visible.
+autocmd FileType vundle set bufhidden=delete
+
 " Set filetype to mail when editing emails for mutt.
 autocmd BufRead,BufNewFile *mutt-* setfiletype mail
 
