@@ -34,6 +34,7 @@ if [ ! -e ~/.vimrc ] ; then
 set rtp+=$DOTFILES/vim
 source $DOTFILES/vim/vimrc
 EOF
+    mkdir -p ~/.vim/undo
 fi
 
 if [ ! -e ~/.gvimrc ] ; then
