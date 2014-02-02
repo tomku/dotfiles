@@ -46,13 +46,13 @@ if (getcwd() == $VIMRUNTIME) || (getcwd() == "C:\\WINDOWS\\system32")
     cd $HOME
 endif
 
-" It's the default, but better to be explicit since lots of people remap it.
 " Need to set this early, because <leader> keybinds use the value of leader at
 " the time they're defined.
-"let mapleader = "\\"
-"let g:mapleader = "\\"
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
+
+" Easy way to get out of insert mode.
+inoremap jk <esc>
 
 " Vundle requires this in order to load properly.
 filetype off
@@ -291,12 +291,6 @@ cnoremap <C-N> <Down>
 " Cheat command for writing to root-owned files.
 cnoremap w!! %!sudo tee > /dev/null %
 
-" Easy window movement keys.
-"nnoremap <C-j> <C-W>j
-"nnoremap <C-k> <C-W>k
-"nnoremap <C-h> <C-W>h
-"nnoremap <C-l> <C-W>l
-
 " Disable search highlight and redraw screen
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
@@ -357,10 +351,6 @@ noremap <leader>tm :tabmove
 noremap <leader>co :botright cope<CR>
 noremap <leader>j :cn<cr>
 noremap <leader>k :cp<cr>
-
-" MRU settings.
-"let MRU_Max_Entries = 200
-"map <leader>f :MRU<cr>
 
 " Quick toggle for spell checking.
 noremap <leader>ss :setlocal spell!<cr>
