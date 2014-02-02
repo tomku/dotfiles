@@ -289,13 +289,13 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 " Cheat command for writing to root-owned files.
-cmap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
 
 " Easy window movement keys.
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 " Disable search highlight and redraw screen
 nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
@@ -333,40 +333,40 @@ function! HasPaste()
 endfunction
 
 " Transpose lines up/down easily with M-j/k.
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <M-j> mz:m+<cr>`z
+nnoremap <M-k> mz:m-2<cr>`z
+vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Keybindings for plugins.
-nmap <leader>a :Ack! 
-nmap <leader>n :NERDTreeFocus<cr>
+nnoremap <leader>a :Ack! 
+nnoremap <leader>n :NERDTreeFocus<cr>
 
 " Keybindings for managing tabs.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
+noremap <leader>tt :tabnew<cr>
+noremap <leader>te :tabedit
+noremap <leader>tc :tabclose<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tn :tabnext<cr>
+noremap <leader>tp :tabprevious<cr>
+noremap <leader>tf :tabfirst<cr>
+noremap <leader>tl :tablast<cr>
+noremap <leader>tm :tabmove
 
 " Cope settings.
-map <leader>co :botright cope<CR>
-map <leader>j :cn<cr>
-map <leader>k :cp<cr>
+noremap <leader>co :botright cope<CR>
+noremap <leader>j :cn<cr>
+noremap <leader>k :cp<cr>
 
 " MRU settings.
 "let MRU_Max_Entries = 200
 "map <leader>f :MRU<cr>
 
 " Quick toggle for spell checking.
-map <leader>ss :setlocal spell!<cr>
+noremap <leader>ss :setlocal spell!<cr>
 
 " Quick toggle for paste mode
-nmap cop :set paste!<cr>
+nnoremap cop :set paste!<cr>
 
 " Dictionary and thesaurus completion
 set dictionary=~/Dropbox/dotfiles/mobywords-combined.txt
