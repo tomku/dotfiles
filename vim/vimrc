@@ -52,6 +52,7 @@ endif
 "let mapleader = "\\"
 "let g:mapleader = "\\"
 let g:mapleader = "\<Space>"
+let g:maplocalleader = "\\"
 
 " Vundle requires this in order to load properly.
 filetype off
@@ -205,8 +206,7 @@ set smartindent
 " Show trailing/unnecessary whitespace
 set list
 set listchars=tab:→\ ,trail:·
-" TODO: Find a new binding for this
-noremap <F11> :set list!<CR>
+noremap <C-h> :set list!<CR>
 
 " Enable completion for ex commands. Stupid option name.
 set wildmenu
@@ -292,13 +292,13 @@ cnoremap <C-N> <Down>
 cnoremap w!! %!sudo tee > /dev/null %
 
 " Easy window movement keys.
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
+"nnoremap <C-j> <C-W>j
+"nnoremap <C-k> <C-W>k
+"nnoremap <C-h> <C-W>h
+"nnoremap <C-l> <C-W>l
 
 " Disable search highlight and redraw screen
-nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " Make sure we don't abuse the arrows.
 map <up> <nop>
