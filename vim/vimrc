@@ -193,9 +193,10 @@ set whichwrap+=<,>,h,l,[,]
 " Speaking of indentation, let's get it right: width of 4, no tabs.
 " We can override this for certain filetypes later on.
 set shiftwidth=4
-set tabstop=4
+set tabstop=8
 set expandtab
 set smarttab
+set shiftround
 
 " Preserve indentation when starting a new line.
 set autoindent
@@ -220,7 +221,7 @@ set linebreak
 set wrap
 
 " Enable relative line numbering
-set relativenumber
+set relativenumber number
 
 " Ignore case in regular expressions, unless they include upper case.
 set ignorecase
