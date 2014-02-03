@@ -85,6 +85,7 @@ Bundle "garbas/vim-snipmate"
 Bundle "godlygeek/tabular"
 Bundle "ervandew/supertab"
 Bundle "Raimondi/delimitMate"
+Bundle "paradigm/TextObjectify"
 
 " The Tim Pope (tpope) appreciation section.
 Bundle "tpope/vim-surround"
@@ -180,6 +181,9 @@ set guioptions-=T
 
 " Show partially-completed commands.
 set showcmd
+
+" Show a line highlighting where the cursor is.
+set cursorline
 
 " Enable hiding buffers without deleting them.
 set hidden
