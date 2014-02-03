@@ -1,5 +1,7 @@
 " Core vimrc file
-" vi: set tw=78
+" vim: tw=78 fdl=0 fdm=marker
+"
+" Intro. {{{1
 "
 " This file contains all of my non-GUI settings for vim. As is the nature of
 " config files, many parts of this were cobbled together from various blog
@@ -10,51 +12,30 @@
 "   http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
 "
 " Many thanks to him for the well-commented examples.
-
+"
+" Clean initialization. {{{1
 autocmd!
 
-" Load some sensible defaults from the example vimrc, as well as
-" platform-specific tweaks.
+" Load some sensible defaults from the example vimrc.
 if filereadable("$VIM\_vimrc")
     source $VIM\_vimrc
 elseif filereadable("$VIM/vimrc")
     source $VIM/vimrc
 endif
 
-if executable("opam")
-    let g:opam_share = system("opam config var share")
-    let g:opam_share = substitute(g:opam_share, '[\r\n]*$', '', '')
-    let g:ocp_indent_vimfile = g:opam_share . "/vim/syntax/ocp-indent.vim"
-
-    if filereadable(g:ocp_indent_vimfile)
-        autocmd FileType ocaml exec "source " . g:ocp_indent_vimfile
-    endif
-
-    let g:merlin_vimfile = g:opam_share . "/ocamlmerlin/vim/syntax/merlin.vim"
-    if filereadable(g:merlin_vimfile)
-        let g:syntastic_ocaml_checkers=['merlin']
-        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vim"
-        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vimbufsync"
-    endif
-endif
-
-let g:syntastic_json_checkers=['jsonlint']
-
-" Normalize our home directory. GUI Vim tends to start up in strange places,
-" none of which are ever useful.
+" Normalize the home directory, since GVim on Windows can start up in some
+" very useless places.
 if (getcwd() == $VIMRUNTIME) || (getcwd() == "C:\\WINDOWS\\system32")
     cd $HOME
 endif
 
-" Need to set this early, because <leader> keybinds use the value of leader at
+" Leader mappings. {{{1
+" Need to set this early, because leader mappings use the value of <leader> at
 " the time they're defined.
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
 
-" Easy way to get out of insert mode.
-inoremap jk <esc>
-inoremap <esc> <nop>
-
+" Vundle initialization. {{{1
 " Vundle requires this in order to load properly.
 filetype off
 
@@ -64,108 +45,112 @@ call vundle#rc()
 
 Bundle "gmarik/vundle"
 
-" Load everything else.
-Bundle "altercation/vim-colors-solarized"
-Bundle "w0ng/vim-hybrid"
-Bundle "argtextobj.vim"
-Bundle "bkad/CamelCaseMotion"
-Bundle "ack.vim"
-"Bundle "c.vim"
-Bundle "docunext/closetag.vim"
-"Bundle "dbext.vim"
-Bundle "kana/vim-textobj-user"
-Bundle "michaeljsmith/vim-indent-object"
-"Bundle "mru.vim"
-Bundle "nathanaelkane/vim-indent-guides"
-"Bundle "nelstrom/vim-textobj-rubyblock"
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "scrooloose/syntastic"
-Bundle "tomtom/tlib_vim"
-Bundle "snipmate-snippets"
-Bundle "garbas/vim-snipmate"
-Bundle "godlygeek/tabular"
-Bundle "ervandew/supertab"
-Bundle "Raimondi/delimitMate"
-Bundle "paradigm/TextObjectify"
+" Plugins. {{{1
 
-" The Tim Pope (tpope) appreciation section.
-Bundle "tpope/vim-surround"
-Bundle "tpope/vim-bundler"
-"Bundle "tpope/vim-git"
-Bundle "tpope/vim-abolish"
-Bundle "tpope/vim-endwise"
-"Bundle "tpope/vim-markdown"
-Bundle "klen/python-mode"
-Bundle "tpope/vim-commentary"
-Bundle "tpope/vim-fugitive"
-Bundle "tpope/vim-repeat"
-Bundle "tpope/vim-liquid"
-Bundle "tpope/vim-unimpaired"
-Bundle "tpope/vim-vividchalk"
-"Bundle "tpope/vim-haml"
-"Bundle "tpope/vim-rvm"
-"Bundle "tpope/vim-rake"
-"Bundle "kchmck/vim-coffee-script"
-"Bundle "tpope/vim-rails"
-Bundle "kien/ctrlp.vim"
-Bundle "nanotech/jellybeans.vim"
-Bundle "jnurmine/Zenburn"
-"Bundle "guns/vim-clojure-static"
-Bundle "krisajenkins/vim-pipe"
-Bundle "krisajenkins/vim-postgresql-syntax"
-Bundle "tpope/vim-fireplace"
-Bundle "wlangstroth/vim-racket"
-Bundle "tomku/thesauri"
-Bundle "jcf/vim-latex"
-Bundle "mattn/emmet-vim"
-Bundle "mattn/webapi-vim"
-Bundle "mattn/gist-vim"
-Bundle "JuliaLang/julia-vim"
-Bundle "xhr/vim-io"
-Bundle "Blackrush/vim-gocode"
-"Bundle "jnwhiteh/vim-golang"
-Bundle "basepi/vim-conque"
-Bundle "YankRing.vim"
-Bundle "scrooloose/nerdtree"
-Bundle "scrooloose/nerdcommenter"
-Bundle "Rykka/riv.vim"
-Bundle "Tagbar"
-Bundle "xolox/vim-session"
-Bundle "xolox/vim-misc"
-Bundle "ZoomWin"
-Bundle "guns/vim-sexp"
-Bundle "kien/rainbow_parentheses.vim"
-Bundle "lukerandall/haskellmode-vim"
-Bundle "bitc/lushtags"
-Bundle "jimenezrick/vimerl"
-Bundle "adimit/prolog.vim"
+" General support libraries. {{{2
+Bundle 'kana/vim-textobj-user'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'mattn/webapi-vim'
+Bundle 'tomtom/tlib_vim'
+Bundle 'tpope/vim-repeat'
+Bundle 'xolox/vim-misc'
+" Color schemes. {{{2
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'jnurmine/Zenburn'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'w0ng/vim-hybrid'
+" Text objects. {{{2
+Bundle 'argtextobj.vim'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'paradigm/TextObjectify'
+" Basic editing additions. {{{2
+Bundle 'ervandew/supertab'
+Bundle 'garbas/vim-snipmate'
+Bundle 'godlygeek/tabular'
+Bundle 'guns/vim-sexp'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Raimondi/delimitMate'
+Bundle 'scrooloose/syntastic'
+Bundle 'snipmate-snippets'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'YankRing.vim'
+" Navigation and window management. {{{2
+Bundle 'ack.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Tagbar'
+Bundle 'xolox/vim-session'
+Bundle 'ZoomWin'
+" General programming tools. {{{2
+Bundle 'basepi/vim-conque'
+Bundle 'dbext.vim'
+" Powershell doesn't like this, and it probably doesn't work in cmd.exe.
+if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
+    Bundle 'krisajenkins/vim-pipe'
+endif
+Bundle 'mattn/gist-vim'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+" Language-specific tools. {{{2
+Bundle 'adimit/prolog.vim'
+Bundle 'bitc/lushtags'
+Bundle 'Blackrush/vim-gocode'
+Bundle 'c.vim'
+"Bundle 'derekwyatt/vim-sbt'
+Bundle 'docunext/closetag.vim'
+Bundle 'elehack/vim-oz'
+"Bundle 'guns/vim-clojure-static'
+Bundle 'jcf/vim-latex'
 Bundle 'jelera/vim-javascript-syntax'
-Bundle "othree/javascript-libraries-syntax.vim"
+Bundle 'jimenezrick/vimerl'
+"Bundle 'jnwhiteh/vim-golang'
+Bundle 'JuliaLang/julia-vim'
+"Bundle 'kchmck/vim-coffee-script'
+Bundle 'klen/python-mode'
+Bundle 'krisajenkins/vim-postgresql-syntax'
+Bundle 'lukerandall/haskellmode-vim'
+Bundle 'mattn/emmet-vim'
+Bundle 'othree/javascript-libraries-syntax.vim'
 "Bundle 'pangloss/vim-javascript'
-Bundle "elehack/vim-oz"
-"Bundle "derekwyatt/vim-sbt"
-Bundle "sheerun/vim-polyglot"
+Bundle 'Rykka/riv.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'sheerun/vim-polyglot'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-fireplace'
+"Bundle 'tpope/vim-git'
+"Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-liquid'
+"Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
+"Bundle 'tpope/vim-rake'
+"Bundle 'tpope/vim-rvm'
+Bundle 'wlangstroth/vim-racket'
+Bundle 'xhr/vim-io'
 
-" Matchit.vim is included with vim, no need to bundle it.
+" Matchit.vim is included with vim.
 runtime macros/matchit.vim
 
-" This sets the history limit for ex mode and searches. The default is 20,
-" which is far too low, so let's set it to an arbitrary high number.
-set history=1000
-
-" Pretty colors and fancy formatting should be the default, really...
+" Basic settings. {{{1
 syntax enable
 filetype indent plugin on
 
-" Solarized works best in both terminal and GUI in 16 color mode, but it's
-" horribly ugly in the Windows console because cmd.exe sucks.
+" Solarized looks fine on real consoles, but terrible in cmd.exe.
 set t_Co=16
 set background=dark
 if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
-    " Vivid Chalk is still ugly in cmd.exe, but, well... less so
-    colorscheme vividchalk
+    colorscheme desert
+    hi CursorLine ctermbg=7
+    hi CursorLineNr ctermfg=7
 else
-    silent! colorscheme solarized
+    colorscheme solarized
+    hi CursorLineNr guibg=#073642 guifg=#586e75 ctermfg=NONE ctermbg=0
 endif
 
 " Default to UTF-8 and Unix line endings, but use the existing line endings
@@ -177,9 +162,6 @@ try
 catch
 endtry
 
-" Disable the toolbar.
-set guioptions-=T
-
 " Show partially-completed commands.
 set showcmd
 
@@ -189,15 +171,15 @@ set cursorline
 " Enable hiding buffers without deleting them.
 set hidden
 
-" Get rid of the vi default and let me backspace over newlines
-" and indentation.
+" Allow backspacing over newlines, indentations.
 set backspace=indent,eol,start
 
-" Let me move over newlines with h, l and arrow keys.
-set whichwrap+=<,>,h,l,[,]
+" Allow movement over newlines with the h and l keys.
+set whichwrap+=h,l
 
-" Speaking of indentation, let's get it right: width of 4, no tabs.
-" We can override this for certain filetypes later on.
+" Use 4 space indentation, 8 spaces for existing tab characters, but never
+" insert new tab characters.  Indentation commands should use shiftwidth and
+" always round to the nearest 4 spaces.
 set shiftwidth=4
 set tabstop=8
 set expandtab
@@ -208,14 +190,19 @@ set shiftround
 set autoindent
 set smartindent
 
+" Tweak when comment characters are automatically inserted.
+autocmd BufEnter * set formatoptions-=o
+
 " Show trailing/unnecessary whitespace
 set list
 set listchars=tab:→\ ,trail:·
-noremap <C-h> :set list!<CR>
 
-" Enable completion for ex commands. Stupid option name.
+" Enable completion for command line commands.
 set wildmenu
 set wildmode=list:longest
+
+" Dictionary file for dictionary completion.
+set dictionary=~/Dropbox/dotfiles/mobywords-combined.txt
 
 " Enable insert-mode completion.
 set completeopt=menuone,longest,preview
@@ -225,7 +212,8 @@ set complete=.,w,b,u,t
 set linebreak
 set wrap
 
-" Enable relative line numbering
+" Enable relative line numbering, plus the current line number if vim is new
+" enough to support it.
 set relativenumber number
 
 " Ignore case in regular expressions, unless they include upper case.
@@ -243,14 +231,15 @@ set matchtime=2
 " Keep three lines of context at the top/bottom of the screen at all times.
 set scrolloff=3
 
-" Enable folding and use indentation. This isn't perfect, but it
-" works with most code that's properly indented, and that's good enough.
-set foldmethod=indent
-set foldlevel=99
+" Enable folding, but unfold everything by default.
+set foldmethod=syntax
+set foldlevelstart=99
+
+" Set command line history to something saner than 20.
+set history=1000
 
 " Disable permanent backups, keep temporary backups during writes, disable
-" swap files entirely. I do a lot of editing inside my Dropbox folder, and the
-" popup notifications get annoying very quickly.
+" swap files entirely.
 set nobackup
 set writebackup
 set noswapfile
@@ -267,16 +256,69 @@ endtry
 set title
 set visualbell
 
-" Disable IME by default, otherwise vim switches to Japanese on startup.
+" Use the X11 clipboard when available, unless we're on a Linux virtual
+" terminal or inside GNU screen.
+set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
+
+" Search for tags in the current working directory, then recursively upwards
+" until /.
+set tags=tags;/
+
+" Disable IME by default.
 set iminsert=0
 set imsearch=-1
 set noimcmdline
 
-" Reuse open tabs and windows when switching buffers rather than blindly
-" opening new ones.
+" Reuse open tabs and windows when switching buffers.
 set switchbuf=usetab
 
-" Some quick snippet-like shortcuts for opening common locations.
+" Create splits going towards the bottom right, not top left
+set splitbelow
+set splitright
+
+" Mappings. {{{1
+" Insert mode mappings. {{{2
+" Easy way to get out of insert mode.
+inoremap jk <esc>
+
+" Normal mode mappings. {{{2
+" Plugins.
+nnoremap <leader>a :Ack! 
+
+" Managing tabs.
+noremap <leader>tt :tabnew<cr>
+noremap <leader>te :tabedit
+noremap <leader>tc :tabclose<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tn :tabnext<cr>
+noremap <leader>tp :tabprevious<cr>
+noremap <leader>tf :tabfirst<cr>
+noremap <leader>tl :tablast<cr>
+noremap <leader>tm :tabmove
+
+" Quickfix window.
+noremap <leader>co :botright cope<CR>
+noremap <leader>j :cn<cr>
+noremap <leader>k :cp<cr>
+
+" Quick toggles.
+nnoremap <leader>ss :setlocal spell!<cr>
+nnoremap <leader>sp :set paste!<cr>
+nnoremap <leader>sl :set list!<cr>
+
+" Disable search highlight and redraw screen.
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" Line transposition.
+nnoremap <M-j> mz:m+<cr>`z
+nnoremap <M-k> mz:m-2<cr>`z
+
+" Visual mode mappings. {{{2
+vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Command line mode mappings. {{{2
+" Command line snippets.
 cnoremap $h edit ~/
 cnoremap $d edit ~/Desktop/
 cnoremap $j edit ./
@@ -286,38 +328,30 @@ func! CurrentFileDir(cmd)
   return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
 
-" Keybinds to make an Emacs user feel a little more at home in ex mode.
+" Heresy.
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 cnoremap <C-K> <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-" Cheat command for writing to root-owned files.
+" Write to root-owned file via sudo tee.
 cnoremap w!! %!sudo tee > /dev/null %
 
-" Disable search highlight and redraw screen
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-
-" Make sure we don't abuse the arrows.
+" Training wheels. {{{2
 map <up> <nop>
 map <down> <nop>
 map <right> <nop>
 map <left> <nop>
+inoremap <esc> <nop>
 
-" Create splits going towards the bottom right, not top left
-set splitbelow
-set splitright
-
-" Display more info on the status line, including current directory and a
-" paste indicator.  The conditional is so that I don't get annoying errors
-" if fugitive isn't installed or activated.
+" Status line. {{{1
 set laststatus=2
 set cmdheight=2
 set ruler
 set statusline=%{HasPaste()}[%n]\ %<%F%m%h\ :%Y:\ %{exists('*fugitive#statusline')?fugitive#statusline():''}\ %w\ \ %h\ \ %=%b\ %B\ Line:\ %l/%L:%c\ [%P]
 
-" Support functions for the status line.
+" Support functions for the status line. {{{2
 function! CurDir()
     let curdir = substitute(getcwd(), $HOME, "~", "g")
     return curdir
@@ -331,71 +365,21 @@ function! HasPaste()
     endif
 endfunction
 
-" Transpose lines up/down easily with M-j/k.
-nnoremap <M-j> mz:m+<cr>`z
-nnoremap <M-k> mz:m-2<cr>`z
-vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vnoremap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" Automatic cleanup. {{{1
+" Delete fugitive buffers when they aren't visible.
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" Keybindings for plugins.
-nnoremap <leader>a :Ack! 
-nnoremap <leader>n :NERDTreeFocus<cr>
+" Delete Vundle buffers when they aren't visible.
+autocmd FileType vundle set bufhidden=delete
 
-" Keybindings for managing tabs.
-noremap <leader>tt :tabnew<cr>
-noremap <leader>te :tabedit
-noremap <leader>tc :tabclose<cr>
-noremap <leader>to :tabonly<cr>
-noremap <leader>tn :tabnext<cr>
-noremap <leader>tp :tabprevious<cr>
-noremap <leader>tf :tabfirst<cr>
-noremap <leader>tl :tablast<cr>
-noremap <leader>tm :tabmove
+" Disable shellslash in Vundle buffers, or git command lines get screwed up.
+autocmd FileType vundle set noshellslash
 
-" Cope settings.
-noremap <leader>co :botright cope<CR>
-noremap <leader>j :cn<cr>
-noremap <leader>k :cp<cr>
-
-" Quick toggle for spell checking.
-noremap <leader>ss :setlocal spell!<cr>
-
-" Quick toggle for paste mode
-nnoremap cop :set paste!<cr>
-
-" Dictionary and thesaurus completion
-set dictionary=~/Dropbox/dotfiles/mobywords-combined.txt
-
-if has("win32")
-    let g:mobythesaurus_file = $HOME . "\\Dropbox\\dotfiles\\mobythesaurus-vim.txt"
-else
-    let g:mobythesaurus_file = $HOME . "/Dropbox/dotfiles/mobythesaurus-vim.txt"
-endif
-"set completefunc=CompleteThesauri
-
-let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeDirArrows = 1
-
-" Python settings.
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-if has("autocmd") && exists("+omnifunc") 
-    autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
-endif
-
-" Javascript settings.
-au FileType javascript setl foldenable
-au FileType javascript setl nocindent
-au FileType javascript call JavaScriptFold()
-
-let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,sugar,requirejs'
-
-" General skeleton file support
+" Skeletons. {{{1
 autocmd BufNewFile * :silent! exec ":0r " . $DOTFILES  . "/vim/templates/" . &ft
 autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
-" Automatically make scripts executable if they start with a shebang
+" Auto-chmod. {{{1
 function! ConditionalChmod(line1, current_file)
     if has("unix")
         if a:line1 =~ '^#!'
@@ -406,36 +390,20 @@ endfunction
 
 autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
 
-" Coffeescript settings.
-autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+" Plugin settings. "{{{1
+" delimitMate plugin settings. {{{2
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:SuperTabCrMapping = 0
 
-" HTML settings.
-let g:closetag_html_style=1
+" NERDTree plugin settings. {{{2
+let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeDirArrows = 1
 
-" Ruby settings.
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-autocmd BufNewFile,BufReadPost *.rb setl foldmethod=indent nofoldenable
-autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
+nnoremap <leader>n :NERDTreeFocus<cr>
 
-" Delete fugitive buffers when they aren't visible.
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
-" Delete Vundle buffers when they aren't visible.
-autocmd FileType vundle set bufhidden=delete
-
-" Set filetype to mail when editing emails for mutt.
-autocmd BufRead,BufNewFile *mutt-* setfiletype mail
-
-" Haskell mode setup
-au Bufenter *.hs compiler ghc
-let g:haddock_browser = "google-chrome"
-
-" Lisp stuff
-autocmd BufNewFile,BufReadPost *.cl set lisp
-
-" Ctrl-P customization
+" CtrlP plugin settings. {{{2
 " Set the max files
 let g:ctrlp_max_files = 10000
 
@@ -460,12 +428,21 @@ if has("win32")
                 \ }
 endif
 
-let g:ctrlp_show_hidden = 0
+" Set CtrlP's working directory to the VCS project root, or vim's current
+" directory if the current file is under it, or the directory of the current
+" file, in that order.
 let g:ctrlp_working_path_mode = 'ra'
+
+" Hide hidden files when not using ctrlp_user_command.
+let g:ctrlp_show_hidden = 0
+
+" Ignore common VCS directories and various other uneditables when not using
+" ctrlp_user_command.
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.dropbox\.cache$\|\.git$\|\.hg$\|\.svn$',
   \ 'file': '\.exe$\|\.so$\|\.dll$',
   \ }
+
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
@@ -477,35 +454,95 @@ nnoremap <leader>l :CtrlPLine<CR>
 nnoremap <leader>u :CtrlPUndo<CR>
 nnoremap <leader>U :CtrlPChange<CR>
 nnoremap <leader>d :CtrlPDir<CR>
+
 let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes', 'dir']
 
-" vim-latex settings
-let g:Tex_DefaultTargetFormat="pdf"
-let g:Tex_MultipleCompileFormats="dvi,pdf"
-let g:Tex_ViewRule_pdf="sumatrapdf -reuse-instance"
-let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_AutoFolding=0
-let g:tex_flavor='latex'
+" YankRing plugin settings. {{{2
+let g:yankring_history_dir = '~/.vim'
 
-au FileType clojure RainbowParenthesesActivate
-au FileType clojure RainbowParenthesesLoadRound
-au FileType clojure RainbowParenthesesLoadSquare
-
+" vim-session plugin settings. {{{2
 let g:session_autosave = "yes"
 let g:session_autoload = "yes"
 let g:session_directory = "~/.vim/sessions"
 set sessionoptions+=resize,winpos
+set sessionoptions-=help
 
-let g:yankring_history_dir = '~/.vim'
+" SuperTab plugin settings. {{{2
+let g:SuperTabDefaultCompletionType = "context"
+if has("autocmd") && exists("+omnifunc") 
+    autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+endif
 
-set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
+" Language settings. {{{1
+" C language settings. {{{2
 
-set tags=tags;/
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:SuperTabCrMapping = 0
+" Clojure language settings. {{{2
+au FileType clojure RainbowParenthesesActivate
+au FileType clojure RainbowParenthesesLoadRound
+au FileType clojure RainbowParenthesesLoadSquare
 
-" Load machine-specific settings
+" Coffeescript language settings. {{{2
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+
+" Haskell language settings. {{{2
+au Bufenter *.hs compiler ghc " TODO: Condition on ghc actually being installed.
+let g:haddock_browser = "google-chrome"
+
+" HTML language settings. {{{2
+let g:closetag_html_style=1
+
+" Javascript language settings. {{{2
+au FileType javascript setl foldenable
+au FileType javascript setl nocindent
+au FileType javascript call JavaScriptFold()
+
+let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,sugar,requirejs'
+let g:syntastic_json_checkers=['jsonlint']
+
+" LaTeX language settings. {{{2
+let g:Tex_DefaultTargetFormat="pdf"
+let g:Tex_MultipleCompileFormats="dvi,pdf"
+let g:Tex_ViewRule_pdf="sumatrapdf -reuse-instance" " TODO: Make cross-platform.
+let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
+let g:Tex_AutoFolding=0
+let g:tex_flavor='latex'
+
+" Lisp language settings. {{{2
+autocmd BufNewFile,BufReadPost *.cl set lisp
+
+" Mutt format settings. {{{2
+" Set filetype to mail when editing emails for mutt.
+autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+
+" OCaml language settings. {{{2
+if executable("opam")
+    let g:opam_share = system("opam config var share")
+    let g:opam_share = substitute(g:opam_share, '[\r\n]*$', '', '')
+    let g:ocp_indent_vimfile = g:opam_share . "/vim/syntax/ocp-indent.vim"
+
+    if filereadable(g:ocp_indent_vimfile)
+        autocmd FileType ocaml exec "source " . g:ocp_indent_vimfile
+    endif
+
+    let g:merlin_vimfile = g:opam_share . "/ocamlmerlin/vim/syntax/merlin.vim"
+    if filereadable(g:merlin_vimfile)
+        let g:syntastic_ocaml_checkers=['merlin']
+        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vim"
+        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vimbufsync"
+    endif
+endif
+
+" Python language settings. {{{2
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+" Ruby language settings. {{{2
+autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+autocmd BufNewFile,BufReadPost *.rb setl foldmethod=indent nofoldenable
+autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
+
+" Machine-specific settings. {{{1
 if filereadable(glob("~/.vimrc.local")) 
     source ~/.vimrc.local
 endif

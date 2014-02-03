@@ -1,6 +1,5 @@
-set guioptions -=T " no toolbar
-set background=dark
-"colorscheme hybrid
+" Disable the toolbar.
+set guioptions-=T
 
 " Set fonts. The sizes are slightly different on Windows, due to a different
 " rendering engine.
