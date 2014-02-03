@@ -53,6 +53,7 @@ let g:maplocalleader = "\\"
 
 " Easy way to get out of insert mode.
 inoremap jk <esc>
+inoremap <esc> <nop>
 
 " Vundle requires this in order to load properly.
 filetype off
