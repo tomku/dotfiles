@@ -132,6 +132,9 @@ runtime macros/matchit.vim
 syntax enable
 filetype indent plugin on
 
+" Make sure modelines are read, Debian turns this off by default.
+set modeline
+
 " Solarized looks fine on real consoles, but terrible in cmd.exe.
 set t_Co=16
 set background=dark
