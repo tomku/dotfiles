@@ -491,6 +491,10 @@ endif
 
 " Language settings. {{{1
 " C language settings. {{{2
+augroup c
+    autocmd!
+    autocmd Filetype C compiler gcc
+augroup END
 
 " Clojure language settings. {{{2
 augroup clojure
