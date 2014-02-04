@@ -146,17 +146,17 @@ set t_Co=16
 set background=dark
 if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
     colorscheme desert
-    hi CursorLine ctermbg=7
-    hi CursorLineNr ctermfg=7
+    highlight CursorLine ctermbg=7
+    highlight CursorLineNr ctermfg=7
 else
     colorscheme solarized
-    hi CursorLineNr guibg=#073642 guifg=#586e75 ctermfg=NONE ctermbg=0
+    highlight CursorLineNr guibg=#073642 guifg=#586e75 ctermfg=NONE ctermbg=0
 endif
 
 " Default to UTF-8 and Unix line endings, but use the existing line endings
 " if the file already has some.
 set encoding=utf8
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
 try
     lang en_US
 catch
@@ -214,7 +214,8 @@ set wrap
 
 " Enable relative line numbering, plus the current line number if vim is new
 " enough to support it.
-set relativenumber number
+set relativenumber
+set number
 
 " Ignore case in regular expressions, unless they include upper case.
 set ignorecase
@@ -297,9 +298,9 @@ noremap <leader>tl :tablast<cr>
 noremap <leader>tm :tabmove
 
 " Quickfix window.
-noremap <leader>co :botright cope<CR>
-noremap <leader>j :cn<cr>
-noremap <leader>k :cp<cr>
+noremap <leader>co :botright copen<CR>
+noremap <leader>j :cnext<cr>
+noremap <leader>k :cprevious<cr>
 
 " Quick toggles.
 nnoremap <leader>ss :setlocal spell!<cr>
@@ -324,9 +325,9 @@ cnoremap $d edit ~/Desktop/
 cnoremap $j edit ./
 cnoremap $c edit <C-\>eCurrentFileDir("edit")<cr>
 
-func! CurrentFileDir(cmd)
+function! CurrentFileDir(cmd)
   return a:cmd . " " . expand("%:p:h") . "/"
-endfunc
+endfunction
 
 " Heresy.
 cnoremap <C-A> <Home>
@@ -384,7 +385,7 @@ augroup END
 " Skeletons. {{{1
 augroup skeleton
     autocmd!
-    autocmd BufNewFile * :silent! exec ":0r " . $DOTFILES  . "/vim/templates/" . &ft
+    autocmd BufNewFile * :silent! execute ":0r " . $DOTFILES  . "/vim/templates/" . &ft
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
 
@@ -502,8 +503,8 @@ augroup END
 " Coffeescript language settings. {{{2
 augroup coffeescript
     autocmd!
-    autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-    autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+    autocmd BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent nofoldenable
+    autocmd BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
     autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 augroup END
 
@@ -520,8 +521,8 @@ let g:closetag_html_style=1
 " Javascript language settings. {{{2
 augroup javascript
     autocmd!
-    autocmd FileType javascript setl foldenable
-    autocmd FileType javascript setl nocindent
+    autocmd FileType javascript setlocal foldenable
+    autocmd FileType javascript setlocal nocindent
     autocmd FileType javascript call JavaScriptFold()
 augroup END
 
@@ -558,7 +559,7 @@ if executable("opam")
     if filereadable(g:ocp_indent_vimfile)
         augroup ocaml
             autocmd!
-            autocmd FileType ocaml exec "source " . g:ocp_indent_vimfile
+            autocmd FileType ocaml execute "source " . g:ocp_indent_vimfile
         augroup END
     endif
 
@@ -580,8 +581,8 @@ augroup END
 augroup ruby
     autocmd!
     autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-    autocmd BufNewFile,BufReadPost *.rb setl foldmethod=indent nofoldenable
-    autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
+    autocmd BufNewFile,BufReadPost *.rb setlocal foldmethod=indent nofoldenable
+    autocmd BufNewFile,BufReadPost *.rb setlocal shiftwidth=2 expandtab
 augroup END
 
 " Machine-specific settings. {{{1
