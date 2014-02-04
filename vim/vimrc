@@ -259,7 +259,7 @@ set visualbell
 
 " Use the X11 clipboard when available, unless we're on a Linux virtual
 " terminal or inside GNU screen.
-set clipboard=autoselect,exclude:cons\\\|linux\\\|screen 
+set clipboard=autoselect,exclude:cons\\\|linux\\\|screen
 
 " Search for tags in the current working directory, then recursively upwards
 " until /.
@@ -482,7 +482,7 @@ set sessionoptions-=help
 
 " SuperTab plugin settings. {{{2
 let g:SuperTabDefaultCompletionType = "context"
-if has("autocmd") && exists("+omnifunc") 
+if has("autocmd") && exists("+omnifunc")
     augroup omnicomp
         autocmd!
         autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
@@ -590,7 +590,7 @@ augroup ruby
 augroup END
 
 " Machine-specific settings. {{{1
-if filereadable(glob("~/.vimrc.local")) 
+if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
 
