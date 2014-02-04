@@ -385,7 +385,7 @@ augroup END
 " Skeletons. {{{1
 augroup skeleton
     autocmd!
-    autocmd BufNewFile * :silent! execute ":0r " . $DOTFILES  . "/vim/templates/" . &ft
+    autocmd BufNewFile * :silent! execute ":0r " . expand('<sfile>:p:h') . "/templates/" . &ft
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
 
