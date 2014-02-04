@@ -361,17 +361,26 @@ endfunction
 
 " Automatic cleanup. {{{1
 " Delete fugitive buffers when they aren't visible.
-autocmd BufReadPost fugitive://* set bufhidden=delete
+augroup fugitive
+    autocmd!
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+augroup END
 
-" Delete Vundle buffers when they aren't visible.
-autocmd FileType vundle set bufhidden=delete
+augroup vundle
+    autocmd!
+    " Delete Vundle buffers when they aren't visible.
+    autocmd FileType vundle set bufhidden=delete
 
-" Disable shellslash in Vundle buffers, or git command lines get screwed up.
-autocmd FileType vundle set noshellslash
+    " Disable shellslash in Vundle buffers, or git command lines get screwed up.
+    autocmd FileType vundle set noshellslash
+augroup END
 
 " Skeletons. {{{1
-autocmd BufNewFile * :silent! exec ":0r " . $DOTFILES  . "/vim/templates/" . &ft
-autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+augroup skeleton
+    autocmd!
+    autocmd BufNewFile * :silent! exec ":0r " . $DOTFILES  . "/vim/templates/" . &ft
+    autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+augroup END
 
 " Auto-chmod. {{{1
 function! ConditionalChmod(line1, current_file)
@@ -382,7 +391,10 @@ function! ConditionalChmod(line1, current_file)
     endif
 endfunction
 
-autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
+augroup auto-chmod
+    autocmd!
+    autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
+augroup END
 
 " Plugin settings. "{{{1
 " delimitMate plugin settings. {{{2
@@ -464,33 +476,48 @@ set sessionoptions-=help
 " SuperTab plugin settings. {{{2
 let g:SuperTabDefaultCompletionType = "context"
 if has("autocmd") && exists("+omnifunc") 
-    autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+    augroup omnicomp
+        autocmd!
+        autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+    augroup END
 endif
 
 " Language settings. {{{1
 " C language settings. {{{2
 
 " Clojure language settings. {{{2
-au FileType clojure RainbowParenthesesActivate
-au FileType clojure RainbowParenthesesLoadRound
-au FileType clojure RainbowParenthesesLoadSquare
+augroup clojure
+    autocmd!
+    autocmd FileType clojure RainbowParenthesesActivate
+    autocmd FileType clojure RainbowParenthesesLoadRound
+    autocmd FileType clojure RainbowParenthesesLoadSquare
+augroup END
 
 " Coffeescript language settings. {{{2
-autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+augroup coffeescript
+    autocmd!
+    autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+    autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+    autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+augroup END
 
 " Haskell language settings. {{{2
-au Bufenter *.hs compiler ghc " TODO: Condition on ghc actually being installed.
+augroup haskell
+    autocmd!
+    autocmd Bufenter *.hs compiler ghc " TODO: Condition on ghc actually being installed.
+augroup END
 let g:haddock_browser = "google-chrome"
 
 " HTML language settings. {{{2
 let g:closetag_html_style=1
 
 " Javascript language settings. {{{2
-au FileType javascript setl foldenable
-au FileType javascript setl nocindent
-au FileType javascript call JavaScriptFold()
+augroup javascript
+    autocmd!
+    autocmd FileType javascript setl foldenable
+    autocmd FileType javascript setl nocindent
+    autocmd FileType javascript call JavaScriptFold()
+augroup END
 
 let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,sugar,requirejs'
 let g:syntastic_json_checkers=['jsonlint']
@@ -504,11 +531,17 @@ let g:Tex_AutoFolding=0
 let g:tex_flavor='latex'
 
 " Lisp language settings. {{{2
-autocmd BufNewFile,BufReadPost *.cl set lisp
+augroup lisp
+    autocmd!
+    autocmd BufNewFile,BufReadPost *.cl set lisp
+augroup END
 
 " Mutt format settings. {{{2
 " Set filetype to mail when editing emails for mutt.
-autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+augroup mutt
+    autocmd!
+    autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+augroup END
 
 " OCaml language settings. {{{2
 if executable("opam")
@@ -517,7 +550,10 @@ if executable("opam")
     let g:ocp_indent_vimfile = g:opam_share . "/vim/syntax/ocp-indent.vim"
 
     if filereadable(g:ocp_indent_vimfile)
-        autocmd FileType ocaml exec "source " . g:ocp_indent_vimfile
+        augroup ocaml
+            autocmd!
+            autocmd FileType ocaml exec "source " . g:ocp_indent_vimfile
+        augroup END
     endif
 
     let g:merlin_vimfile = g:opam_share . "/ocamlmerlin/vim/syntax/merlin.vim"
@@ -529,12 +565,18 @@ if executable("opam")
 endif
 
 " Python language settings. {{{2
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+augroup python
+    autocmd!
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+augroup END
 
 " Ruby language settings. {{{2
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-autocmd BufNewFile,BufReadPost *.rb setl foldmethod=indent nofoldenable
-autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
+augroup ruby
+    autocmd!
+    autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+    autocmd BufNewFile,BufReadPost *.rb setl foldmethod=indent nofoldenable
+    autocmd BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
+augroup END
 
 " Machine-specific settings. {{{1
 if filereadable(glob("~/.vimrc.local")) 
