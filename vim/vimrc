@@ -47,6 +47,9 @@ Bundle "gmarik/vundle"
 
 " Plugins. {{{1
 
+" Matchit.vim is included with vim.
+runtime macros/matchit.vim
+
 " General support libraries. {{{2
 Bundle 'kana/vim-textobj-user'
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -54,18 +57,21 @@ Bundle 'mattn/webapi-vim'
 Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-repeat'
 Bundle 'xolox/vim-misc'
+
 " Color schemes. {{{2
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jnurmine/Zenburn'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'w0ng/vim-hybrid'
+
 " Text objects. {{{2
 Bundle 'argtextobj.vim'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'paradigm/TextObjectify'
+
 " Basic editing additions. {{{2
 Bundle 'ervandew/supertab'
 Bundle 'garbas/vim-snipmate'
@@ -81,6 +87,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'YankRing.vim'
+
 " Navigation and window management. {{{2
 Bundle 'ack.vim'
 Bundle 'kien/ctrlp.vim'
@@ -88,6 +95,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Tagbar'
 Bundle 'xolox/vim-session'
 Bundle 'ZoomWin'
+
 " General programming tools. {{{2
 Bundle 'basepi/vim-conque'
 Bundle 'dbext.vim'
@@ -98,6 +106,7 @@ endif
 Bundle 'mattn/gist-vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
+
 " Language-specific tools. {{{2
 Bundle 'adimit/prolog.vim'
 Bundle 'bitc/lushtags'
@@ -124,9 +133,6 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'wlangstroth/vim-racket'
 Bundle 'xhr/vim-io'
-
-" Matchit.vim is included with vim.
-runtime macros/matchit.vim
 
 " Basic settings. {{{1
 syntax enable
