@@ -303,9 +303,16 @@ noremap <leader>j :cnext<cr>
 noremap <leader>k :cprevious<cr>
 
 " Quick toggles.
-nnoremap <leader>ss :setlocal spell!<cr>
-nnoremap <leader>sp :set paste!<cr>
-nnoremap <leader>sl :set list!<cr>
+nnoremap cop :set paste!<cr>
+nnoremap cof :call FoldColumnToggle()<cr>
+
+function! FoldColumnToggle()
+    if &foldcolumn
+        setlocal foldcolumn=0
+    else
+        setlocal foldcolumn=3
+    endif
+endfunction
 
 " Disable search highlight and redraw screen.
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
