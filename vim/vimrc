@@ -414,12 +414,14 @@ augroup auto-chmod
     autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
 augroup END
 
-" Plugin settings. "{{{1
+" Plugin settings. {{{1
 " delimitMate plugin settings. {{{2
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 let g:SuperTabCrMapping = 0
 
+" Emmet settings. {{{2
+let g:user_emmet_leader_key='<C-;>'
 " NERDTree plugin settings. {{{2
 let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
 let g:NERDTreeShowBookmarks = 1
