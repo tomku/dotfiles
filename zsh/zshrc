@@ -1,6 +1,10 @@
 # Load our utility loading function.
 . $DOTFILES/zsh/load
 
+# Sane starting point that includes sbin folders
+unset PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
 if [ -d /etc/profile.d/ ] ; then
     for profile in /etc/profile.d/*.sh; do
         [ -r "$profile" ] && . "$profile"

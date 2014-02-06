@@ -3,10 +3,6 @@ export BROWSER="google-chrome"
 export PAGER="less"
 LESSOPT="-M"
 
-# Sane starting point that includes sbin folders
-unset PATH
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-
 # Haskell bins installed by cabal
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH=$HOME/.cabal/bin:$PATH
@@ -23,8 +19,8 @@ if which npm >/dev/null ; then
         mkdir -p ~/.node/bin
         npm config set prefix ~/.node
     fi
-    PATH="$HOME/.node/bin:$PATH"
-    NODE_PATH=$HOME/.node/lib/node_modules:$NODE_PATH
+    PATH=$(npm bin -g 2>/dev/null):$PATH
+    NODE_PATH=$(npm root -g):$NODE_PATH
     export NODE_PATH
 fi
 
