@@ -94,3 +94,8 @@ update-repos() {
 
 alias ansible-setup='ansible all -c local -i "127.0.0.1," -m setup'
 alias ansible-reload='ansible-playbook -c local -i "127.0.0.1,"'
+
+# This lists only the top-level installed npm packages.
+npm-installed() {
+    npm ls $1 --parseable | grep -v "node_modules.*node_modules" | sed "s|$(npm root $1)/||"
+}
