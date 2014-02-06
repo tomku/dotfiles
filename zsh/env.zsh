@@ -24,6 +24,8 @@ if which npm >/dev/null ; then
         npm config set prefix ~/.node
     fi
     PATH="$HOME/.node/bin:$PATH"
+    NODE_PATH=$HOME/.node/lib/node_modules:$NODE_PATH
+    export NODE_PATH
 fi
 
 # R packages installed in my home directory
