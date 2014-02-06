@@ -350,6 +350,9 @@ cnoremap <C-N> <Down>
 " Write to root-owned file via sudo tee.
 cnoremap w!! %!sudo tee > /dev/null %
 
+" Copy the current line into the command line prompt.
+cnoremap <c-r><c-l> <c-r>=getline('.')<cr>
+
 " Training wheels. {{{2
 map <up> <nop>
 map <down> <nop>
