@@ -594,8 +594,10 @@ endif
 " Python language settings. {{{2
 augroup python
     autocmd!
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType python let b:delimitMate_nesting_quotes = ['"']
 augroup END
+
+let g:pymode_lint_write = 0
 
 " Ruby language settings. {{{2
 augroup ruby
