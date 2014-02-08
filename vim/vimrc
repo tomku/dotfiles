@@ -64,6 +64,7 @@ Bundle 'jnurmine/Zenburn'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'reedes/vim-colors-pencil'
 
 " Text objects. {{{2
 Bundle 'argtextobj.vim'
@@ -71,6 +72,7 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'paradigm/TextObjectify'
+Bundle 'reedes/vim-textobj-sentence'
 
 " Basic editing additions. {{{2
 Bundle 'ervandew/supertab'
@@ -87,6 +89,12 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'YankRing.vim'
+
+" Prose writing. {{{2
+Bundle 'reedes/vim-wordy'
+Bundle 'reedes/vim-pencil'
+Bundle 'reedes/vim-litecorrect'
+Bundle 'reedes/vim-lexical'
 
 " Navigation and window management. {{{2
 Bundle 'ack.vim'
@@ -203,6 +211,7 @@ set wildmode=list:longest
 
 " Dictionary file for dictionary completion.
 set dictionary=~/Dropbox/dotfiles/mobywords-combined.txt
+set spellfile=~/Dropbox/dotfiles/spellfile.add
 
 " Enable insert-mode completion.
 set completeopt=menuone,longest,preview
@@ -416,6 +425,27 @@ augroup auto-chmod
     autocmd!
     autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
 augroup END
+
+" Prose writing settings. {{{1
+
+function! ProseInit()
+    call textobj#sentence#init()
+    call litecorrect#init()
+    call lexical#init()
+    call pencil#init({'wrap': 'hard'})
+endfunction
+
+augroup prose
+    autocmd!
+    autocmd FileType markdown call ProseInit()
+    autocmd FileType textile call ProseInit()
+    autocmd FileType rst call ProseInit()
+    autocmd FileType text call ProseInit()
+    autocmd FileType gitcommit call ProseInit()
+augroup END
+
+let g:litecorrect#typographic = 0
+let g:lexical#spell_key = 'zs'
 
 " Plugin settings. {{{1
 " delimitMate plugin settings. {{{2
