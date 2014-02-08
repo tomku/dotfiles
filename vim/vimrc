@@ -115,6 +115,7 @@ endif
 Bundle 'mattn/gist-vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
+Bundle 'junegunn/vader.vim'
 
 " Language-specific tools. {{{2
 Bundle 'adimit/prolog.vim'
