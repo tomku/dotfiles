@@ -294,7 +294,7 @@ inoremap jk <esc>
 
 " Normal mode mappings. {{{2
 " Plugins.
-nnoremap <leader>a :Ack! 
+nnoremap <leader>a :Ack!<space>
 
 " Managing tabs.
 noremap <leader>tt :tabnew<cr>
@@ -445,6 +445,7 @@ augroup prose
     autocmd FileType rst call ProseInit()
     autocmd FileType text call ProseInit()
     autocmd FileType gitcommit call ProseInit()
+    autocmd FileType help call lexical#init({ 'spell': 0 })
 augroup END
 
 let g:litecorrect#typographic = 0
