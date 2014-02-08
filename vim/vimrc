@@ -103,6 +103,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Tagbar'
 Bundle 'xolox/vim-session'
 Bundle 'ZoomWin'
+Bundle 'bling/vim-airline'
 
 " General programming tools. {{{2
 Bundle 'basepi/vim-conque'
@@ -373,7 +374,9 @@ inoremap <esc> <nop>
 set laststatus=2
 set cmdheight=2
 set ruler
-set statusline=%{HasPaste()}[%n]\ %<%F%m%h\ :%Y:\ %{exists('*fugitive#statusline')?fugitive#statusline():''}\ %w\ \ %h\ \ %=%b\ %B\ Line:\ %l/%L:%c\ [%P]
+
+" Disabled in favor of vim-airline.
+" set statusline=%{HasPaste()}[%n]\ %<%F%m%h\ :%Y:\ %{exists('*fugitive#statusline')?fugitive#statusline():''}\ %w\ \ %h\ \ %=%b\ %B\ Line:\ %l/%L:%c\ [%P]
 
 " Support functions for the status line. {{{2
 function! CurDir()
@@ -525,6 +528,9 @@ let g:session_autoload = "yes"
 let g:session_directory = "~/.vim/sessions"
 set sessionoptions+=resize,winpos
 set sessionoptions-=help
+
+" vim-airline plugin settings. {{{2
+let airline_powerline_fonts = 1
 
 " SuperTab plugin settings. {{{2
 let g:SuperTabDefaultCompletionType = "context"
