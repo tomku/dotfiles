@@ -50,6 +50,9 @@ Bundle "gmarik/vundle"
 " Matchit.vim is included with vim.
 runtime macros/matchit.vim
 
+" Enable the Man command to view man pages.
+runtime ftplugin/man.vim
+
 " General support libraries. {{{2
 Bundle 'kana/vim-textobj-user'
 Bundle 'MarcWeber/vim-addon-mw-utils'
