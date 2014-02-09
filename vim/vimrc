@@ -83,6 +83,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
 Bundle 'snipmate-snippets'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-endwise'
@@ -113,6 +114,7 @@ if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
     Bundle 'krisajenkins/vim-pipe'
 endif
 Bundle 'mattn/gist-vim'
+Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'junegunn/vader.vim'
@@ -132,6 +134,7 @@ Bundle 'klen/python-mode'
 Bundle 'krisajenkins/vim-postgresql-syntax'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'mattn/emmet-vim'
+Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'scrooloose/nerdcommenter'
@@ -460,6 +463,10 @@ let g:SuperTabCrMapping = 0
 
 " Emmet settings. {{{2
 let g:user_emmet_leader_key='<C-;>'
+
+" Gundo plugin configuration
+nnoremap <leader>U :GundoToggle<CR>
+
 " NERDTree plugin settings. {{{2
 let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
 let g:NERDTreeShowBookmarks = 1
@@ -515,14 +522,20 @@ nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
 nnoremap <leader>l :CtrlPLine<CR>
-nnoremap <leader>u :CtrlPUndo<CR>
-nnoremap <leader>U :CtrlPChange<CR>
+nnoremap <leader>ud :CtrlPUndo<CR>
+nnoremap <leader>uc :CtrlPChange<CR>
 nnoremap <leader>d :CtrlPDir<CR>
 
 let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes', 'dir']
 
 " YankRing plugin settings. {{{2
 let g:yankring_history_dir = '~/.vim'
+
+" vim-mustache-handlebars plugin settings. {{{2
+augroup mustache
+    autocmd!
+    autocmd BufRead,BufNewFile *.html,*.htm,*.xhtml set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
+augroup END
 
 " vim-session plugin settings. {{{2
 let g:session_autosave = "yes"
