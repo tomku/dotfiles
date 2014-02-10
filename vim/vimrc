@@ -129,7 +129,7 @@ Bundle 'Blackrush/vim-gocode'
 Bundle 'c.vim'
 Bundle 'docunext/closetag.vim'
 Bundle 'elehack/vim-oz'
-Bundle 'jcf/vim-latex'
+Bundle "LaTeX-Box-Team/LaTeX-Box"
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'jimenezrick/vimerl'
 Bundle 'JuliaLang/julia-vim'
@@ -612,11 +612,14 @@ let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,sugar,require
 let g:syntastic_json_checkers=['jsonlint']
 
 " LaTeX language settings. {{{2
-let g:Tex_DefaultTargetFormat="pdf"
-let g:Tex_MultipleCompileFormats="dvi,pdf"
-let g:Tex_ViewRule_pdf="sumatrapdf -reuse-instance" " TODO: Make cross-platform.
-let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_AutoFolding=0
+" Temporarily kept for reference while setting up LaTeXBox
+" let g:Tex_DefaultTargetFormat="pdf"
+" let g:Tex_MultipleCompileFormats="dvi,pdf"
+" let g:Tex_ViewRule_pdf="sumatrapdf -reuse-instance" " TODO: Make cross-platform.
+" let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
+" let g:Tex_AutoFolding=0
+let g:LatexBox_latexmk_preview_continuously=1
+let g:LatexBox_quickfix=2
 let g:tex_flavor='latex'
 
 " Lisp language settings. {{{2
