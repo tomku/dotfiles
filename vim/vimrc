@@ -620,6 +620,11 @@ let g:syntastic_json_checkers=['jsonlint']
 " let g:Tex_AutoFolding=0
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_quickfix=2
+let g:LatexBox_output_type="pdf"
+let g:LatexBox_Folding=1
+if has("gui")
+    let g:LatexBox_latexmk_async=1
+endif
 let g:tex_flavor='latex'
 
 " Lisp language settings. {{{2
