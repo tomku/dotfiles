@@ -250,6 +250,9 @@ set matchtime=2
 " Keep three lines of context at the top/bottom of the screen at all times.
 set scrolloff=3
 
+" Show the last line, even if it's too long.
+set display+=lastline
+
 " Enable folding, but unfold everything by default.
 set foldmethod=syntax
 set foldlevelstart=99
@@ -270,6 +273,9 @@ try
     set undofile
 catch
 endtry
+
+" Automatically read changed files if they're unchanged in Vim.
+set autoread
 
 " Set window titles, and disable the audible bell.
 set title
