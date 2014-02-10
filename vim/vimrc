@@ -147,6 +147,7 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-scriptease'
 Bundle 'wlangstroth/vim-racket'
 Bundle 'xhr/vim-io'
 
