@@ -124,6 +124,7 @@ if (has("unix"))
 endif
 Bundle 'tpope/vim-fugitive'
 Bundle 'junegunn/vader.vim'
+Bundle 'tpope/vim-eunuch'
 
 " Language-specific tools. {{{2
 Bundle 'adimit/prolog.vim'
@@ -430,20 +431,6 @@ augroup skeleton
     autocmd!
     autocmd BufNewFile * :silent! execute ":0r " . expand('<sfile>:p:h') . "/templates/" . &ft
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
-augroup END
-
-" Auto-chmod. {{{1
-function! ConditionalChmod(line1, current_file)
-    if has("unix")
-        if a:line1 =~ '^#!'
-            execute "silent !chmod +x " . a:current_file
-        endif
-    endif
-endfunction
-
-augroup auto-chmod
-    autocmd!
-    autocmd BufWritePost * call ConditionalChmod(getline(1), expand("%:p"))
 augroup END
 
 " Prose writing settings. {{{1
