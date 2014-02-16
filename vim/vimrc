@@ -119,6 +119,9 @@ endif
 Bundle 'mattn/gist-vim'
 Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-commentary'
+if (has("unix"))
+    Bundle 'Valloric/YouCompleteMe'
+endif
 Bundle 'tpope/vim-fugitive'
 Bundle 'junegunn/vader.vim'
 
