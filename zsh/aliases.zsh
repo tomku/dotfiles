@@ -100,3 +100,5 @@ alias conda-update='conda list | tail -n +3 | grep -v "\<pip\>" | cut -f 1 -d' '
 npm-installed() {
     npm ls $1 --parseable | grep -v "node_modules.*node_modules" | sed "s|$(npm root $1)/||"
 }
+
+alias apt-upgrade='sudo apt-get update && sudo apt-get -V dist-upgrade'
