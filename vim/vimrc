@@ -133,6 +133,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jimenezrick/vimerl'
 Plugin 'JuliaLang/julia-vim'
+Plugin 'klen/python-mode'
 Plugin 'krisajenkins/vim-postgresql-syntax'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'mattn/emmet-vim'
@@ -647,7 +648,8 @@ endif
 "     autocmd!
 " augroup END
 
-let g:pymode_lint_write = 0
+let g:pymode_breakpoint_bind = '<leader>B'
+let g:pymode_rope_complete_on_dot = 0
 
 " Ruby language settings. {{{2
 augroup ruby
