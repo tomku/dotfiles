@@ -126,7 +126,7 @@ Plugin 'tpope/vim-eunuch'
 " Language-specific tools. {{{2
 Plugin 'adimit/prolog.vim'
 Plugin 'bitc/lushtags'
-Plugin 'Blackrush/vim-gocode'
+Plugin 'fatih/vim-go'
 Plugin 'c.vim'
 Plugin 'docunext/closetag.vim'
 Plugin 'elehack/vim-oz'
@@ -576,6 +576,13 @@ augroup coffeescript
     autocmd BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent nofoldenable
     autocmd BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
     autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+augroup END
+
+" Go language settings. {{{2
+let g:go_disable_autoinstall = 1
+augroup golang
+    autocmd!
+    autocmd BufNewFile,BufReadPost *.go setlocal tabstop=4
 augroup END
 
 " Haskell language settings. {{{2
