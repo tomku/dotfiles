@@ -697,6 +697,7 @@ endif
 
 let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_rope_complete_on_dot = 0
+let g:syntastic_python_checkers = []
 
 " Ruby language settings. {{{2
 augroup ruby
