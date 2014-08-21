@@ -323,10 +323,40 @@ noremap <leader>tf :tabfirst<cr>
 noremap <leader>tl :tablast<cr>
 noremap <leader>tm :tabmove
 
-" Quickfix window.
-noremap <leader>co :botright copen<CR>
-noremap <leader>j :cnext<cr>
-noremap <leader>k :cprevious<cr>
+" Quickfix and location list windows.
+function! GetBufferList()
+  redir =>buflist
+  silent! ls
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  exec(a:pfx.'open')
+endfunction
+
+nnoremap <silent> <leader>ol :call ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <leader>oc :call ToggleList("Quickfix List", 'c')<CR>
+
+" Quickfix and location list navigation.
+
+nnoremap <leader>j :lnext<cr>
+nnoremap <leader>k :lprevious<cr>
+
+nnoremap <leader>J :cnext<cr>
+nnoremap <leader>K :cprevious<cr>
 
 " Quick toggles.
 nnoremap cop :set paste!<cr>
@@ -520,6 +550,10 @@ nnoremap <leader>uc :CtrlPChange<CR>
 nnoremap <leader>d :CtrlPDir<CR>
 
 let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes', 'dir']
+
+" syntastic plugin settings. {{{2
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
 
 " YankRing plugin settings. {{{2
 let g:yankring_history_dir = '~/.vim'
