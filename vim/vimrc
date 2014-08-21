@@ -452,11 +452,6 @@ let g:litecorrect#typographic = 0
 let g:lexical#spell_key = 'zs'
 
 " Plugin settings. {{{1
-" delimitMate plugin settings. {{{2
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:SuperTabCrMapping = 0
-
 " Emmet settings. {{{2
 let g:user_emmet_leader_key='<C-;>'
 
@@ -648,10 +643,9 @@ if executable("opam")
 endif
 
 " Python language settings. {{{2
-augroup python
-    autocmd!
-    autocmd FileType python let b:delimitMate_nesting_quotes = ['"']
-augroup END
+" augroup python
+"     autocmd!
+" augroup END
 
 let g:pymode_lint_write = 0
 
