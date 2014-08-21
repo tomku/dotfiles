@@ -78,6 +78,7 @@ Plugin 'paradigm/TextObjectify'
 Plugin 'reedes/vim-textobj-sentence'
 
 " Basic editing additions. {{{2
+Bundle 'AndrewRadev/splitjoin.vim'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-sexp'
@@ -101,7 +102,7 @@ Plugin 'reedes/vim-lexical'
 
 " Navigation and window management. {{{2
 Plugin 'ack.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Tagbar'
 Plugin 'xolox/vim-session'
