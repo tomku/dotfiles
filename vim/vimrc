@@ -485,7 +485,7 @@ let g:lexical#spell_key = 'zs'
 
 " Plugin settings. {{{1
 " Emmet settings. {{{2
-let g:user_emmet_leader_key='<C-;>'
+let g:user_emmet_leader_key='<C-b>'
 
 " Gundo plugin configuration
 nnoremap <leader>U :GundoToggle<CR>
