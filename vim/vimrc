@@ -588,6 +588,7 @@ endif
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetsDir=expand('<sfile>:p:h') . "/UltiSnips"
 
 " Language settings. {{{1
 " C language settings. {{{2
