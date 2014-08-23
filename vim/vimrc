@@ -628,6 +628,9 @@ augroup haskell
 augroup END
 let g:haddock_browser = "google-chrome"
 
+" Idris language settings. {{{2
+let g:syntastic_idris_checkers = []
+
 " HTML language settings. {{{2
 let g:closetag_html_style=1
 
