@@ -41,7 +41,7 @@
  '(flyspell-use-meta-tab nil)
  '(global-font-lock-mode t)
  '(gnus-select-method (quote (nntp "news.gmane.org")))
- '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation turn-on-haskell-doc-mode turn-on-haskell-decl-scan)))
+ '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation turn-on-haskell-doc-mode turn-on-haskell-decl-scan)) t)
  '(ido-create-new-buffer (quote always))
  '(ido-enable-dot-prefix t)
  '(ido-enable-flex-matching t)
