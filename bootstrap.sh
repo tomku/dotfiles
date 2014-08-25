@@ -63,3 +63,15 @@ if [ ! -e ~/.tmux.conf ] ; then
     echo "Creating .tmux.conf..."
     ln -s $DOTFILES/tmux.conf ~/.tmux.conf
 fi
+
+if [ ! -d ~/.emacs.d ] ; then
+    echo "Creating .emacs.d..."
+    mkdir ~/.emacs.d
+fi
+
+if [ ! -e ~/.emacs.d/init.el ] ; then
+    echo "Creating .emacs.d/init.el..."
+    cat <<EOF >~/.emacs.d/init.el
+(load-file "$DOTFILES/emacs/init.el")
+EOF
+fi
