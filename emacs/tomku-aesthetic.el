@@ -2,7 +2,10 @@
 (set-scroll-bar-mode 'right)            ; Scrollbar on right
 
 (setq inhibit-startup-screen t)         ; Hide startup screen
-(load-theme 'solarized-dark t)                 ; Load theme
+
+;; Solarized looks great in GUI, but terrible in the console.
+(when window-system
+    (load-theme 'solarized-dark t))
 
 ;; Change the default frame size so that it fits on my laptop's
 ;; screen.  This is not exactly optimal since it'll be small on other
