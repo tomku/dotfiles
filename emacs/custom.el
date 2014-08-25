@@ -6,6 +6,7 @@
  ;; If there is more than one, they won't work right.
  '(abbrev-file-name (concat shared-config-dir "abbrev_defs"))
  '(abbrev-mode nil t)
+ '(agda2-include-dirs (quote ("." "/opt/agda/stdlib/src" "C:/Tools/agda/stdlib/src")))
  '(ansi-color-names-vector ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#839496"])
  '(auto-compression-mode t)
  '(auto-image-file-mode t)

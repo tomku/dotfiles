@@ -8,10 +8,6 @@
 
 (if (executable-find "agda-mode")
     (load-file (let ((coding-system-for-read 'utf-8))
-                 (shell-command-to-string "agda-mode locate")))
-   (if nix-platform
-       (setq (agda2-include-dirs (quote ("." "/opt/agda/stdlib/src"))))
-     (setq (agda2-include-dirs (quote ("." "C:/Tools/agda/stdlib/src"))))))
-
+                 (shell-command-to-string "agda-mode locate"))))
 
 (provide 'tomku-haskell)
