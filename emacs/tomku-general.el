@@ -192,11 +192,6 @@ Symbols matching the text at point are put first in the completion list."
   (interactive)
   (insert (format-time-string "%c" (current-time))))
 
-(defun unix-line-endings-please ()
-  (set-buffer-file-coding-system 'unix))
-
-(add-hook 'find-file-hook 'unix-line-endings-please)
-
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-z") nil)
 
