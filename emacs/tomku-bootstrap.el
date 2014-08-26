@@ -26,10 +26,13 @@ Return a list of installed packages or nil for every package not installed."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'auctex 'autopair 'browse-kill-ring 'frame-cmds 'frame-fns 'gh 'gist 'haskell-mode
-                          'idle-highlight-mode 'magit 'markdown-mode 'mouse+
-                          'org-plus-contrib 'paredit 'smex 'sml-mode
-                          'solarized-theme 'textmate 'yasnippet 'yaml-mode 'zenburn-theme)
+(ensure-package-installed 'auctex 'autopair 'browse-kill-ring
+                          'frame-cmds 'frame-fns 'gh 'gist
+                          'haskell-mode 'idris-mode
+                          'idle-highlight-mode 'magit 'markdown-mode
+                          'mouse+ 'org-plus-contrib 'paredit 'smex
+                          'sml-mode 'solarized-theme 'textmate
+                          'yasnippet 'yaml-mode 'zenburn-theme)
 
 (provide 'tomku-bootstrap)
   
