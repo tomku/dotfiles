@@ -27,8 +27,8 @@ Return a list of installed packages or nil for every package not installed."
     (package-refresh-contents))
 
 (ensure-package-installed 'auctex 'autopair 'browse-kill-ring
-                          'frame-cmds 'frame-fns 'gh 'gist
-                          'haskell-mode 'idris-mode
+                          'company-ghc 'frame-cmds 'frame-fns 'gh 'ghc
+                          'gist 'haskell-mode 'idris-mode
                           'idle-highlight-mode 'magit 'markdown-mode
                           'mouse+ 'org-plus-contrib 'paredit 'smex
                           'sml-mode 'solarized-theme 'textmate
