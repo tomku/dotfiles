@@ -110,6 +110,7 @@ Plugin 'ZoomWin'
 Plugin 'bling/vim-airline'
 
 " General programming tools. {{{2
+Plugin 'amdt/vim-niji'
 Plugin 'basepi/vim-conque'
 Plugin 'dbext.vim'
 " Powershell doesn't like this, and it probably doesn't work in cmd.exe.
@@ -117,6 +118,8 @@ if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
     Plugin 'krisajenkins/vim-pipe'
 endif
 Plugin 'mattn/gist-vim'
+Plugin 'paredit.vim'
+Plugin 'sjl/tslime.vim'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -583,6 +586,9 @@ if has("autocmd") && exists("+omnifunc")
         autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
     augroup END
 endif
+
+" tslime settings. {{{2
+let g:tslime_ensure_trailing_newlines = 1
 
 " Ultisnips plugin settings. {{{2
 let g:UltiSnipsExpandTrigger="<tab>"
