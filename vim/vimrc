@@ -68,6 +68,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'reedes/vim-colors-pencil'
+Plugin 'zefei/cake16'
 
 " Text objects. {{{2
 Plugin 'argtextobj.vim'
