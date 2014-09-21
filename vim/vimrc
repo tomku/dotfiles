@@ -158,6 +158,7 @@ Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-scriptease'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'xhr/vim-io'
+Plugin 'chase/vim-ansible-yaml'
 
 " Basic settings. {{{1
 syntax enable

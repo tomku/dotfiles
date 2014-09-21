@@ -94,6 +94,63 @@ update-repos() {
 
 alias ansible-setup='ansible all -c local -i "127.0.0.1," -m setup'
 alias ansible-reload='ansible-playbook -c local -i "127.0.0.1,"'
+ansible-role() {
+    local int_user simulate keep
+    while getopts ":u:vnmk" opt ; do
+        case $opt in
+          u)
+            int_user=$OPTARG
+            ;;
+          v)
+            int_user="vagrant"
+            ;;
+          m)
+            int_user=$USER
+            ;;
+          n)
+            simulate=1
+            keep=1
+            ;;
+          k)
+            keep=1
+            ;;
+          \?)
+            echo "Invalid option: -$OPTARG."
+            ;;
+          :)
+            echo "Required argument missing for -$OPTARG."
+            ;;
+        esac
+    done
+
+    shift $(expr $OPTIND - 1)
+    if [ -f role.yml ] ; then
+        echo "ERROR: role.yml already exists."
+        return
+    fi
+    cat > role.yml <<EOF
+---
+- hosts: all
+  sudo: true
+  remote_user: root
+  vars:
+    - accepted_oracle_license: true
+    - jdk_version: 8
+EOF
+    if [ -n "$int_user" ] ; then
+        echo "    - interactive_user: $int_user" >> role.yml
+    fi
+    echo "  roles:" >> role.yml
+    for role in $@; do
+        echo "    - $role" >> role.yml
+    done
+    if [ -z "$simulate" ] ; then
+        ansible-playbook -c local -K -i "127.0.0.1," role.yml
+    fi
+    if [ -z "$keep" ] ; then
+        rm role.yml
+    fi
+}
 
 alias conda-update='conda list | tail -n +3 | grep -v "\<pip\>" | cut -f 1 -d' ' | xargs conda update'
 # This lists only the top-level installed npm packages.
