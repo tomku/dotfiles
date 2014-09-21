@@ -66,13 +66,13 @@ alias checkhash='rhash --check-embedded'
 
 update-repo() {
     if [ -d ".git" ]; then
-        git pull
+        git pull -n
     elif [ -d ".hg" ]; then
         hg pull -u
     elif [ -d ".svn" ]; then
-        svn up
+        svn up -q
     elif [ -d ".bzr" ]; then
-        bzr up
+        bzr pull
     elif [ -d "_darcs" ]; then
         darcs pull
     else
