@@ -159,3 +159,16 @@ npm-installed() {
 }
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get -V dist-upgrade'
+
+export SCALA_VERSION=2.11.2
+export JLINE_VERSION=2.12
+scala() {
+    local classpath jline
+    jline="$HOME/.ivy2/cache/jline/jline/jars/jline-$JLINE_VERSION.jar"
+    classpath="."
+    for lib in "scala-compiler" "scala-library" "scala-reflect"; do
+        classpath=$classpath:$HOME/.ivy2/cache/org.scala-lang/$lib/jars/$lib-$SCALA_VERSION.jar
+    done
+    classpath=$classpath:$jline
+    java -cp $classpath scala.tools.nsc.MainGenericRunner -cp $classpath $@
+}
