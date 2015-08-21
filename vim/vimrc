@@ -109,6 +109,7 @@ Plugin 'Tagbar'
 Plugin 'xolox/vim-session'
 Plugin 'ZoomWin'
 Plugin 'bling/vim-airline'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " General programming tools. {{{2
 Plugin 'amdt/vim-niji'
@@ -384,6 +385,8 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap / /\v
 nnoremap ? ?\v
 
+nnoremap <silent> p p`]
+
 " Line transposition.
 nnoremap <M-j> mz:m+<cr>`z
 nnoremap <M-k> mz:m-2<cr>`z
@@ -391,6 +394,9 @@ nnoremap <M-k> mz:m-2<cr>`z
 " Visual mode mappings. {{{2
 vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
 
 " Command line mode mappings. {{{2
 " Command line snippets.
@@ -710,7 +716,7 @@ augroup python
     autocmd FileType python set nosmartindent
 augroup END
 
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_python_checkers = ['flake8']
 
 " Ruby language settings. {{{2
 augroup ruby
