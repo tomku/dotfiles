@@ -112,7 +112,7 @@ Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " General programming tools. {{{2
-Plugin 'amdt/vim-niji'
+Plugin 'losingkeys/vim-niji'
 Plugin 'basepi/vim-conque'
 Plugin 'dbext.vim'
 Plugin 'ludovicchabant/vim-gutentags'
