@@ -52,6 +52,7 @@ fi
 # Thanks for not reliably setting this, Ubuntu openjdk packages!
 if [ -f /etc/alternatives/java ] ; then
     export JAVA_HOME=$(readlink -f /etc/alternatives/java | sed "s/\/jre.*//")
+    export JAVA_OPTS=-Djava.awt.headless=true
 fi
 
 # User-specific scripts

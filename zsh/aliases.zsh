@@ -160,7 +160,8 @@ npm-installed() {
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get -V dist-upgrade'
 
-scala() {
+# This is only useful for quickie REPLs, it can't be used as a runner
+scala-repl() {
     local classpath jline scala_version
     jline=$(ls -1 ~/.ivy2/cache/jline/jline/jars/*.jar | tail -1)
     scala_version=$(grep "scalaVersion" ~/.sbt/0.13/global.sbt | sed 's/.* := "\([0-9.]\+\)"/\1/')
