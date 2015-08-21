@@ -15,6 +15,9 @@
 "
 " Clean initialization. {{{1
 autocmd!
+if &shell =~# 'fish$'
+    set shell=bash
+endif
 
 " Load some sensible defaults from the example vimrc.
 if filereadable("$VIM\_vimrc")
@@ -134,6 +137,7 @@ Plugin 'adimit/prolog.vim'
 Plugin 'bitc/lushtags'
 Plugin 'fatih/vim-go'
 Plugin 'c.vim'
+Plugin 'dag/vim-fish'
 Plugin 'docunext/closetag.vim'
 Plugin 'edkolev/erlang-motions.vim'
 Plugin 'elehack/vim-oz'
@@ -627,6 +631,13 @@ augroup coffeescript
     autocmd BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent nofoldenable
     autocmd BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
     autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+augroup END
+
+" Fish scripting language settings. {{{2
+augroup fish
+    autocmd!
+    autocmd FileType fish compiler fish
+    autocmd FileType fish setlocal foldmethod=expr
 augroup END
 
 " Go language settings. {{{2
