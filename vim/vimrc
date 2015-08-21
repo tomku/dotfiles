@@ -40,10 +40,10 @@ let g:maplocalleader = "\\"
 filetype off
 
 " Load Vundle.
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Plugins. {{{1
 
