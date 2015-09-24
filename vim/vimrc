@@ -99,6 +99,8 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'YankRing.vim'
 
 " Prose writing. {{{2
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-litecorrect'
@@ -497,6 +499,9 @@ augroup prose
     autocmd FileType text call ProseInit()
     autocmd FileType gitcommit call ProseInit()
     autocmd FileType help call lexical#init({ 'spell': 0 })
+
+    autocmd! User GoyoEnter Limelight
+    autocmd! User GoyoLeave Limelight!
 augroup END
 
 let g:litecorrect#typographic = 0
