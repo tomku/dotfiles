@@ -107,7 +107,7 @@ Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-lexical'
 
 " Navigation and window management. {{{2
-Plugin 'ack.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Tagbar'
