@@ -2,7 +2,7 @@
 
 export ME="Tom Kurth"
 export EMAIL="tom@losthalo.org"
-DOTFILES=$(dirname $(readlink -f $0))
+DOTFILES=$(dirname $0)
 
 if [ ! -e ~/.zshrc ] ; then
     echo "Creating .zshrc..."
