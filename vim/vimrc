@@ -38,15 +38,9 @@ endif
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
 
-" Vundle initialization. {{{1
-" Vundle requires this in order to load properly.
-filetype off
-
-" Load Vundle.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
-
-Plugin 'VundleVim/Vundle.vim'
+set rtp+=~/.dotfiles/vim
+" plug.vim initialization. {{{1
+call plug#begin("~/.vim/plug")
 
 " Plugins. {{{1
 
@@ -57,117 +51,119 @@ runtime macros/matchit.vim
 runtime ftplugin/man.vim
 
 " General support libraries. {{{2
-Plugin 'kana/vim-textobj-user'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'mattn/webapi-vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'xolox/vim-misc'
+Plug 'kana/vim-textobj-user'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'mattn/webapi-vim'
+Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-repeat'
+Plug 'xolox/vim-misc'
 
 " Color schemes. {{{2
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'jnurmine/Zenburn'
-Plugin 'morhetz/gruvbox'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'zefei/cake16'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jnurmine/Zenburn'
+Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
+Plug 'tpope/vim-vividchalk'
+Plug 'w0ng/vim-hybrid'
+Plug 'reedes/vim-colors-pencil'
+Plug 'zefei/cake16'
 
 " Text objects. {{{2
-Plugin 'argtextobj.vim'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'paradigm/TextObjectify'
-Plugin 'reedes/vim-textobj-sentence'
+Plug 'argtextobj.vim'
+Plug 'bkad/CamelCaseMotion'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'paradigm/TextObjectify'
+Plug 'reedes/vim-textobj-sentence'
 
 " Basic editing additions. {{{2
-Bundle 'AndrewRadev/splitjoin.vim'
-Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'guns/vim-sexp'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/syntastic'
-Plugin 'sjl/gundo.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'YankRing.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'guns/vim-sexp'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/syntastic'
+Plug 'sjl/gundo.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'YankRing.vim'
 
 " Prose writing. {{{2
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-Plugin 'reedes/vim-wordy'
-Plugin 'reedes/vim-pencil'
-Plugin 'reedes/vim-litecorrect'
-Plugin 'reedes/vim-lexical'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-litecorrect'
+Plug 'reedes/vim-lexical'
 
 " Navigation and window management. {{{2
-Plugin 'mileszs/ack.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Tagbar'
-Plugin 'xolox/vim-session'
-Plugin 'ZoomWin'
-Plugin 'bling/vim-airline'
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Tagbar'
+Plug 'xolox/vim-session'
+Plug 'ZoomWin'
+Plug 'bling/vim-airline'
 
 " General programming tools. {{{2
-Plugin 'losingkeys/vim-niji'
-Plugin 'basepi/vim-conque'
-Plugin 'dbext.vim'
-Plugin 'ludovicchabant/vim-gutentags'
+Plug 'losingkeys/vim-niji'
+Plug 'basepi/vim-conque'
+Plug 'dbext.vim'
+Plug 'ludovicchabant/vim-gutentags'
 " Powershell doesn't like this, and it probably doesn't work in cmd.exe.
 if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
-    Plugin 'krisajenkins/vim-pipe'
+    Plug 'krisajenkins/vim-pipe'
 endif
-Plugin 'mattn/gist-vim'
-Plugin 'paredit.vim'
-Plugin 'sjl/tslime.vim'
-Plugin 'tpope/vim-classpath'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/vader.vim'
-Plugin 'tpope/vim-eunuch'
-Plugin 'airblade/vim-gitgutter'
+Plug 'mattn/gist-vim'
+Plug 'paredit.vim'
+Plug 'sjl/tslime.vim'
+Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/vader.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'airblade/vim-gitgutter'
 
 " Language-specific tools. {{{2
-Plugin 'adimit/prolog.vim'
-Plugin 'bitc/lushtags'
-Plugin 'fatih/vim-go'
-Plugin 'c.vim'
-Plugin 'dag/vim-fish'
-Plugin 'docunext/closetag.vim'
-Plugin 'edkolev/erlang-motions.vim'
-Plugin 'elehack/vim-oz'
-Plugin 'idris-hackers/idris-vim'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'jimenezrick/vimerl'
-Plugin 'JuliaLang/julia-vim'
-Plugin 'krisajenkins/vim-postgresql-syntax'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'Rykka/riv.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-jdaddy'
-Plugin 'tpope/vim-liquid'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-scriptease'
-Plugin 'venantius/vim-eastwood'
-Plugin 'venantius/vim-cljfmt'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'xhr/vim-io'
-Plugin 'chase/vim-ansible-yaml'
+Plug 'adimit/prolog.vim'
+Plug 'bitc/lushtags'
+Plug 'fatih/vim-go'
+Plug 'c.vim'
+Plug 'dag/vim-fish'
+Plug 'docunext/closetag.vim'
+Plug 'edkolev/erlang-motions.vim'
+Plug 'elehack/vim-oz'
+Plug 'idris-hackers/idris-vim'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'jimenezrick/vimerl'
+Plug 'JuliaLang/julia-vim'
+Plug 'krisajenkins/vim-postgresql-syntax'
+Plug 'lukerandall/haskellmode-vim'
+Plug 'mattn/emmet-vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'Rykka/riv.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-liquid'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-scriptease'
+Plug 'venantius/vim-eastwood'
+Plug 'venantius/vim-cljfmt'
+Plug 'wlangstroth/vim-racket'
+Plug 'xhr/vim-io'
+Plug 'chase/vim-ansible-yaml'
+
+call plug#end()
 
 " Basic settings. {{{1
 syntax enable
@@ -195,7 +191,9 @@ endif
 
 " Default to UTF-8 and Unix line endings, but use the existing line endings
 " if the file already has some.
-set encoding=utf8
+if !has('nvim')
+    set encoding=utf8
+endif
 set fileformats=unix,dos,mac
 try
     lang en_US
@@ -502,15 +500,6 @@ endfunction
 augroup fugitive
     autocmd!
     autocmd BufReadPost fugitive://* set bufhidden=delete
-augroup END
-
-augroup vundle
-    autocmd!
-    " Delete Vundle buffers when they aren't visible.
-    autocmd FileType vundle set bufhidden=delete
-
-    " Disable shellslash in Vundle buffers, or git command lines get screwed up.
-    autocmd FileType vundle set noshellslash
 augroup END
 
 " Skeletons. {{{1
