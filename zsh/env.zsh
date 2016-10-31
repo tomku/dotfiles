@@ -39,7 +39,7 @@ fi
 
 # GEM_HOME for system ruby
 if which ruby >/dev/null; then
-    SYSTEM_RUBY_VERSION=$(ruby --version | sed -r 's/ruby ([0-9.p]+) .*/\1/')
+    SYSTEM_RUBY_VERSION=$(ruby --version | sed 's/ruby \([[:digit:].p]*\).*/\1/')
     if [ ! -d "$HOME/.rbenv/bin" ] ; then
         if [ ! -e $HOME/.ruby/$SYSTEM_RUBY_VERSION ] ; then
             mkdir -p $HOME/.ruby/$SYSTEM_RUBY_VERSION 
