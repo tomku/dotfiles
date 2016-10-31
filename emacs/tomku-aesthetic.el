@@ -4,6 +4,8 @@
 (setq inhibit-startup-screen t)         ; Hide startup screen
 
 ;; Solarized looks great in GUI, but terrible in the console.
+(setq solarized-use-variable-pitch nil
+      solarized-scale-org-headlines nil)
 (when window-system
     (load-theme 'solarized-dark t))
 
