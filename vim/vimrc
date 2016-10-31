@@ -87,7 +87,6 @@ Bundle 'AndrewRadev/splitjoin.vim'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-sexp'
-Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/syntastic'
 Plugin 'sjl/gundo.vim'
@@ -635,14 +634,6 @@ let g:UltiSnipsSnippetsDir=expand('<sfile>:p:h') . "/UltiSnips"
 augroup c
     autocmd!
     autocmd Filetype C compiler gcc
-augroup END
-
-" Clojure language settings. {{{2
-augroup clojure
-    autocmd!
-    autocmd FileType clojure RainbowParenthesesActivate
-    autocmd FileType clojure RainbowParenthesesLoadRound
-    autocmd FileType clojure RainbowParenthesesLoadSquare
 augroup END
 
 " Coffeescript language settings. {{{2
