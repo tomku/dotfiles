@@ -181,6 +181,7 @@ Plug 'venantius/vim-cljfmt'
 Plug 'wlangstroth/vim-racket'
 Plug 'xhr/vim-io'
 Plug 'chase/vim-ansible-yaml'
+Plug 'raichoo/purescript-vim'
 Plug 'ElmCast/elm-vim'
 Plug 'Quramy/tsuquyomi'
 
@@ -728,6 +729,9 @@ augroup coffeescript
     autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 augroup END
 
+" Erlang language settings. {{{2
+let g:syntastic_erlang_checkers = ['syntaxerl']
+
 " Elm language settings. {{{2
 let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
@@ -741,6 +745,12 @@ augroup END
 
 " Go language settings. {{{2
 let g:go_disable_autoinstall = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 augroup golang
     autocmd!
     autocmd BufNewFile,BufReadPost *.go setlocal tabstop=4
