@@ -149,7 +149,10 @@ Plug 'edkolev/erlang-motions.vim'
 Plug 'elehack/vim-oz'
 Plug 'idris-hackers/idris-vim'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
-Plug 'jelera/vim-javascript-syntax'
+Plug 'othree/yajs.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'othree/es.next.syntax.vim'
 Plug 'jimenezrick/vimerl'
 Plug 'JuliaLang/julia-vim'
 Plug 'krisajenkins/vim-postgresql-syntax'
@@ -162,6 +165,8 @@ Plug 'Twinside/vim-hoogle'
 Plug 'mattn/emmet-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'Rykka/riv.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
@@ -177,6 +182,7 @@ Plug 'venantius/vim-cljfmt'
 Plug 'wlangstroth/vim-racket'
 Plug 'xhr/vim-io'
 Plug 'chase/vim-ansible-yaml'
+Plug 'Quramy/tsuquyomi'
 
 call plug#end()
 
@@ -806,17 +812,21 @@ let g:syntastic_idris_checkers = []
 
 " HTML language settings. {{{2
 let g:closetag_html_style=1
+let g:syntastic_html_tidy_exec = 'tidy'
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
 
 " Javascript language settings. {{{2
 augroup javascript
     autocmd!
     autocmd FileType javascript setlocal foldenable
     autocmd FileType javascript setlocal nocindent
-    autocmd FileType javascript call JavaScriptFold()
 augroup END
 
-let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,sugar,requirejs'
+let g:used_javascript_libs = 'underscore,jquery,angularjs,react,jasmine,handlebars,ramda'
 let g:syntastic_json_checkers=['jsonlint']
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exec = "~/.node/bin/eslint"
+let g:jsx_ext_required = 0
 
 " LaTeX language settings. {{{2
 " Temporarily kept for reference while setting up LaTeXBox
@@ -883,6 +893,10 @@ augroup ruby
     autocmd BufNewFile,BufReadPost *.rb setlocal foldmethod=indent nofoldenable
     autocmd BufNewFile,BufReadPost *.rb setlocal shiftwidth=2 expandtab
 augroup END
+
+" Typescript language settings. {{{2
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " Machine-specific settings. {{{1
 if filereadable(glob("~/.vimrc.local"))
