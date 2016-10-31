@@ -64,6 +64,11 @@ if [ ! -e ~/.taskrc ] ; then
     ln -s $DOTFILES/taskrc ~/.taskrc
 fi
 
+if [ ! -e ~/.psqlrc ] ; then
+    echo "Creating .psqlrc..."
+    ln -s $DOTFILES/psqlrc ~/.psqlrc
+fi
+
 if [ ! -e ~/.tmux.conf ] ; then
     echo "Creating .tmux.conf..."
     ln -s $DOTFILES/tmux.conf ~/.tmux.conf

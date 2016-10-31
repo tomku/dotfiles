@@ -6,3 +6,4 @@ rm -i ~/.gvimrc
 rm -i ~/.inputrc
 rm -i ~/.tmux.conf
 rm -i ~/.dircolors
+rm -i ~/.psqlrc
