@@ -181,9 +181,11 @@ Plug 'venantius/vim-cljfmt'
 Plug 'wlangstroth/vim-racket'
 Plug 'xhr/vim-io'
 Plug 'chase/vim-ansible-yaml'
+Plug 'ElmCast/elm-vim'
 Plug 'Quramy/tsuquyomi'
 
 Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 " Basic settings. {{{1
@@ -725,6 +727,10 @@ augroup coffeescript
     autocmd BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
     autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 augroup END
+
+" Elm language settings. {{{2
+let g:elm_format_autosave = 1
+let g:elm_syntastic_show_warnings = 1
 
 " Fish scripting language settings. {{{2
 augroup fish
