@@ -876,23 +876,26 @@ augroup END
 
 " OCaml language settings. {{{2
 if executable("opam")
-    let g:opam_share = system("opam config var share")
-    let g:opam_share = substitute(g:opam_share, '[\r\n]*$', '', '')
-    let g:ocp_indent_vimfile = g:opam_share . "/vim/syntax/ocp-indent.vim"
-
-    if filereadable(g:ocp_indent_vimfile)
+    let s:ocamlshare = substitute(system('opam config var share'), '\n$', '', '''')
+    if executable('ocp-indent')
         augroup ocaml
             autocmd!
-            autocmd FileType ocaml execute "source " . g:ocp_indent_vimfile
+            autocmd FileType ocaml unlet b:did_indent
+            autocmd FileType ocaml execute "source " . s:ocamlshare . "/ocp-indent/vim/indent/ocaml.vim"
+            autocmd FileType ocaml let b:did_indent = 1
         augroup END
     endif
-
-    let g:merlin_vimfile = g:opam_share . "/ocamlmerlin/vim/syntax/merlin.vim"
-    if filereadable(g:merlin_vimfile)
+    if executable('ocamlmerlin') && has('python')
+        let s:ocamlshare = substitute(system('opam config var share'), '\n$', '', '''')
+        let s:ocamlmerlin = s:ocamlshare . "/merlin"
         let g:syntastic_ocaml_checkers=['merlin']
-        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vim"
-        exec "set rtp+=" . g:opam_share . "/ocamlmerlin/vimbufsync"
+        execute "set rtp+=".s:ocamlmerlin."/vim"
+        execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
     endif
+
+    let s:reasondir=substitute(system('opam config var share'),'\n$','','') . "/reason"
+    execute "set rtp+=".s:reasondir."/editorSupport/VimReason"
+    let g:syntastic_reason_checkers=['merlin']
 endif
 
 " Python language settings. {{{2
