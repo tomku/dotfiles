@@ -59,6 +59,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'xolox/vim-misc'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Color schemes. {{{2
 Plug 'altercation/vim-colors-solarized'
@@ -113,7 +115,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-session'
 Plug 'ZoomWin'
-Plug 'bling/vim-airline'
 Plug 'moll/vim-bbye'
 
 " General programming tools. {{{2
