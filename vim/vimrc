@@ -329,6 +329,18 @@ set clipboard=autoselect,exclude:cons\\\|linux\\\|screen
 " until /.
 set tags=tags;/
 
+" Fix path issues from vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+let s:default_path = escape(&path, '\ ') " store default value of 'path'
+" Always add the current file's directory to the path and tags list if not
+" already there. Add it to the beginning to speed up searches.
+autocmd BufRead *
+      \ let s:tempPath=escape(escape(expand("%:p:h"), ' '), '\ ') |
+      \ exec "set path-=".s:tempPath |
+      \ exec "set path-=".s:default_path |
+      \ exec "set path^=".s:tempPath |
+      \ exec "set path^=".s:default_path
+
+
 " Disable IME by default.
 set iminsert=0
 set imsearch=-1
@@ -343,8 +355,6 @@ set splitright
 
 " Mappings. {{{1
 " Insert mode mappings. {{{2
-" Easy way to get out of insert mode.
-inoremap jk <esc>
 
 " Normal mode mappings. {{{2
 " Plugins.
@@ -556,23 +566,14 @@ nnoremap <leader>U :GundoToggle<CR>
 let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
 let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeDirArrows = 1
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeIgnore = ['\~$', '^tags$[[file]]', '\.beam$', '\.pyc$', '\.class$[[file]]', '^.git$[[dir]]', '\.js.map$']
 
 nnoremap <leader>n :NERDTreeFocus<cr>
 
 " CtrlP plugin settings. {{{2
 " Set the max files
 let g:ctrlp_max_files = 10000
-
-" Optimize file searching
-if has("unix")
-    let g:ctrlp_user_command = {
-                \   'types': {
-                \       1: ['.git/', 'cd %s && git ls-files --exclude-standard -co'],
-                \       2: ['.hg/', 'cd %s && hg manifest']
-                \   },
-                \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-                \ }
-endif
 
 if has("win32")
     let g:ctrlp_user_command = {
@@ -595,8 +596,8 @@ let g:ctrlp_show_hidden = 0
 " Ignore common VCS directories and various other uneditables when not using
 " ctrlp_user_command.
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.dropbox\.cache$\|\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$',
+  \ 'dir':  '\v\.dropbox\.cache$\|\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\v\.(exe|so|dll|o|pyc|beam)$',
   \ }
 
 let g:ctrlp_map = '<leader>f'
@@ -644,11 +645,11 @@ highlight! link GitGutterDelete DiffDelete
 
 
 " SuperTab plugin settings. {{{2
-let g:SuperTabDefaultCompletionType = "context"
 if has("autocmd") && exists("+omnifunc")
     augroup omnicomp
         autocmd!
-        autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+        autocmd FileType * if &omnifunc != "" | call SuperTabChain(&omnifunc, "<c-n>") | endif
     augroup END
 endif
 
