@@ -67,6 +67,7 @@ Plugin 'xolox/vim-misc'
 " Color schemes. {{{2
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jnurmine/Zenburn'
+Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'w0ng/vim-hybrid'
@@ -133,6 +134,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/vader.vim'
 Plugin 'tpope/vim-eunuch'
+Plugin 'airblade/vim-gitgutter'
 
 " Language-specific tools. {{{2
 Plugin 'adimit/prolog.vim'
@@ -184,8 +186,13 @@ if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
     highlight CursorLine ctermbg=7
     highlight CursorLineNr ctermfg=7
 else
-    silent! colorscheme solarized
-    highlight CursorLineNr guibg=#073642 guifg=#586e75 ctermfg=NONE ctermbg=0
+    if exists("neovim_dot_app")
+        silent! colorscheme gruvbox
+        set gfn=Fira\ Mono\ Medium\ for\ Powerline:h12
+    else
+        silent! colorscheme solarized
+        highlight CursorLineNr guibg=#073642 guifg=#586e75 ctermfg=NONE ctermbg=0
+    endif
 endif
 
 " Default to UTF-8 and Unix line endings, but use the existing line endings
@@ -598,6 +605,12 @@ set sessionoptions-=help
 " vim-airline plugin settings. {{{2
 let airline_powerline_fonts = 1
 set noshowmode
+
+" vim-gitgutter plugin settings. {{{2
+highlight! link GitGutterAdd DiffAdd
+highlight! link GitGutterChange DiffChange
+highlight! link GitGutterDelete DiffDelete
+
 
 " SuperTab plugin settings. {{{2
 let g:SuperTabDefaultCompletionType = "context"
