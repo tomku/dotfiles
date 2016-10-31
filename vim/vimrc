@@ -114,7 +114,6 @@ Plugin 'Tagbar'
 Plugin 'xolox/vim-session'
 Plugin 'ZoomWin'
 Plugin 'bling/vim-airline'
-Plugin 'christoomey/vim-tmux-navigator'
 
 " General programming tools. {{{2
 Plugin 'losingkeys/vim-niji'
