@@ -55,8 +55,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'mattn/webapi-vim'
 Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'xolox/vim-misc'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 
 " Color schemes. {{{2
 Plug 'altercation/vim-colors-solarized'
@@ -75,15 +77,18 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'paradigm/TextObjectify'
 Plug 'reedes/vim-textobj-sentence'
+Plug 'wellle/targets.vim'
 
 " Basic editing additions. {{{2
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
+Plug 'tpope/vim-rsi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/syntastic'
-Plug 'sjl/gundo.vim'
+Plug 'simnalamburt/vim-mundo'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-abolish'
@@ -91,6 +96,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'YankRing.vim'
+Plug 'justinmk/vim-sneak'
 
 " Prose writing. {{{2
 Plug 'junegunn/goyo.vim'
@@ -104,10 +110,11 @@ Plug 'reedes/vim-lexical'
 Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-session'
 Plug 'ZoomWin'
 Plug 'bling/vim-airline'
+Plug 'moll/vim-bbye'
 
 " General programming tools. {{{2
 Plug 'losingkeys/vim-niji'
@@ -119,13 +126,15 @@ if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
     Plug 'krisajenkins/vim-pipe'
 endif
 Plug 'mattn/gist-vim'
-Plug 'paredit.vim'
-Plug 'sjl/tslime.vim'
+Plug 'jgdavey/tslime.vim'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'int3/vim-extradite'
 Plug 'junegunn/vader.vim'
 Plug 'tpope/vim-eunuch'
+Plug 'MartinLafreniere/vim-PairTools'
 Plug 'airblade/vim-gitgutter'
 
 " Language-specific tools. {{{2
@@ -644,6 +653,9 @@ endif
 
 " tslime settings. {{{2
 let g:tslime_ensure_trailing_newlines = 1
+vmap <silent> <Leader>rs <Plug>SendSelectionToTmux
+nmap <silent> <Leader>rs <Plug>NormalModeSendToTmux
+nmap <silent> <Leader>rv <Plug>SetTmuxVars
 
 " Ultisnips plugin settings. {{{2
 let g:UltiSnipsExpandTrigger="<tab>"
