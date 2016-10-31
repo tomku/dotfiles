@@ -169,7 +169,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'Rykka/riv.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-jdaddy'
@@ -184,6 +183,7 @@ Plug 'xhr/vim-io'
 Plug 'chase/vim-ansible-yaml'
 Plug 'Quramy/tsuquyomi'
 
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Basic settings. {{{1
