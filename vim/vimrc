@@ -588,7 +588,7 @@ augroup prose
     autocmd FileType textile call ProseInit()
     autocmd FileType rst call ProseInit()
     autocmd FileType text call ProseInit()
-    autocmd FileType gitcommit call ProseInit()
+    autocmd FileType gitcommit call ProseInit() | call pencil#init({'wrap': 'hard', 'autoformat': 0})
     autocmd FileType help call lexical#init({ 'spell': 0 })
 
     autocmd! User GoyoEnter Limelight
@@ -682,6 +682,7 @@ set sessionoptions-=help
 " vim-airline plugin settings. {{{2
 let airline_powerline_fonts = 1
 set noshowmode
+let g:airline_section_y = "%{airline#util#wrap(airline#parts#ffenc(),0)}%{PencilMode()}"
 
 " vim-gitgutter plugin settings. {{{2
 highlight! link GitGutterAdd DiffAdd
