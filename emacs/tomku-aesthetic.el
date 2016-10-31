@@ -17,12 +17,12 @@
 (add-to-list 'default-frame-alist '(width . 120))
 
 ;; Show 'emacs : $filename' as the frame title, stolen from EmacsWiki
-(setq frame-title-format 
-      '(:eval 
+(setq frame-title-format
+      '(:eval
         (concat "emacs : " (if buffer-file-name
                                (replace-regexp-in-string
                                 "\\\\" "/"
-                                (replace-regexp-in-string 
+                                (replace-regexp-in-string
                                  (regexp-quote (getenv "HOME")) "~"
                                  (convert-standard-filename buffer-file-name)))
                              (buffer-name)))))
