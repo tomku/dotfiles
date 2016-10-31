@@ -233,6 +233,11 @@ set smartindent
 " Tweak when comment characters are automatically inserted.
 autocmd BufEnter * set formatoptions-=o
 
+" ...and deleted.
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
+
 " Show trailing/unnecessary whitespace
 set list
 set listchars=tab:→\ ,trail:·
@@ -272,6 +277,10 @@ set matchtime=2
 
 " Keep three lines of context at the top/bottom of the screen at all times.
 set scrolloff=3
+
+" Keep five characters of context on the left/right of the screen at all
+" times.
+set sidescrolloff=5
 
 " Show the last line, even if it's too long.
 set display+=lastline
@@ -344,6 +353,10 @@ noremap <leader>tf :tabfirst<cr>
 noremap <leader>tl :tablast<cr>
 noremap <leader>tm :tabmove
 
+nnoremap <silent> <leader><cr> :nohl<cr>
+
+" Cleanly closing buffers
+nnoremap <leader>x :Bdelete<cr>
 " Quickfix and location list windows.
 function! GetBufferList()
   redir =>buflist
@@ -404,9 +417,30 @@ nnoremap <silent> p p`]
 nnoremap <M-j> mz:m+<cr>`z
 nnoremap <M-k> mz:m-2<cr>`z
 
+" FIXME: Temporary until Neovim.app fixes meta key
+nnoremap ∆ mz:m+<cr>`z
+nnoremap ˚ mz:m-2<cr>`z
+
+" Trying these out...
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+
 " Visual mode mappings. {{{2
+" Visual line transposition.
 vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" FIXME: Temporary until next Neovim release.
+vnoremap ∆ :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Add blank line before/after current line.
+nnoremap [<space>  :put! =''<cr>
+nnoremap ]<space>  :put =''<cr>
+
+" Make indenting keep visual selection.
+xnoremap <  <gv
+xnoremap >  >gv
 
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -440,11 +474,10 @@ map <up> <nop>
 map <down> <nop>
 map <right> <nop>
 map <left> <nop>
-inoremap <esc> <nop>
 
 " Status line. {{{1
 set laststatus=2
-set cmdheight=2
+set cmdheight=1
 set ruler
 
 " Disabled in favor of vim-airline.
@@ -511,6 +544,7 @@ augroup END
 
 let g:litecorrect#typographic = 0
 let g:lexical#spell_key = 'zs'
+let g:limelight_conceal_guifg = "#666666"
 
 " Plugin settings. {{{1
 " Emmet settings. {{{2
