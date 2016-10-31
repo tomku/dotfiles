@@ -186,6 +186,11 @@ Plug 'raichoo/purescript-vim'
 Plug 'ElmCast/elm-vim'
 Plug 'Quramy/tsuquyomi'
 
+if !empty(glob("/Applications/factor/misc/vim"))
+    let g:FactorRoot = "/Applications/factor"
+    Plug '/Applications/factor/misc/vim'
+endif
+
 Plug 'sheerun/vim-polyglot'
 
 call plug#end()
