@@ -2,7 +2,13 @@
 
 export ME="Tom Kurth"
 export EMAIL="tom@losthalo.org"
-DOTFILES=$(dirname $0)
+
+ABS_CODE="import os;import sys;path = os.path.abspath(sys.argv[1]);print os.path.dirname(path)"
+abs_dirname() {
+    python -c "$ABS_CODE" "$1"
+}
+
+DOTFILES=$(abs_dirname "$0")
 
 if [ ! -e ~/.zshrc ] ; then
     echo "Creating .zshrc..."
