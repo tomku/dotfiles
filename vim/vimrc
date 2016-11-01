@@ -958,4 +958,11 @@ endif
 
 " GUI settings. {{{1
 
-set guioptions-=TlrL
+set guioptions-=T
+set guioptions-=l
+set guioptions-=r
+set guioptions-=L
+
+if has("gui_gtk")
+    set guioptions-=m
+endif
