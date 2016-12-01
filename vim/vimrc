@@ -913,7 +913,7 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming em
 augroup javascript
     autocmd!
     autocmd FileType javascript setlocal foldenable
-    autocmd FileType javascript setlocal nocindent
+    autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 augroup END
 
 let g:used_javascript_libs = 'underscore,jquery,angularjs,react,jasmine,handlebars,ramda'
