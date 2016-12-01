@@ -6,7 +6,7 @@ set guioptions-=TlrL
 if (has("win32") > 0) || (has("win64") > 0)
     set gfn=DejaVu_Sans_Mono_for_Powerline:h9:cANSI
 elseif has("mac")
-    set gfn=Fira\ Code\ Medium\ for\ Powerline:h12
+    set gfn=Fira\ Code\ Medium:h12
     set macligatures
 else
     set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
