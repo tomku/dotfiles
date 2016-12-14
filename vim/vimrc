@@ -903,6 +903,7 @@ vnoremap <silent> <leader>h> :call Pointful()<CR>
 
 " Idris language settings. {{{2
 let g:syntastic_idris_checkers = []
+let g:idris_conceal = 1
 
 " HTML language settings. {{{2
 let g:closetag_html_style=1
