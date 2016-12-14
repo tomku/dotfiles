@@ -61,6 +61,7 @@ Plug 'xolox/vim-misc'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'let-def/vimbufsync'
 
 " Color schemes. {{{2
 Plug 'altercation/vim-colors-solarized'
@@ -152,6 +153,7 @@ Plug 'tpope/vim-salve'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-eastwood'
 Plug 'venantius/vim-cljfmt'
+Plug 'the-lambda-church/coquille'
 Plug 'rhysd/vim-crystal'
 Plug 'JulesWang/css.vim'
 Plug 'honza/dockerfile.vim'
@@ -163,6 +165,7 @@ Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'vim-erlang/erlang-motions.vim'
 Plug 'dag/vim-fish'
+Plug 'FStarLang/VimFStar', {'for': 'fstar'}
 Plug 'tikhomirov/vim-glsl'
 Plug 'fatih/vim-go'
 Plug 'mustache/vim-mustache-handlebars'
