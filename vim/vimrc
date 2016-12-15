@@ -176,7 +176,9 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'bitc/vim-hdevtools'
 Plug 'eagletmt/neco-ghc'
 Plug 'Twinside/vim-hoogle'
+Plug 'mpickering/hlint-refactor-vim'
 Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'nbouscal/vim-stylish-haskell'
 Plug 'yaymukund/vim-haxe'
 Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim'
@@ -718,7 +720,7 @@ let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes'
 " syntastic plugin settings. {{{2
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell', 'go'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " YankRing plugin settings. {{{2
 let g:yankring_history_dir = '~/.vim'
@@ -772,8 +774,7 @@ endfunction
 if has("autocmd") && exists("+omnifunc")
     augroup omnicomp
         autocmd!
-        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-        autocmd FileType * if &omnifunc != "" | call SuperTabChain(&omnifunc, "<c-n>") | endif
+        autocmd FileType * if &omnifunc != "" | call SuperTabChain(&omnifunc, "<c-p>") | endif
     augroup END
 endif
 
