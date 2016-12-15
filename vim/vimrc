@@ -673,7 +673,7 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeIgnore = ['\~$', '^tags$[[file]]', '\.beam$', '\.pyc$', '\.class$[[file]]', '^.git$[[dir]]', '\.js.map$']
 
-nnoremap <leader>n :NERDTreeFocus<cr>
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " CtrlP plugin settings. {{{2
 " Set the max files
