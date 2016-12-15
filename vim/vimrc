@@ -712,8 +712,6 @@ nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
 nnoremap <leader>l :CtrlPLine<CR>
-nnoremap <leader>ud :CtrlPUndo<CR>
-nnoremap <leader>uc :CtrlPChange<CR>
 nnoremap <leader>d :CtrlPDir<CR>
 
 let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes', 'dir']
@@ -770,6 +768,11 @@ function! CheckEnabledDirs(file)
 
     return 0
 endfunction
+
+" Mundo plugin settings. {{{2
+nnoremap <leader>u :MundoToggle<CR>
+let g:mundo_right = 1
+let g:mundo_close_on_revert = 1
 
 " SuperTab plugin settings. {{{2
 if has("autocmd") && exists("+omnifunc")
