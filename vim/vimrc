@@ -236,6 +236,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'stephpy/vim-yaml'
 Plug 'tpope/vim-scriptease'
+Plug 'c9s/vimomni.vim'
 
 if !empty(glob("/Applications/factor/misc/vim"))
     let g:FactorRoot = "/Applications/factor"
