@@ -1005,6 +1005,11 @@ augroup END
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 
+" VimL language settings. {{{2
+augroup viml
+    autocmd FileType vim setlocal omnifunc=syntaxcomplete#Complete
+augroup end
+
 " Machine-specific settings. {{{1
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
