@@ -723,12 +723,6 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell', 
 " YankRing plugin settings. {{{2
 let g:yankring_history_dir = '~/.vim'
 
-" vim-mustache-handlebars plugin settings. {{{2
-augroup mustache
-    autocmd!
-    autocmd BufRead,BufNewFile *.html,*.htm,*.xhtml set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
-augroup END
-
 " vim-session plugin settings. {{{2
 let g:session_autosave = "yes"
 let g:session_autosave_periodic = 5
@@ -947,6 +941,12 @@ let g:tex_flavor='latex'
 augroup lisp
     autocmd!
     autocmd BufNewFile,BufReadPost *.cl set lisp
+augroup END
+
+" Mustache templating settings. {{{2
+augroup mustache
+    autocmd!
+    autocmd BufRead,BufNewFile *.html,*.htm,*.xhtml set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 augroup END
 
 " Mutt format settings. {{{2
