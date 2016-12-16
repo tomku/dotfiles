@@ -704,15 +704,14 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|o|pyc|beam)$',
   \ }
 
-let g:ctrlp_map = '<leader>f'
-nnoremap <leader>F :CtrlPCurWD<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_map = '<leader>ff'
+nnoremap <leader>fF :CtrlPCurWD<CR>
+nnoremap <leader>bb :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-nnoremap <leader>T :CtrlPBufTag<CR>
-nnoremap <leader>l :CtrlPLine<CR>
-nnoremap <leader>d :CtrlPDir<CR>
+nnoremap <leader>tt :CtrlPTag<CR>
+nnoremap <leader>tT :CtrlPBufTag<CR>
+nnoremap <leader>ll :CtrlPLine<CR>
 
 let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes', 'dir']
 
