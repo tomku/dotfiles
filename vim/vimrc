@@ -388,6 +388,10 @@ endtry
 " Automatically read changed files if they're unchanged in Vim.
 set autoread
 
+" Automatically save changed files if we navigate away.
+" Is this a good idea? Not sure yet, we'll see
+set autowrite
+
 " Set window titles, and disable the audible bell.
 set title
 set visualbell
