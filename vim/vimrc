@@ -237,6 +237,7 @@ Plug 'sheerun/rspec.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-bundler'
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 Plug 'derekwyatt/vim-sbt'
 Plug 'derekwyatt/vim-scala'
 Plug 'ARM9/snes-syntax-vim'
@@ -1043,6 +1044,9 @@ augroup ruby
     autocmd BufNewFile,BufReadPost *.rb setlocal foldmethod=indent nofoldenable
     autocmd BufNewFile,BufReadPost *.rb setlocal shiftwidth=2 expandtab
 augroup END
+
+" Rust language settings. {{{2
+let g:syntastic_rust_checkers = ['rustc']
 
 " Typescript language settings. {{{2
 let g:tsuquyomi_disable_quickfix = 1
