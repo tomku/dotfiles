@@ -72,6 +72,18 @@ Plug 'tpope/vim-vividchalk'
 Plug 'w0ng/vim-hybrid'
 Plug 'reedes/vim-colors-pencil'
 Plug 'zefei/cake16'
+Plug 'mhartington/oceanic-next'
+Plug 'jdkanani/vim-material-theme'
+Plug 'dracula/vim'
+Plug 'chriskempson/base16-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'AlessandroYorba/Sidonia'
+Plug 'jansenfuller/crayon'
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'roosta/vim-srcery'
+Plug 'rakr/vim-one'
+
+
 
 " Text objects. {{{2
 Plug 'argtextobj.vim'
@@ -521,6 +533,15 @@ nnoremap <leader>K :cprevious<cr>
 " Quick toggles.
 nnoremap cop :set paste!<cr>
 nnoremap cof :call FoldColumnToggle()<cr>
+nnoremap cob :call ToggleBackground()<cr>
+
+function! ToggleBackground()
+    if &background == 'light'
+        set background='dark'
+    else
+        set background='light'
+    endif
+endfunction
 
 function! FoldColumnToggle()
     if &foldcolumn
@@ -1042,6 +1063,7 @@ set guioptions-=T
 set guioptions-=l
 set guioptions-=r
 set guioptions-=L
+let ayucolor='light'
 
 if has("gui_gtk")
     set guioptions-=m
