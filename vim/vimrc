@@ -104,7 +104,9 @@ Plug 'tpope/vim-rsi'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/syntastic'
 Plug 'simnalamburt/vim-mundo'
-Plug 'SirVer/ultisnips'
+if v:version > 703
+    Plug 'SirVer/ultisnips'
+endif
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
@@ -245,7 +247,11 @@ Plug 'timcharper/textile.vim'
 Plug 'keith/tmux.vim'
 Plug 'cespare/vim-toml'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Quramy/tsuquyomi'
+
+if v:version > 703
+    Plug 'Quramy/tsuquyomi'
+endif
+
 Plug 'stephpy/vim-yaml'
 Plug 'tpope/vim-scriptease'
 Plug 'c9s/vimomni.vim'
