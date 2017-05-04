@@ -899,6 +899,10 @@ augroup haskell
     autocmd FileType haskell setlocal csprg=hscope
     autocmd FileType haskell call SuperTabSetDefaultCompletionType("<c-x><c-o>")
     autocmd FileType haskell let g:ghcmod_use_basedir = getcwd()
+    autocmd FileType haskell nmap <buffer> <LocalLeader>tw :GhcModTypeInsert<CR>
+    autocmd FileType haskell nmap <buffer> <LocalLeader>ts :GhcModSplitFunCase<CR>
+    autocmd FileType haskell nmap <buffer> <LocalLeader>tq :GhcModType<CR>
+    autocmd FileType haskell nmap <buffer> <LocalLeader>te :GhcModTypeClear<CR>
 augroup END
 let g:haddock_browser = "google-chrome"
 set concealcursor=ncv
