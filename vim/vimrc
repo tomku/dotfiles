@@ -261,7 +261,6 @@ if !empty(glob("/Applications/factor/misc/vim"))
     Plug '/Applications/factor/misc/vim'
 endif
 
-
 call plug#end()
 
 " Basic settings. {{{1
@@ -830,6 +829,14 @@ augroup c
     autocmd!
     autocmd Filetype C compiler gcc
 augroup END
+
+" C++ language settings. {{{2
+augroup cpp
+    autocmd!
+    autocmd Filetype cpp compiler gcc
+augroup END
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " Coffeescript language settings. {{{2
 augroup coffeescript
