@@ -875,10 +875,13 @@ let g:go_auto_type_info = 1
 let g:go_fmt_command = 'goimports'
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'staticcheck']
+
 
 augroup golang
     autocmd!
-    autocmd BufNewFile,BufReadPost *.go setlocal tabstop=4
+    autocmd BufNewFile,BufReadPost *.go setlocal tabstop=4 nolist
     autocmd FileType go nmap <buffer> <LocalLeader>r <Plug>(go-run)
     autocmd FileType go nmap <buffer> <LocalLeader>b <Plug>(go-build)
     autocmd FileType go nmap <buffer> <LocalLeader>t <Plug>(go-test)
