@@ -137,7 +137,6 @@ Plug 'losingkeys/vim-niji'
 Plug 'basepi/vim-conque'
 Plug 'docunext/closetag.vim'
 Plug 'dbext.vim'
-Plug 'ludovicchabant/vim-gutentags'
 " Powershell doesn't like this, and it probably doesn't work in cmd.exe.
 if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
     Plug 'krisajenkins/vim-pipe'
@@ -146,7 +145,6 @@ Plug 'mattn/gist-vim'
 Plug 'jgdavey/tslime.vim'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'int3/vim-extradite'
 Plug 'tpope/vim-git'
@@ -159,7 +157,6 @@ Plug 'airblade/vim-gitgutter'
 
 " Language-specific tools. {{{2
 Plug 'pearofducks/ansible-vim'
-Plug 'c.vim'
 Plug 'vim-jp/vim-cpp'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'guns/vim-clojure-static'
