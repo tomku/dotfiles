@@ -246,6 +246,7 @@ Plug 'kurayama/systemd-vim-syntax'
 Plug 'timcharper/textile.vim'
 Plug 'keith/tmux.vim'
 Plug 'cespare/vim-toml'
+Plug 'hashivim/vim-vagrant'
 Plug 'HerringtonDarkholme/yats.vim'
 
 if v:version > 703
