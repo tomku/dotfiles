@@ -3,6 +3,12 @@ export BROWSER="google-chrome"
 export PAGER="less"
 LESSOPT="-M"
 
+if [ -d "$HOME/src/go" ] ; then
+    export GOPATH=$HOME/src/go
+    export GOROOT=$(go env GOROOT)
+    PATH=$HOME/src/go/bin:$PATH
+fi
+
 # Haskell bins installed by cabal
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH=$HOME/.cabal/bin:$PATH
