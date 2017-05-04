@@ -232,6 +232,7 @@ Plug 'wlangstroth/vim-racket'
 Plug 'jneen/ragel.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
+Plug 'reasonml/vim-reason-loader'
 Plug 'sheerun/rspec.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-bundler'
@@ -1025,10 +1026,6 @@ if executable("opam")
         execute "set rtp+=".s:ocamlmerlin."/vim"
         execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
     endif
-
-    let s:reasondir=substitute(system('opam config var share'),'\n$','','') . "/reason"
-    execute "set rtp+=".s:reasondir."/editorSupport/VimReason"
-    let g:syntastic_reason_checkers=['merlin']
 endif
 
 " Python language settings. {{{2
