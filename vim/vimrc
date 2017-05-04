@@ -114,6 +114,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'YankRing.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'chrisbra/NrrwRgn'
 
 " Prose writing. {{{2
 Plug 'junegunn/goyo.vim'
@@ -222,7 +223,7 @@ Plug 'elehack/vim-oz'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'exu/pgsql.vim'
 Plug 'StanAngeloff/php.vim'
-Plug 'Persistent13/vim-ps1'
+Plug 'PProvost/vim-ps1'
 Plug 'adimit/prolog.vim'
 Plug 'raichoo/purescript-vim'
 Plug 'mitsuhiko/vim-python-combined'
