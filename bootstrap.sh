@@ -85,14 +85,12 @@ if [ ! -e ~/.tmux.conf ] ; then
     ln -s "$DOTFILES/tmux.conf" ~/.tmux.conf
 fi
 
-if [ ! -d ~/.emacs.d ] ; then
-    echo "Creating .emacs.d..."
-    mkdir ~/.emacs.d
+if [ ! -e ~/.spacemacs ] ; then
+    echo "Creating .spacemacs..."
+    ln -s "$DOTFILES/spacemacs.el" ~/.spacemacs
 fi
 
-if [ ! -e ~/.emacs.d/init.el ] ; then
-    echo "Creating .emacs.d/init.el..."
-    cat <<EOF >~/.emacs.d/init.el
-(load-file "$DOTFILES/emacs/init.el")
-EOF
+if [ ! -d ~/.emacs.d ] ; then
+    echo "Installing Spacemacs..."
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
