@@ -1,20 +1,23 @@
-# This file is bash-compatible, so that it can be linked to
-# ~/.bash_profile and read by various things.
+#!/bin/sh
+# This file is POSIX-compliant because it's shared between multiple shells.
 
 export EDITOR="vim"
 export BROWSER="google-chrome"
 export PAGER="less"
-LESSOPT="-M"
+export LESSOPT="-M"
 
 # GOPATH and GOROOT
 if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
-    export GOROOT=$(go env GOROOT)
+
+    GOROOT=$(go env GOROOT)
+    export GOROOT
+
     PATH=$HOME/src/go/bin:$PATH
 fi
 
 # rust/cargo
-if [ -d $HOME/.cargo/bin ] ; then
+if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
@@ -23,13 +26,8 @@ if [ -d "$HOME/.cabal/bin" ] ; then
     PATH=$HOME/.cabal/bin:$PATH
 fi
 
-# Perl's local::lib
-if [ perl -mlocal::lib=$HOME/.perl -e 1 2>/dev/null ] ; then
-    eval $(PERL_LOCAL_LIB_ROOT= perl -mlocal::lib=$HOME/.perl)
-fi
-
 # Node.js packages installed in my home directory
-if type -p npm >/dev/null 2>&1 ; then
+if command -v npm >/dev/null 2>&1 ; then
     if [ ! -d "$HOME/.node/bin" ] ; then
         mkdir -p ~/.node/bin
         npm config set prefix ~/.node
@@ -38,7 +36,7 @@ if type -p npm >/dev/null 2>&1 ; then
 fi
 
 # R packages installed in my home directory
-if type -p R >/dev/null; then
+if command -v R >/dev/null; then
     if [ ! -d "$HOME/.R" ] ; then
         mkdir ~/.R
     fi
@@ -47,7 +45,9 @@ fi
 
 # Thanks for not reliably setting this, Ubuntu openjdk packages!
 if [ -f /etc/alternatives/java ] ; then
-    export JAVA_HOME=$(readlink -f /etc/alternatives/java | sed "s/\/jre.*//")
+    JAVA_HOME=$(readlink -f /etc/alternatives/java | sed "s/\/jre.*//")
+    export JAVA_HOME
+
     export JAVA_OPTS=-Djava.awt.headless=true
 fi
 
@@ -66,34 +66,18 @@ if [ -d "$HOME/.local/share/man" ] ; then
     export MANPATH
 fi
 
-# rbenv
-type -p rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
-if [ -d "$HOME/.rbenv/bin" ] ; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-fi
-
-# phpenv
-type -p phpenv >/dev/null && 2>&1 eval "$(phpenv init -)"
-if [ -d "$HOME/.phpenv/bin" ] ; then
-    export PATH="$HOME/.phpenv/bin:$PATH"
-fi
-
-# pyenv
-type -p pyenv >/dev/null && 2>&1 eval "$(pyenv init -)"
-if [ -d "$HOME/.pyenv/bin" ] ; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-fi
+# Version-managed language runtimes
+for lang in rb nod py pl ; do
+    if [ -d "$HOME/.${lang}env/bin" ] ; then
+        export PATH="$HOME/.${lang}env/bin:$PATH"
+    fi
+    command -v ${lang}env >/dev/null 2>&1 && eval "$(${lang}env init -)"
+done
 
 # opam/ocaml
 if [ -r "$HOME/.opam/opam-init/init.zsh" ] ; then
-    source $HOME/.opam/opam-init/init.zsh
-fi
-
-# Homebrew completion for bash
-if  [ -n "$BASH" ] && 
-    [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-    source "$(brew --prefix)/etc/bash_completion"
-    echo "BASH"
+    # shellcheck source=/dev/null
+    . $HOME/.opam/opam-init/init.zsh
 fi
 
 if [ -n "$PRIVACY" ] ; then

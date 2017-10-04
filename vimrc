@@ -19,6 +19,8 @@ if &shell =~# 'fish$'
     set shell=bash
 endif
 
+set rtp+=$DOTFILES/vim
+
 " Load some sensible defaults from the example vimrc.
 if filereadable('$VIM\_vimrc')
     source $VIM\_vimrc

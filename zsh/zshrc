@@ -1,7 +1,0 @@
-function() {
-    # Load the important stuff
-    for script in "ohmyzsh" "config"
-    do
-        source $DOTFILES/zsh/$script.zsh
-    done
-}

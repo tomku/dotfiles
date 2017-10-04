@@ -1,0 +1,24 @@
+#!/bin/sh
+
+DOTFILES=$(dirname "$(readlink -- ~/.zshrc)")
+export DOTFILES
+
+# Path reset
+unset PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+# Default shell config, maybe
+if [ -d /etc/profile.d/ ] ; then
+    for profile in /etc/profile.d/*.sh; do
+        # shellcheck source=/dev/null
+        [ -r "$profile" ] && . "$profile"
+    done
+    unset profile
+fi
+
+# Load the important stuff
+for script in $DOTFILES/shell/*.sh
+do
+    # shellcheck source=/dev/null
+    . "$script"
+done
