@@ -3,6 +3,7 @@ export BROWSER="google-chrome"
 export PAGER="less"
 LESSOPT="-M"
 
+# GOPATH and GOROOT
 if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
     export GOROOT=$(go env GOROOT)
@@ -20,39 +21,20 @@ if [ perl -mlocal::lib=$HOME/.perl -e 1 2>/dev/null ] ; then
 fi
 
 # Node.js packages installed in my home directory
-if which npm >/dev/null ; then
+if type -p npm >/dev/null 2>&1 ; then
     if [ ! -d "$HOME/.node/bin" ] ; then
         mkdir -p ~/.node/bin
         npm config set prefix ~/.node
     fi
-    PATH=$(npm bin -g 2>/dev/null):$PATH
-    NODE_PATH=$(npm root -g):$NODE_PATH
-    export NODE_PATH
+    PATH=$HOME/.node/bin:$PATH
 fi
 
 # R packages installed in my home directory
-if which R >/dev/null; then
+if type -p R >/dev/null; then
     if [ ! -d "$HOME/.R" ] ; then
         mkdir ~/.R
     fi
     export R_LIBS_USER=$HOME/.R
-fi
-
-# Anaconda or a default VirtualEnv
-if [ -d "$HOME/.python/bin" ] ; then
-    export PATH="$HOME/.python/bin:$PATH"
-fi
-
-# GEM_HOME for system ruby
-if which ruby >/dev/null; then
-    SYSTEM_RUBY_VERSION=$(ruby --version | sed 's/ruby \([[:digit:].p]*\).*/\1/')
-    if [ ! -d "$HOME/.rbenv/bin" ] ; then
-        if [ ! -e $HOME/.ruby/$SYSTEM_RUBY_VERSION ] ; then
-            mkdir -p $HOME/.ruby/$SYSTEM_RUBY_VERSION 
-        fi
-        export GEM_HOME=$HOME/.ruby/$SYSTEM_RUBY_VERSION
-        export PATH=$GEM_HOME/bin:$PATH
-    fi
 fi
 
 # Thanks for not reliably setting this, Ubuntu openjdk packages!
@@ -77,19 +59,26 @@ if [ -d "$HOME/.local/share/man" ] ; then
 fi
 
 # rbenv
+type -p rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
 if [ -d "$HOME/.rbenv/bin" ] ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
 fi
 
 # phpenv
+type -p phpenv >/dev/null && 2>&1 eval "$(phpenv init -)"
 if [ -d "$HOME/.phpenv/bin" ] ; then
     export PATH="$HOME/.phpenv/bin:$PATH"
-    eval "$(phpenv init -)"
 fi
 
+# pyenv
+type -p pyenv >/dev/null && 2>&1 eval "$(pyenv init -)"
+if [ -d "$HOME/.pyenv/bin" ] ; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+fi
+
+# opam/ocaml
 if [ -r "$HOME/.opam/opam-init/init.zsh" ] ; then
-    . $HOME/.opam/opam-init/init.zsh
+    source $HOME/.opam/opam-init/init.zsh
 fi
 
 if [ -n "$PRIVACY" ] ; then

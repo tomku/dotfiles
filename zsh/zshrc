@@ -1,20 +1,7 @@
-# Load our utility loading function.
-. $DOTFILES/zsh/load
-
-# Sane starting point that includes sbin folders
-unset PATH
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-
-if [ -d /etc/profile.d/ ] ; then
-    for profile in /etc/profile.d/*.sh; do
-        [ -r "$profile" ] && . "$profile"
+function() {
+    # Load the important stuff
+    for script in "ohmyzsh" "config"
+    do
+        source $DOTFILES/zsh/$script.zsh
     done
-    unset profile
-fi
-
-# Order matters here. 'config' can depend on variables set in 'env', and
-# 'aliases' is last to avoid conflicting.
-for script in "env" "config" "aliases"
-do
-    _tomku_load $DOTFILES/zsh/$script.zsh
-done
+}
