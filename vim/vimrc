@@ -102,7 +102,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-rsi'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/syntastic'
 Plug 'simnalamburt/vim-mundo'
 if v:version > 703
     Plug 'SirVer/ultisnips'
@@ -155,6 +154,7 @@ Plug 'junegunn/vader.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
+Plug 'w0rp/ale'
 
 " Language-specific tools. {{{2
 Plug 'pearofducks/ansible-vim'
@@ -690,6 +690,14 @@ let g:lexical#spell_key = 'zs'
 let g:limelight_conceal_guifg = "#666666"
 
 " Plugin settings. {{{1
+" ALE Settings. {{{2
+
+let g:ale_linters = {
+\   'go': [],
+\   'haskell': ['stack-ghc-mod', 'hdevtools', 'stack-build', 'hlint']
+\}
+let g:ale_sign_error = '●'
+
 " Emmet settings. {{{2
 let g:user_emmet_leader_key='<C-b>'
 
@@ -745,10 +753,6 @@ nnoremap <leader>ll :CtrlPLine<CR>
 
 let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes', 'dir']
 
-" syntastic plugin settings. {{{2
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " YankRing plugin settings. {{{2
 let g:yankring_history_dir = '~/.vim'
@@ -835,8 +839,6 @@ augroup cpp
     autocmd!
     autocmd Filetype cpp compiler gcc
 augroup END
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " Coffeescript language settings. {{{2
 augroup coffeescript
@@ -847,11 +849,9 @@ augroup coffeescript
 augroup END
 
 " Erlang language settings. {{{2
-let g:syntastic_erlang_checkers = ['syntaxerl']
 
 " Elm language settings. {{{2
 let g:elm_format_autosave = 1
-let g:elm_syntastic_show_warnings = 1
 
 " Fish scripting language settings. {{{2
 augroup fish
@@ -874,7 +874,6 @@ let g:go_highlight_generate_tags = 1
 let g:go_auto_type_info = 1
 let g:go_fmt_command = 'goimports'
 
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'staticcheck']
 
@@ -961,13 +960,10 @@ command! -range Pl <line1>,<line2>!pointfree "$(cat)"
 command! -range Unpl <line1>,<line2>!pointful "$(cat)" | sed 's/^(\(.*\))$/\1/'
 
 " Idris language settings. {{{2
-let g:syntastic_idris_checkers = []
 let g:idris_conceal = 1
 
 " HTML language settings. {{{2
 let g:closetag_html_style=1
-let g:syntastic_html_tidy_exec = 'tidy'
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
 
 " Javascript language settings. {{{2
 augroup javascript
@@ -977,9 +973,6 @@ augroup javascript
 augroup END
 
 let g:used_javascript_libs = 'underscore,jquery,angularjs,react,jasmine,handlebars,ramda,chai,vue,d3'
-let g:syntastic_json_checkers=['jsonlint']
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_javascript_eslint_exec = "~/.node/bin/eslint"
 let g:jsx_ext_required = 0
 
 " LaTeX language settings. {{{2
@@ -1031,7 +1024,6 @@ if executable("opam")
     if executable('ocamlmerlin') && has('python')
         let s:ocamlshare = substitute(system('opam config var share'), '\n$', '', '''')
         let s:ocamlmerlin = s:ocamlshare . "/merlin"
-        let g:syntastic_ocaml_checkers=['merlin']
         execute "set rtp+=".s:ocamlmerlin."/vim"
         execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
     endif
@@ -1043,7 +1035,6 @@ augroup python
     autocmd FileType python set nosmartindent
 augroup END
 
-let g:syntastic_python_checkers = ['flake8']
 
 " Ruby language settings. {{{2
 augroup ruby
@@ -1054,11 +1045,9 @@ augroup ruby
 augroup END
 
 " Rust language settings. {{{2
-let g:syntastic_rust_checkers = ['rustc']
 
 " Typescript language settings. {{{2
 let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " VimL language settings. {{{2
 augroup viml
