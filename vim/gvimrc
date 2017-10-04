@@ -3,12 +3,12 @@ set guioptions-=TlrL
 
 " Set fonts. The sizes are slightly different on Windows, due to a different
 " rendering engine.
-if (has("win32") > 0) || (has("win64") > 0)
-    set gfn=DejaVu_Sans_Mono_for_Powerline:h9:cANSI
-elseif has("mac")
-    set gfn=Fira\ Code\ Medium:h12
+if (has('win32') > 0) || (has('win64') > 0)
+    set guifont=DejaVu_Sans_Mono_for_Powerline:h9:cANSI
+elseif has('mac')
+    set guifont=Fira\ Code\ Medium:h12
     set macligatures
 else
-    set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 endif
 
