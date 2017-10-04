@@ -9,6 +9,12 @@ setopt +o CORRECT_ALL
 setopt -o SHARE_HISTORY
 setopt -o HIST_IGNORE_SPACE
 
+
+if [ -d /usr/local/share/zsh-completions ] ; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+    rm -f ~/.zcompdump*; compinit
+fi
+
 for pipecmd in "lesspipe" "lesspipe.sh" ; do
     which $pipecmd 2>&1 >/dev/null  && eval "$(SHELL=/bin/sh $pipecmd)"
 done

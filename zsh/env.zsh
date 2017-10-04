@@ -1,3 +1,6 @@
+# This file is bash-compatible, so that it can be linked to
+# ~/.bash_profile and read by various things.
+
 export EDITOR="vim"
 export BROWSER="google-chrome"
 export PAGER="less"
@@ -8,6 +11,11 @@ if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
     export GOROOT=$(go env GOROOT)
     PATH=$HOME/src/go/bin:$PATH
+fi
+
+# rust/cargo
+if [ -d $HOME/.cargo/bin ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # Haskell bins installed by cabal
@@ -79,6 +87,13 @@ fi
 # opam/ocaml
 if [ -r "$HOME/.opam/opam-init/init.zsh" ] ; then
     source $HOME/.opam/opam-init/init.zsh
+fi
+
+# Homebrew completion for bash
+if  [ -n "$BASH" ] && 
+    [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+    source "$(brew --prefix)/etc/bash_completion"
+    echo "BASH"
 fi
 
 if [ -n "$PRIVACY" ] ; then

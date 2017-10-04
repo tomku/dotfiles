@@ -34,6 +34,15 @@ fi
 EOF
 fi
 
+if [ ! -e ~/.bash_profile ] ; then
+    echo "Creating .bash_profile..."
+    cat <<EOF >~/.bash_profile
+if [ -f $DOTFILES/zsh/zshenv ] ; then
+    . $DOTFILES/zsh/zshenv
+fi
+EOF
+fi
+
 if [ ! -e ~/.vimrc ] ; then
     echo "Creating .vimrc..."
     cat <<EOF >~/.vimrc
