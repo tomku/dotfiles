@@ -182,7 +182,6 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'fatih/vim-go'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'bitc/lushtags'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'bitc/vim-hdevtools'
@@ -903,20 +902,43 @@ augroup haskell
     autocmd FileType haskell setlocal csprg=hscope
     autocmd FileType haskell call SuperTabSetDefaultCompletionType("<c-x><c-o>")
     autocmd FileType haskell let g:ghcmod_use_basedir = getcwd()
-    autocmd FileType haskell nmap <buffer> <LocalLeader>tw :GhcModTypeInsert<CR>
-    autocmd FileType haskell nmap <buffer> <LocalLeader>ts :GhcModSplitFunCase<CR>
-    autocmd FileType haskell nmap <buffer> <LocalLeader>tq :GhcModType<CR>
-    autocmd FileType haskell nmap <buffer> <LocalLeader>te :GhcModTypeClear<CR>
+    autocmd FileType haskell nmap <buffer> <silent> <leader>hw :GhcModTypeInsert<CR>
+    autocmd FileType haskell nmap <buffer> <silent> <localleader>s :GhcModSplitFunCase<CR>
+    autocmd FileType haskell nmap <buffer> <silent> <localleader>g :GhcModSigCodegen<CR>
+
+    autocmd FileType Haskell nnoremap <buffer> <silent> <C-l> :<C-u>nohlsearch<CR>:GhcModTypeClear<CR><C-l>
+    " Type of expression under cursor
+    autocmd FileType haskell nmap <buffer> <silent> <localleader>t :GhcModType<CR>
+    autocmd FileType haskell nmap <buffer> <silent> <localleader>c :GhcModTypeClear<CR>
+    " Insert type of expression under cursor
+    autocmd FileType haskell nmap <buffer> <silent> <localleader>T :GhcModTypeInsert<CR>
+    autocmd FileType haskell setlocal csto=1 " search codex tags first
+    autocmd FileType haskell setlocal cst
+    autocmd FileType haskell setlocal csverb
+    autocmd FileType haskell call LoadHscope()
+
+    " Hoogle the word under the cursor
+    autocmd FileType haskell nnoremap <buffer> <silent> <localleader>h :Hoogle<CR>
+
+    " Hoogle and prompt for input
+    autocmd FileType haskell nnoremap <buffer> <localleader>H :Hoogle<space>
+
+    " Hoogle for detailed documentation (e.g. "Functor")
+    autocmd FileType haskell nnoremap <buffer> <silent> <localleader>i :HoogleInfo<CR>
+
+    " Hoogle for detailed documentation and prompt for input
+    autocmd FileType haskell nnoremap <buffer> <localleader>I :HoogleInfo<space>
+
+    " Hoogle, close the Hoogle window
+    autocmd FileType haskell nnoremap <buffer> <silent> <localleader>z :HoogleClose<CR>
+
+    " Pointless keybindings
+    autocmd FileType haskell vnoremap <buffer> <silent> <localleader>. :Pl<CR>
+    autocmd FileType haskell vnoremap <buffer> <silent> <localleader>> :Unpl<CR>
 augroup END
 let g:haddock_browser = "google-chrome"
-set concealcursor=ncv
-let hscoptions="A𝐒𝐓𝐄𝐌xRtB𝔻ws"
 let g:haskell_tabular = 1
 let g:necoghc_enable_detailed_browse = 1
-
-set csto=1 " search codex tags first
-set cst
-set csverb
 
 function! LoadHscope()
   let db = findfile("hscope.out", ".;")
@@ -927,45 +949,16 @@ function! LoadHscope()
     set cscopeverbose
   endif
 endfunction
-au BufEnter /*.hs call LoadHscope()
 
-" Type of expression under cursor
-nmap <silent> <leader>ht :GhcModType<CR>
-" Insert type of expression under cursor
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-" GHC errors and warnings
-nmap <silent> <leader>hc :SyntasticCheck hdevtools<CR>
+" This uses pointfree for refactoring Haskell code to pointfree form
+" This requires the pointfree package:
+" <http://hackage.haskell.org/package/pointfree>
+command! -range Pl <line1>,<line2>!pointfree "$(cat)"
 
-" Haskell Lint
-nmap <silent> <leader>hl :SyntasticCheck hlint<CR>
-
-" Options for Haskell Syntax Check
-let g:syntastic_haskell_hdevtools_args = '-g-Wall'
-
-" Hoogle the word under the cursor
-nnoremap <silent> <leader>hh :Hoogle<CR>
-
-" Hoogle and prompt for input
-nnoremap <leader>hH :Hoogle<space>
-
-" Hoogle for detailed documentation (e.g. "Functor")
-nnoremap <silent> <leader>hi :HoogleInfo<CR>
-
-" Hoogle for detailed documentation and prompt for input
-nnoremap <leader>hI :HoogleInfo<space>
-
-" Hoogle, close the Hoogle window
-nnoremap <silent> <leader>hz :HoogleClose<CR>
-
-function! Pointfree()
-  call setline('.', split(system('pointfree '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
-endfunction
-vnoremap <silent> <leader>h. :call Pointfree()<CR>
-
-function! Pointful()
-  call setline('.', split(system('pointful '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
-endfunction
-vnoremap <silent> <leader>h> :call Pointful()<CR>
+" The following refactors Haskell code into pointful form.
+" Requires the pointful package:
+" <http://hackage.haskell.org/package/pointful>
+command! -range Unpl <line1>,<line2>!pointful "$(cat)" | sed 's/^(\(.*\))$/\1/'
 
 " Idris language settings. {{{2
 let g:syntastic_idris_checkers = []
