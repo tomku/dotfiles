@@ -771,7 +771,7 @@ let g:yankring_history_dir = '~/.vim'
 " vim-session plugin settings. {{{2
 let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 5
-let g:session_autoload = 'yes'
+let g:session_autoload = 'no'
 let g:session_directory = '~/.vim/sessions'
 set sessionoptions+=resize,winpos
 set sessionoptions-=help
@@ -858,6 +858,8 @@ augroup coffeescript
     autocmd BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 tabstop=2 expandtab
     autocmd BufWritePost *.coffee make
 augroup END
+
+" Elixir language settings. {{{2
 
 " Erlang language settings. {{{2
 
