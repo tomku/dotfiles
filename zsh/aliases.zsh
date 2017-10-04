@@ -1,8 +1,3 @@
-# No peeking!
-if [ -s $DROPBOX/dotfiles/private/sh_aliases ] ; then
-    . $DROPBOX/dotfiles/private/sh_aliases
-fi
-
 # For quick alias editing.
 alias reload-aliases="source $DOTFILES/zsh/aliases.zsh"
 alias edit-aliases="$EDITOR $DOTFILES/zsh/aliases.zsh"
