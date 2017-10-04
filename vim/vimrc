@@ -157,6 +157,7 @@ Plug 'w0rp/ale'
 
 " Language-specific tools. {{{2
 Plug 'pearofducks/ansible-vim'
+Plug 'kchmck/vim-coffee-script'
 Plug 'vim-jp/vim-cpp'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'guns/vim-clojure-static'
@@ -224,6 +225,7 @@ Plug 'StanAngeloff/php.vim'
 Plug 'PProvost/vim-ps1'
 Plug 'adimit/prolog.vim'
 Plug 'raichoo/purescript-vim'
+Plug 'FrigoEU/psc-ide-vim'
 Plug 'mitsuhiko/vim-python-combined'
 Plug 'vim-scripts/R.vim'
 Plug 'wlangstroth/vim-racket'
@@ -704,6 +706,11 @@ let g:ale_sign_error = '●'
 
 " Emmet settings. {{{2
 let g:user_emmet_leader_key='<C-b>'
+let g:user_emmet_settings = {
+            \  'javascript.jsx' : {
+            \      'extends' : 'jsx',
+            \  },
+            \}
 
 " Gundo plugin configuration
 nnoremap <leader>U :GundoToggle<CR>
@@ -849,7 +856,7 @@ augroup coffeescript
     autocmd!
     autocmd BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent nofoldenable
     autocmd BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 tabstop=2 expandtab
-    autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+    autocmd BufWritePost *.coffee make
 augroup END
 
 " Erlang language settings. {{{2
@@ -1039,6 +1046,12 @@ augroup python
     autocmd FileType python set nosmartindent
 augroup END
 
+" PureScript language settings. {{{2
+augroup purescript
+    autocmd!
+    autocmd BufWritePost *.purs Prebuild
+augroup END
+" Reason language settings. {{{2
 
 " Ruby language settings. {{{2
 augroup ruby
