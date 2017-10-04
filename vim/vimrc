@@ -20,15 +20,15 @@ if &shell =~# 'fish$'
 endif
 
 " Load some sensible defaults from the example vimrc.
-if filereadable("$VIM\_vimrc")
+if filereadable('$VIM\_vimrc')
     source $VIM\_vimrc
-elseif filereadable("$VIM/vimrc")
+elseif filereadable('$VIM/vimrc')
     source $VIM/vimrc
 endif
 
 " Normalize the home directory, since GVim on Windows can start up in some
 " very useless places.
-if (getcwd() == $VIMRUNTIME) || (getcwd() == "C:\\WINDOWS\\system32")
+if (getcwd() == $VIMRUNTIME) || (getcwd() ==# 'C:\\WINDOWS\\system32')
     cd $HOME
 endif
 
@@ -38,9 +38,9 @@ endif
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
 
-set rtp+=~/.dotfiles/vim
+set runtimepath+=~/.dotfiles/vim
 " plug.vim initialization. {{{1
-call plug#begin("~/.vim/plug")
+call plug#begin('~/.vim/plug')
 
 " Plugins. {{{1
 
@@ -77,7 +77,6 @@ Plug 'jdkanani/vim-material-theme'
 Plug 'dracula/vim'
 Plug 'chriskempson/base16-vim'
 Plug 'ayu-theme/ayu-vim'
-Plug 'AlessandroYorba/Sidonia'
 Plug 'jansenfuller/crayon'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'roosta/vim-srcery'
@@ -138,7 +137,7 @@ Plug 'basepi/vim-conque'
 Plug 'docunext/closetag.vim'
 Plug 'dbext.vim'
 " Powershell doesn't like this, and it probably doesn't work in cmd.exe.
-if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
+if ( (has('win32') > 0) || (has('win64') > 0) ) && has('gui') == 0
     Plug 'krisajenkins/vim-pipe'
 endif
 Plug 'mattn/gist-vim'
@@ -231,7 +230,7 @@ Plug 'wlangstroth/vim-racket'
 Plug 'jneen/ragel.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
-Plug 'reasonml/vim-reason-loader'
+Plug 'reasonml-editor/vim-reason'
 Plug 'sheerun/rspec.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-bundler'
@@ -256,8 +255,8 @@ Plug 'stephpy/vim-yaml'
 Plug 'tpope/vim-scriptease'
 Plug 'c9s/vimomni.vim'
 
-if !empty(glob("/Applications/factor/misc/vim"))
-    let g:FactorRoot = "/Applications/factor"
+if !empty(glob('/Applications/factor/misc/vim'))
+    let g:FactorRoot = '/Applications/factor'
     Plug '/Applications/factor/misc/vim'
 endif
 
@@ -273,14 +272,14 @@ set modeline
 " Solarized looks fine on real consoles, but terrible in cmd.exe.
 set t_Co=16
 set background=dark
-if ( (has("win32") > 0) || (has("win64") > 0) ) && has("gui") == 0
+if ( (has('win32') > 0) || (has('win64') > 0) ) && has('gui') == 0
     colorscheme desert
     highlight CursorLine ctermbg=7
     highlight CursorLineNr ctermfg=7
 else
-    if exists("neovim_dot_app")
+    if exists('neovim_dot_app')
         silent! colorscheme gruvbox
-        set gfn=Fira\ Mono\ Medium\ for\ Powerline:h12
+        set guifont=Fira\ Mono\ Medium\ for\ Powerline:h12
     else
         silent! colorscheme solarized
         highlight CursorLineNr guibg=#073642 guifg=#586e75 ctermfg=NONE ctermbg=0
@@ -291,6 +290,7 @@ endif
 " if the file already has some.
 if !has('nvim')
     set encoding=utf8
+    scriptencoding utf-8
 endif
 set fileformats=unix,dos,mac
 try
@@ -327,10 +327,12 @@ set autoindent
 set smartindent
 
 " Tweak when comment characters are automatically inserted.
-autocmd BufEnter * set formatoptions-=o
+augroup formatoptions
+    autocmd BufEnter * set formatoptions-=o
+augroup END
 
 " ...and deleted.
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
 
@@ -425,12 +427,14 @@ set tags=tags;/,codex.tags;/
 let s:default_path = escape(&path, '\ ') " store default value of 'path'
 " Always add the current file's directory to the path and tags list if not
 " already there. Add it to the beginning to speed up searches.
-autocmd BufRead *
-      \ let s:tempPath=escape(escape(expand("%:p:h"), ' '), '\ ') |
-      \ exec "set path-=".s:tempPath |
-      \ exec "set path-=".s:default_path |
-      \ exec "set path^=".s:tempPath |
-      \ exec "set path^=".s:default_path
+augroup pathfix
+    autocmd BufRead *
+        \ let s:tempPath=escape(escape(expand("%:p:h"), ' '), '\ ') |
+        \ exec "set path-=".s:tempPath |
+        \ exec "set path-=".s:default_path |
+        \ exec "set path^=".s:tempPath |
+        \ exec "set path^=".s:default_path
+augroup END
 
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'  : 'hasktags',
@@ -502,23 +506,23 @@ nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <leader>x :Bdelete<cr>
 " Quickfix and location list windows.
 function! GetBufferList()
-  redir =>buflist
+  redir =>l:buflist
   silent! ls
   redir END
-  return buflist
+  return l:buflist
 endfunction
 
 function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
+  let l:buflist = GetBufferList()
+  for l:bufnum in map(filter(split(l:buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(l:bufnum) != -1
       exec(a:pfx.'close')
       return
     endif
   endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
+  if a:pfx ==# 'l' && len(getloclist(0)) == 0
       echohl ErrorMsg
-      echo "Location List is Empty."
+      echo 'Location List is Empty.'
       return
   endif
   exec(a:pfx.'open')
@@ -541,7 +545,7 @@ nnoremap cof :call FoldColumnToggle()<cr>
 nnoremap cob :call ToggleBackground()<cr>
 
 function! ToggleBackground()
-    if &background == 'light'
+    if &background ==# 'light'
         set background='dark'
     else
         set background='light'
@@ -605,7 +609,7 @@ cnoremap $j edit ./
 cnoremap $c edit <C-\>eCurrentFileDir("edit")<cr>
 
 function! CurrentFileDir(cmd)
-  return a:cmd . " " . expand("%:p:h") . "/"
+  return a:cmd . ' ' . expand('%:p:h') . '/'
 endfunction
 
 " Heresy.
@@ -637,8 +641,8 @@ set ruler
 
 " Support functions for the status line. {{{2
 function! CurDir()
-    let curdir = substitute(getcwd(), $HOME, "~", "g")
-    return curdir
+    let l:curdir = substitute(getcwd(), $HOME, '~', 'g')
+    return l:curdir
 endfunction
 
 function! HasPaste()
@@ -687,7 +691,7 @@ augroup END
 
 let g:litecorrect#typographic = 0
 let g:lexical#spell_key = 'zs'
-let g:limelight_conceal_guifg = "#666666"
+let g:limelight_conceal_guifg = '#666666'
 
 " Plugin settings. {{{1
 " ALE Settings. {{{2
@@ -705,7 +709,7 @@ let g:user_emmet_leader_key='<C-b>'
 nnoremap <leader>U :GundoToggle<CR>
 
 " NERDTree plugin settings. {{{2
-let g:NERDTreeBookmarksFile = $HOME . "/.vim/.NERDTreeBookmarks"
+let g:NERDTreeBookmarksFile = $HOME . '/.vim/.NERDTreeBookmarks'
 let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeChDirMode = 2
@@ -717,7 +721,7 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 " Set the max files
 let g:ctrlp_max_files = 10000
 
-if has("win32")
+if has('win32')
     let g:ctrlp_user_command = {
                 \   'types': {
                 \       1: ['.git/', 'cd %s && git ls-files --exclude-standard -co'],
@@ -758,17 +762,17 @@ let g:ctrlp_extensions = ['mixed', 'tag', 'buffertag', 'line', 'undo', 'changes'
 let g:yankring_history_dir = '~/.vim'
 
 " vim-session plugin settings. {{{2
-let g:session_autosave = "yes"
+let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 5
-let g:session_autoload = "yes"
-let g:session_directory = "~/.vim/sessions"
+let g:session_autoload = 'yes'
+let g:session_directory = '~/.vim/sessions'
 set sessionoptions+=resize,winpos
 set sessionoptions-=help
 
 " vim-airline plugin settings. {{{2
-let airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 set noshowmode
-let g:airline_section_y = "%{airline#util#wrap(airline#parts#ffenc(),0)}%{PencilMode()}"
+let g:airline_section_y = '%{airline#util#wrap(airline#parts#ffenc(),0)}%{PencilMode()}'
 
 " vim-gitgutter plugin settings. {{{2
 highlight! link GitGutterAdd DiffAdd
@@ -781,20 +785,20 @@ let g:gutentags_enabled_dirs = ['~/src', '~/.dotfiles']
 let g:gutentags_enabled_user_func = 'CheckEnabledDirs'
 
 function! CheckEnabledDirs(file)
-    let file_path = fnamemodify(a:file, ':p:h')
+    let l:file_path = fnamemodify(a:file, ':p:h')
 
     try
-        let gutentags_root = gutentags#get_project_root(file_path)
-        if filereadable(gutentags_root . '/.withtags')
+        let l:gutentags_root = gutentags#get_project_root(l:file_path)
+        if filereadable(l:gutentags_root . '/.withtags')
             return 1
         endif
     catch
     endtry
 
-    for enabled_dir in g:gutentags_enabled_dirs
-        let enabled_path = fnamemodify(enabled_dir, ':p:h')
+    for l:enabled_dir in g:gutentags_enabled_dirs
+        let l:enabled_path = fnamemodify(l:enabled_dir, ':p:h')
 
-        if match(file_path, enabled_path) == 0
+        if match(l:file_path, l:enabled_path) == 0
             return 1
         endif
     endfor
@@ -808,7 +812,7 @@ let g:mundo_right = 1
 let g:mundo_close_on_revert = 1
 
 " SuperTab plugin settings. {{{2
-if has("autocmd") && exists("+omnifunc")
+if has('autocmd') && exists('+omnifunc')
     augroup omnicomp
         autocmd!
         autocmd FileType * if &omnifunc != "" | call SuperTabChain(&omnifunc, "<c-p>") | endif
@@ -822,10 +826,10 @@ nmap <silent> <Leader>rs <Plug>NormalModeSendToTmux
 nmap <silent> <Leader>rv <Plug>SetTmuxVars
 
 " Ultisnips plugin settings. {{{2
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsSnippetsDir=expand('<sfile>:p:h') . "/UltiSnips"
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsSnippetsDir=expand('<sfile>:p:h') . '/UltiSnips'
 
 " Language settings. {{{1
 " C language settings. {{{2
@@ -935,16 +939,16 @@ augroup haskell
     autocmd FileType haskell vnoremap <buffer> <silent> <localleader>. :Pl<CR>
     autocmd FileType haskell vnoremap <buffer> <silent> <localleader>> :Unpl<CR>
 augroup END
-let g:haddock_browser = "google-chrome"
+let g:haddock_browser = 'google-chrome'
 let g:haskell_tabular = 1
 let g:necoghc_enable_detailed_browse = 1
 
 function! LoadHscope()
-  let db = findfile("hscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/hscope.out$"))
+  let l:db = findfile('hscope.out', '.;')
+  if (!empty(l:db))
+    let l:path = strpart(l:db, 0, match(l:db, '/hscope.out$'))
     set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
+    exe 'cs add ' . l:db . ' ' . l:path
     set cscopeverbose
   endif
 endfunction
@@ -984,9 +988,9 @@ let g:jsx_ext_required = 0
 " let g:Tex_AutoFolding=0
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_quickfix=2
-let g:LatexBox_output_type="pdf"
+let g:LatexBox_output_type='pdf'
 let g:LatexBox_Folding=1
-if has("gui")
+if has('gui')
     let g:LatexBox_latexmk_async=1
 endif
 let g:tex_flavor='latex'
@@ -1011,7 +1015,7 @@ augroup mutt
 augroup END
 
 " OCaml language settings. {{{2
-if executable("opam")
+if executable('opam')
     let s:ocamlshare = substitute(system('opam config var share'), '\n$', '', '''')
     if executable('ocp-indent')
         augroup ocaml
@@ -1023,9 +1027,9 @@ if executable("opam")
     endif
     if executable('ocamlmerlin') && has('python')
         let s:ocamlshare = substitute(system('opam config var share'), '\n$', '', '''')
-        let s:ocamlmerlin = s:ocamlshare . "/merlin"
-        execute "set rtp+=".s:ocamlmerlin."/vim"
-        execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+        let s:ocamlmerlin = s:ocamlshare . '/merlin'
+        execute 'set rtp+='.s:ocamlmerlin.'/vim'
+        execute 'set rtp+='.s:ocamlmerlin.'/vimbufsync'
     endif
 endif
 
@@ -1055,7 +1059,7 @@ augroup viml
 augroup end
 
 " Machine-specific settings. {{{1
-if filereadable(glob("~/.vimrc.local"))
+if filereadable(glob('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
@@ -1065,8 +1069,8 @@ set guioptions-=T
 set guioptions-=l
 set guioptions-=r
 set guioptions-=L
-let ayucolor='light'
+let g:ayucolor='light'
 
-if has("gui_gtk")
+if has('gui_gtk')
     set guioptions-=m
 endif
