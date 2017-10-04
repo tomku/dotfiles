@@ -3,7 +3,7 @@
 export ME="Tom Kurth"
 export EMAIL="tom@losthalo.org"
 
-ABS_CODE="import os;import sys;path = os.path.abspath(sys.argv[1]);print os.path.dirname(path)"
+ABS_CODE="from __future__ import print_function;import os;import sys;path = os.path.abspath(sys.argv[1]);print(os.path.dirname(path))"
 abs_dirname() {
     python -c "$ABS_CODE" "$1"
 }
@@ -52,32 +52,28 @@ fi
 
 if [ ! -e ~/.vim/autoload/plug.vim ] ; then
     echo "Installing plug.vim..."
+    mkdir -p ~/.vim/autoload
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 if [ ! -e ~/.dircolors ] ; then
     echo "Creating .dircolors..."
-    ln -s $DOTFILES/dircolors ~/.dircolors
+    ln -s "$DOTFILES/dircolors" ~/.dircolors
 fi
 
 if [ ! -e ~/.inputrc ] ; then
     echo "Creating .inputrc..."
-    ln -s $DOTFILES/inputrc ~/.inputrc
-fi
-
-if [ ! -e ~/.taskrc ] ; then
-    echo "Creating .taskrc..."
-    ln -s $DOTFILES/taskrc ~/.taskrc
+    ln -s "$DOTFILES/inputrc" ~/.inputrc
 fi
 
 if [ ! -e ~/.psqlrc ] ; then
     echo "Creating .psqlrc..."
-    ln -s $DOTFILES/psqlrc ~/.psqlrc
+    ln -s "$DOTFILES/psqlrc" ~/.psqlrc
 fi
 
 if [ ! -e ~/.tmux.conf ] ; then
     echo "Creating .tmux.conf..."
-    ln -s $DOTFILES/tmux.conf ~/.tmux.conf
+    ln -s "$DOTFILES/tmux.conf" ~/.tmux.conf
 fi
 
 if [ ! -d ~/.emacs.d ] ; then
