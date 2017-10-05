@@ -25,7 +25,7 @@ fi
 
 if [ ! -e ~/.gvimrc ] ; then
     echo "Creating .gvimrc..."
-    ln -s "$DOTFILES/vimrc" ~/.vimrc
+    ln -s "$DOTFILES/gvimrc" ~/.gvimrc
 fi
 
 if [ ! -e ~/.vim/autoload/plug.vim ] ; then
