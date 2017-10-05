@@ -17,8 +17,8 @@
 autocmd!
 if &shell =~# 'fish$'
     set shell=bash
-    let g:is_posix=1
 endif
+let g:is_posix=1
 
 set rtp+=$DOTFILES/vim
 
