@@ -21,4 +21,6 @@ setopt +o CORRECT_ALL
 setopt -o SHARE_HISTORY
 setopt -o HIST_IGNORE_SPACE
 
+unalias history
+
 stty -ixon

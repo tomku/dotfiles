@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 # This file is POSIX-compliant because it's shared between multiple shells.
 
 # For quick alias editing.
@@ -6,9 +6,6 @@ alias reload_aliases='source $DOTFILES/shell/aliases.sh'
 alias edit_aliases='$EDITOR $DOTFILES/shell/aliases.sh'
 alias pull_dotfiles='(cd $DOTFILES; git pull)'
 
-alias ls='ls -p --color=auto'
-alias dir='dir --color=auto'
-alias vdir='dir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
