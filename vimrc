@@ -85,8 +85,6 @@ Plug 'KeitaNakamura/neodark.vim'
 Plug 'roosta/vim-srcery'
 Plug 'rakr/vim-one'
 
-
-
 " Text objects. {{{2
 Plug 'argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
