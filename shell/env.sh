@@ -4,7 +4,7 @@
 export EDITOR="vim"
 export BROWSER="google-chrome"
 export PAGER="less"
-export LESSOPT="-M"
+export LESS="-M -R"
 
 # GOPATH and GOROOT
 if [ -d "$HOME/src/go" ] ; then
