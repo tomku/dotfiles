@@ -24,7 +24,7 @@ setup_git() {
     git config --global push.default simple
 }
 
-if whence -p git >/dev/null && [ ! -f "$HOME/.gitconfig" ] ; then
+if command -v git >/dev/null 2>&1 && [ ! -f "$HOME/.gitconfig" ] ; then
     setup_git
 fi
 
