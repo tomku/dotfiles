@@ -12,6 +12,11 @@ if [ ! -e ~/.bash_profile ] ; then
     ln -s "$DOTFILES/shellrc" ~/.bash_profile
 fi
 
+if [ ! -e ~/.zprofile ] ; then
+    echo "Creating .zprofile..."
+    ln -s "$DOTFILES/shellrc" ~/.zprofile
+fi
+
 if [ ! -e ~/.vimrc ] ; then
     echo "Creating .vimrc..."
     ln -s "$DOTFILES/vimrc" ~/.vimrc
