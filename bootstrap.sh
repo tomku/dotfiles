@@ -76,4 +76,41 @@ if [ ! -e ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme ] ; then
     curl -JL -o ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/spaceship.zsh
 fi
 
+if [ ! -d ~/.pyenv ] ; then
+    echo "Installing pyenv and plugins..."
+    git clone --depth 1 https://github.com/pyenv/pyenv ~/.pyenv
+fi
+
+if [ ! -d ~/.pyenv/plugins/pyenv-virtualenv ] ; then
+    git clone --depth 1 https://github.com/pyenv/pyenv-virtualenv ~/.pyenv/plugins/pyenv-virtualenv
+fi
+
+if [ ! -d ~/.pyenv/plugins/pyenv-update ] ; then
+    git clone --depth 1 https://github.com/pyenv/pyenv-update ~/.pyenv/plugins/pyenv-update
+fi
+
+if [ ! -d ~/.pyenv/plugins/pyenv-which-ext ] ; then
+    git clone --depth 1 https://github.com/pyenv/pyenv-which-ext.git ~/.pyenv/plugins/pyenv-which-ext
+fi
+
+if [ ! -d ~/.pyenv/plugins/pyenv-pip-migrate ] ; then
+    git clone --depth 1 https://github.com/pyenv/pyenv-pip-migrate.git ~/.pyenv/plugins/pyenv-pip-migrate
+fi
+
+if [ ! -d ~/.nodenv ] ; then
+    echo "Installing nodenv and plugins..."
+    git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+    mkdir -p ~/.nodenv/plugins
+fi
+
+if [ ! -d ~/.nodenv/plugins/nodenv-update ] ; then
+    git clone https://github.com/nodenv/nodenv-update ~/.nodenv/plugins/nodenv-update
+fi
+
+if [ ! -d ~/.nodenv/plugins/node-build ] ; then
+    git clone https://github.com/nodenv/node-build ~/.nodenv/plugins/node-build
+fi
+
+if [ ! -d ~/.nodenv/plugins/nodenv-npm-migrate ] ; then
+    git clone https://github.com/nodenv/nodenv-npm-migrate ~/.nodenv/plugins/nodenv-npm-migrate
 fi

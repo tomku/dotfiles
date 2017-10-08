@@ -26,15 +26,6 @@ if [ -d "$HOME/.cabal/bin" ] ; then
     PATH=$HOME/.cabal/bin:$PATH
 fi
 
-# Node.js packages installed in my home directory
-if command -v npm >/dev/null 2>&1 ; then
-    if [ ! -d "$HOME/.node/bin" ] ; then
-        mkdir -p ~/.node/bin
-        npm config set prefix ~/.node
-    fi
-    PATH=$HOME/.node/bin:$PATH
-fi
-
 # R packages installed in my home directory
 if command -v R >/dev/null; then
     if [ ! -d "$HOME/.R" ] ; then
