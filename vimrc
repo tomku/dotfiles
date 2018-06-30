@@ -858,6 +858,8 @@ augroup coffeescript
 augroup END
 
 " Elixir language settings. {{{2
+" autocmd BufWritePost *.exs silent :!mix format %
+" autocmd BufWritePost *.ex silent :!mix format %
 
 " Erlang language settings. {{{2
 
@@ -1051,6 +1053,10 @@ augroup purescript
     autocmd!
     autocmd BufWritePost *.purs Prebuild
 augroup END
+
+" Scala language settings. {{{2
+let g:ale_linters = {'scala': ['scalac']} " Enable only scalac instead
+
 " Reason language settings. {{{2
 
 " Ruby language settings. {{{2
