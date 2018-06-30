@@ -1,0 +1,3 @@
+bind '^L'=clear-screen
+
+PS1='${USER:=$(id -un)}'"@${HOSTNAME:=$(hostname)}:\$PWD $(if (( USER_ID  )); then print \$; else print \#; fi) "

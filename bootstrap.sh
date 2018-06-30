@@ -8,6 +8,11 @@ if [ ! -e ~/.zshrc ] ; then
     ln -s "$DOTFILES/zshrc" ~/.zshrc
 fi
 
+if [ ! -e ~/.mkshrc ] ; then
+    echo "Creating .mkshrc..."
+    ln -s "$DOTFILES/mkshrc" ~/.mkshrc
+fi
+
 if [ ! -e ~/.bash_profile ] ; then
     echo "Creating .bash_profile..."
     ln -s "$DOTFILES/shellrc" ~/.bash_profile
