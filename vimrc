@@ -134,9 +134,8 @@ Plug 'moll/vim-bbye'
 
 " General programming tools. {{{2
 Plug 'losingkeys/vim-niji'
-Plug 'basepi/vim-conque'
 Plug 'docunext/closetag.vim'
-Plug 'dbext.vim'
+Plug 'tpope/vim-db'
 " Powershell doesn't like this, and it probably doesn't work in cmd.exe.
 if ( (has('win32') > 0) || (has('win64') > 0) ) && has('gui') == 0
     Plug 'krisajenkins/vim-pipe'
@@ -217,7 +216,7 @@ Plug 'zah/nim.vim'
 Plug 'spwhitt/vim-nix'
 Plug 'b4winckler/vim-objc'
 Plug 'jrk/vim-ocaml'
-Plug 'vim-scripts/octave.vim--'
+Plug 'vim-scripts/octave.vim'
 Plug 'petRUShka/vim-opencl'
 Plug 'elehack/vim-oz'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
@@ -250,9 +249,6 @@ Plug 'cespare/vim-toml'
 Plug 'hashivim/vim-vagrant'
 Plug 'HerringtonDarkholme/yats.vim'
 
-if v:version > 703
-    Plug 'Quramy/tsuquyomi'
-endif
 
 Plug 'stephpy/vim-yaml'
 Plug 'tpope/vim-scriptease'
