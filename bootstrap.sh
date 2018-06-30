@@ -75,12 +75,6 @@ if [ ! -d ~/.oh-my-zsh ] ; then
     git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
-if [ ! -e ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme ] ; then
-    echo "Installing spaceship theme for oh-my-zsh..."
-    mkdir -p ~/.oh-my-zsh/custom/themes
-    curl -JL -o ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/spaceship.zsh
-fi
-
 if [ ! -d ~/.pyenv ] ; then
     echo "Installing pyenv and plugins..."
     git clone --depth 1 https://github.com/pyenv/pyenv ~/.pyenv
