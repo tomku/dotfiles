@@ -157,6 +157,7 @@ Plug 'w0rp/ale'
 
 " Language-specific tools. {{{2
 Plug 'pearofducks/ansible-vim'
+Plug 'ambv/black'
 Plug 'kchmck/vim-coffee-script'
 Plug 'vim-jp/vim-cpp'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -1031,7 +1032,7 @@ if executable('opam')
             autocmd FileType ocaml let b:did_indent = 1
         augroup END
     endif
-    if executable('ocamlmerlin') && has('python')
+    if executable('ocamlmerlin') && has('python3')
         let s:ocamlshare = substitute(system('opam config var share'), '\n$', '', '''')
         let s:ocamlmerlin = s:ocamlshare . '/merlin'
         execute 'set rtp+='.s:ocamlmerlin.'/vim'
