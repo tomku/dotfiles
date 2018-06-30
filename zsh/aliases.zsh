@@ -46,3 +46,5 @@ scala_repl() (
     classpath=$classpath:$jline
     java -cp "$classpath" scala.tools.nsc.MainGenericRunner -cp "$classpath" "$@"
 )
+
+alias mirror="rsync -avHLKx --progress --no-implied-dirs --delete --exclude 'lost+found' --exclude '.wh..*' --exclude '.Apple*'"
