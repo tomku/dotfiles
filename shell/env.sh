@@ -76,5 +76,7 @@ if [ -n "$PRIVACY" ] ; then
     unset SHARE_HISTORY
 fi
 
+export HAXE_STD_PATH="/usr/local/lib/haxe/std"
+
 # Done!
 export PATH
