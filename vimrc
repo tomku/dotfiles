@@ -22,6 +22,12 @@ let g:is_posix=1
 
 set rtp+=$DOTFILES/vim
 
+" Workaround for https://github.com/vim/vim/issues/3117
+
+if has('python3')
+    silent! python3 1
+endif
+
 " Load some sensible defaults from the example vimrc.
 if filereadable('$VIM\_vimrc')
     source $VIM\_vimrc
