@@ -75,6 +75,14 @@ if [ ! -d ~/.oh-my-zsh ] ; then
     git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
+ZSH_CUSTOM=~/.oh-my-zsh/custom
+
+if [ ! $ZSH_CUSTOM/themes/agkozak ] ; then
+    [[ ! -d $ZSH_CUSTOM/themes  ]] && mkdir $ZSH_CUSTOM/themes
+    git clone https://github.com/agkozak/agkozak-zsh-prompt $ZSH_CUSTOM/themes/agkozak
+    ln -s -f $ZSH_CUSTOM/themes/agkozak/agkozak-zsh-prompt.plugin.zsh $ZSH_CUSTOM/themes/agkozak.zsh-theme
+fi
+
 if [ ! -d ~/.pyenv ] ; then
     echo "Installing pyenv and plugins..."
     git clone --depth 1 https://github.com/pyenv/pyenv ~/.pyenv
