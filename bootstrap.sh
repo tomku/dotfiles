@@ -77,8 +77,8 @@ fi
 
 ZSH_CUSTOM=~/.oh-my-zsh/custom
 
-if [ ! $ZSH_CUSTOM/themes/agkozak ] ; then
-    [[ ! -d $ZSH_CUSTOM/themes  ]] && mkdir $ZSH_CUSTOM/themes
+if [ ! -d $ZSH_CUSTOM/themes/agkozak ] ; then
+    mkdir -p $ZSH_CUSTOM/themes
     git clone https://github.com/agkozak/agkozak-zsh-prompt $ZSH_CUSTOM/themes/agkozak
     ln -s -f $ZSH_CUSTOM/themes/agkozak/agkozak-zsh-prompt.plugin.zsh $ZSH_CUSTOM/themes/agkozak.zsh-theme
 fi
