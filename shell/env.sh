@@ -23,7 +23,7 @@ fi
 
 # Haskell bins installed by cabal
 if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH=$HOME/.cabal/bin:$PATH
+    PATH=$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
 fi
 
 # R packages installed in my home directory
