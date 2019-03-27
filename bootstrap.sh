@@ -60,6 +60,11 @@ if [ ! -e ~/.psqlrc ] ; then
     ln -s "$DOTFILES/psqlrc" ~/.psqlrc
 fi
 
+if [ ! -e ~/.ghci  ] ; then
+    echo "Creating .ghci..."
+    ln -s "$DOTFILES/ghci" ~/.ghci
+fi
+
 if [ ! -e ~/.tmux.conf ] ; then
     echo "Creating .tmux.conf..."
     ln -s "$DOTFILES/tmux.conf" ~/.tmux.conf
