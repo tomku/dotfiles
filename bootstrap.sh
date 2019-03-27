@@ -3,6 +3,11 @@
 umask g-w,o-w
 DOTFILES=$(dirname "$0")
 
+if [ ! -e ~/.Xresources ] ; then
+    echo "Creating .Xresources..."
+    ln -s "$DOTFILES/Xresources" ~/.Xresources
+fi
+
 if [ ! -e ~/.zshrc ] ; then
     echo "Creating .zshrc..."
     ln -s "$DOTFILES/zshrc" ~/.zshrc
