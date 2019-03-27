@@ -781,7 +781,7 @@ set sessionoptions+=resize,winpos
 set sessionoptions-=help
 
 " vim-airline plugin settings. {{{2
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 set noshowmode
 let g:airline_section_y = '%{airline#util#wrap(airline#parts#ffenc(),0)}%{PencilMode()}'
 
