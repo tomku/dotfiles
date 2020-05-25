@@ -63,6 +63,7 @@ fi
 if [ ! -e ~/.ghci  ] ; then
     echo "Creating .ghci..."
     ln -s "$DOTFILES/ghci" ~/.ghci
+    chmod 0600 ~/.ghci
 fi
 
 if [ ! -e ~/.tmux.conf ] ; then

@@ -75,6 +75,10 @@
 
 URxvt.font: xft:Terminus-10:style=Medium
 URxvt.scrollBar: false
+URxvt.saveLines: 30000
+URxvt.fading: 10
+URxvt.perl-ext:
+URxvt.perl-ext-common:
 
 ! Necessary to have Solarized colors work while bolded.
 URxvt.intensityStyles: false
