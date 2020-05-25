@@ -77,7 +77,13 @@ if [ ! -e ~/.spacemacs ] ; then
     ln -s "$DOTFILES/spacemacs.el" ~/.spacemacs
 fi
 
-if [ ! -d "$DOTFILES/.dotfiles/zsh/completion/src" ] ; then
+if [ ! -d "$DOTFILES/zsh/completion/src" ] ; then
     echo "Installing zsh completion..."
-    git clone https://github.com/zsh-users/zsh-completions "$DOTFILES/.dotfiles/zsh/completion/"
+    git clone https://github.com/zsh-users/zsh-completions "$DOTFILES/zsh/completion/"
+fi
+
+if [ ! -e ~/.config/starship.toml ] ; then
+    echo "Creating starship.toml..."
+    mkdir -p ~/.config
+    ln -s "$DOTFILES/starship.toml" ~/.config/starship.toml
 fi

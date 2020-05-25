@@ -1,0 +1,13 @@
+add_newline = false
+
+[aws]
+disabled = true
+
+[username]
+show_always = true
+style_user = "bold green"
+
+[hostname]
+ssh_only = false
+style = "bold yellow"
+
