@@ -5,33 +5,40 @@ if type brew &>/dev/null; then
   fpath=(/home/linuxbrew/.linuxbrew/share/zsh-completions $fpath)
 fi
 
-ZSH=$HOME/.oh-my-zsh
-if [ -d $ZSH ] ; then
-    # ZSH_THEME="jreese"
-    # ZSH_THEME="dpoggi"
-    # ZSH_THEME="lukerandall"
-    # ZSH_THEME="maran"
-    # ZSH_THEME="risto"
-    # ZSH_THEME="steeef"
-    ZSH_THEME="agkozak"
+fpath+=~/.zfunc
+fpath=("$DOTFILES/zsh/completion/src" $fpath)
 
-    zstyle :omz:plugins:ssh-agent identities id_ed25519
-    plugins=(docker git mosh ssh-agent)
-
-    source $ZSH/oh-my-zsh.sh
-fi
+setopt complete_in_word
+setopt always_to_end
+WORDCHARS=''
 
 zstyle ':completion:*:*:*:*:*' menu no-select
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
-setopt +o CDABLE_VARS
-setopt +o AUTO_CD
-setopt +o CLOBBER
-setopt +o CORRECT
-setopt +o CORRECT_ALL
+unsetopt cdable_vars
+unsetopt auto_cd
+unsetopt clobber
+unsetopt correct_all
 
-setopt -o SHARE_HISTORY
-setopt -o HIST_IGNORE_SPACE
+setopt share_history
+setopt hist_ignore_space
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups 
+setopt hist_verify
 
-unalias history
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=10000
+
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
+autoload -Uz compinit
+compinit
+
+eval "$(starship init zsh)"
 
 stty -ixon
