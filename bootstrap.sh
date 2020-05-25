@@ -3,7 +3,6 @@
 umask g-w,o-w
 DOTFILES=$(dirname "$0")
 DOTFILES=$(python -c "import os,sys; print(os.path.realpath(sys.argv[1]))" "$DOTFILES")
-echo $DOTFILES; exit
 
 if [ ! -e ~/.Xresources ] ; then
     echo "Creating .Xresources..."
@@ -78,59 +77,7 @@ if [ ! -e ~/.spacemacs ] ; then
     ln -s "$DOTFILES/spacemacs.el" ~/.spacemacs
 fi
 
-if [ ! -d ~/.emacs.d ] ; then
-    echo "Installing Spacemacs..."
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-fi
-
-if [ ! -d ~/.oh-my-zsh ] ; then
-    echo "Installing oh-my-zsh..."
-    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-fi
-
-ZSH_CUSTOM=~/.oh-my-zsh/custom
-
-if [ ! -d $ZSH_CUSTOM/themes/agkozak ] ; then
-    mkdir -p $ZSH_CUSTOM/themes
-    git clone https://github.com/agkozak/agkozak-zsh-prompt $ZSH_CUSTOM/themes/agkozak
-    ln -s -f $ZSH_CUSTOM/themes/agkozak/agkozak-zsh-prompt.plugin.zsh $ZSH_CUSTOM/themes/agkozak.zsh-theme
-fi
-
-if [ ! -d ~/.pyenv ] ; then
-    echo "Installing pyenv and plugins..."
-    git clone --depth 1 https://github.com/pyenv/pyenv ~/.pyenv
-fi
-
-if [ ! -d ~/.pyenv/plugins/pyenv-virtualenv ] ; then
-    git clone --depth 1 https://github.com/pyenv/pyenv-virtualenv ~/.pyenv/plugins/pyenv-virtualenv
-fi
-
-if [ ! -d ~/.pyenv/plugins/pyenv-update ] ; then
-    git clone --depth 1 https://github.com/pyenv/pyenv-update ~/.pyenv/plugins/pyenv-update
-fi
-
-if [ ! -d ~/.pyenv/plugins/pyenv-which-ext ] ; then
-    git clone --depth 1 https://github.com/pyenv/pyenv-which-ext.git ~/.pyenv/plugins/pyenv-which-ext
-fi
-
-if [ ! -d ~/.pyenv/plugins/pyenv-pip-migrate ] ; then
-    git clone --depth 1 https://github.com/pyenv/pyenv-pip-migrate.git ~/.pyenv/plugins/pyenv-pip-migrate
-fi
-
-if [ ! -d ~/.nodenv ] ; then
-    echo "Installing nodenv and plugins..."
-    git clone https://github.com/nodenv/nodenv.git ~/.nodenv
-    mkdir -p ~/.nodenv/plugins
-fi
-
-if [ ! -d ~/.nodenv/plugins/nodenv-update ] ; then
-    git clone https://github.com/nodenv/nodenv-update ~/.nodenv/plugins/nodenv-update
-fi
-
-if [ ! -d ~/.nodenv/plugins/node-build ] ; then
-    git clone https://github.com/nodenv/node-build ~/.nodenv/plugins/node-build
-fi
-
-if [ ! -d ~/.nodenv/plugins/nodenv-npm-migrate ] ; then
-    git clone https://github.com/nodenv/nodenv-npm-migrate ~/.nodenv/plugins/nodenv-npm-migrate
+if [ ! -d "$DOTFILES/.dotfiles/zsh/completion/src" ] ; then
+    echo "Installing zsh completion..."
+    git clone https://github.com/zsh-users/zsh-completions "$DOTFILES/.dotfiles/zsh/completion/"
 fi
