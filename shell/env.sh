@@ -6,6 +6,23 @@ export BROWSER="firefox"
 export PAGER="less"
 export LESS="-M -R"
 
+anaconda() {
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/tom/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/tom/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/tom/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/tom/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+# <<< conda initialize <<<
+}
+
 # Homebrew on Linux
 if [ -f /home/linuxbrew/.linuxbrew/bin/brew  ] ; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
@@ -70,20 +87,6 @@ fi
 if [ -d "$HOME/.local/share/man" ] ; then
     MANPATH="$HOME/.local/share/man:$(manpath -g)"
     export MANPATH
-fi
-
-# Version-managed language runtimes
-for lang in rb nod py pl ; do
-    if [ -d "$HOME/.${lang}env/bin" ] ; then
-        export PATH="$HOME/.${lang}env/bin:$PATH"
-    fi
-    command -v ${lang}env >/dev/null 2>&1 && eval "$(${lang}env init -)"
-done
-
-# opam/ocaml
-if [ -r "$HOME/.opam/opam-init/init.zsh" ] ; then
-    # shellcheck source=/dev/null
-    . $HOME/.opam/opam-init/init.zsh
 fi
 
 if [ -n "$PRIVACY" ] ; then
