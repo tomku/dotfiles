@@ -1,14 +1,19 @@
 #!/bin/sh
 # This file is POSIX-compliant because it's shared between multiple shells.
 
-export EDITOR="vim"
-export BROWSER="google-chrome"
+export EDITOR="code"
+export BROWSER="firefox"
 export PAGER="less"
 export LESS="-M -R"
 
 # Homebrew on Linux
 if [ -f /home/linuxbrew/.linuxbrew/bin/brew  ] ; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
+# MacOS system paths
+if [ -x /usr/libexec/path_helper  ]; then
+    eval "$(/usr/libexec/path_helper -s)"
 fi
 
 # GOPATH and GOROOT
@@ -87,6 +92,9 @@ if [ -n "$PRIVACY" ] ; then
 fi
 
 export HAXE_STD_PATH="/usr/local/lib/haxe/std"
+
+# Krypton
+export GPG_TTY=$(tty)
 
 # Done!
 export PATH

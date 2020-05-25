@@ -6,6 +6,16 @@ alias reload_aliases='source $DOTFILES/shell/aliases.sh'
 alias edit_aliases='$EDITOR $DOTFILES/shell/aliases.sh'
 alias pull_dotfiles='(cd $DOTFILES; git pull)'
 
+
+autoload -U colors && colors
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+if [[ "$OSTYPE" == (darwin|freebsd)* ]]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color=tty'
+fi
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
