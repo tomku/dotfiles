@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  fpath=(/home/linuxbrew/.linuxbrew/share/zsh-completions $fpath)
+fi
+
 ZSH=$HOME/.oh-my-zsh
 if [ -d $ZSH ] ; then
     # ZSH_THEME="jreese"

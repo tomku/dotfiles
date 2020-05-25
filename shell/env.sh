@@ -6,15 +6,25 @@ export BROWSER="google-chrome"
 export PAGER="less"
 export LESS="-M -R"
 
+# Homebrew on Linux
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew  ] ; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
 # GOPATH and GOROOT
 if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
+    export GO111MODULE=on
 
     GOROOT=$(go env GOROOT)
     export GOROOT
 
     PATH=$HOME/src/go/bin:$PATH
 fi
+
+# Volta
+export VOLTA_HOME="~/.volta"
+grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
 
 # rust/cargo
 if [ -d "$HOME/.cargo/bin" ] ; then
