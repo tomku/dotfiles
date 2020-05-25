@@ -2,6 +2,8 @@
 
 umask g-w,o-w
 DOTFILES=$(dirname "$0")
+DOTFILES=$(python -c "import os,sys; print(os.path.realpath(sys.argv[1]))" "$DOTFILES")
+echo $DOTFILES; exit
 
 if [ ! -e ~/.Xresources ] ; then
     echo "Creating .Xresources..."
