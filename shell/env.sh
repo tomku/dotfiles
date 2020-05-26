@@ -45,8 +45,10 @@ if [ -d "$HOME/src/go" ] ; then
 fi
 
 # Volta
-export VOLTA_HOME="$HOME/.volta"
-grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
+if [ -d "$HOME/.volta/bin" ] ; then
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
+fi
 
 # rust/cargo
 if [ -d "$HOME/.cargo/bin" ] ; then
