@@ -1,7 +1,8 @@
 " Disable the toolbar.
 set guioptions-=TlrL
 
-colorscheme gruvbox
+colorscheme solarized
+set background=dark
 
 " Set fonts. The sizes are slightly different on Windows, due to a different
 " rendering engine.

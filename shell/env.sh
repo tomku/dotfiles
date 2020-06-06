@@ -6,6 +6,7 @@ export BROWSER="firefox"
 export PAGER="less"
 export LESS="-M -R"
 
+# We load anaconda on-demand because it adds significant delay to startup.
 anaconda() {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -55,11 +56,6 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-# Haskell bins installed by cabal
-if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH=$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
-fi
-
 # R packages installed in my home directory
 if command -v R >/dev/null; then
     if [ ! -d "$HOME/.R" ] ; then
@@ -70,7 +66,7 @@ fi
 
 # Thanks for not reliably setting this, Ubuntu openjdk packages!
 if [ -f /etc/alternatives/java ] ; then
-    JAVA_HOME=$(readlink -f /etc/alternatives/java | sed "s/\/jre.*//")
+    JAVA_HOME=$(readlink -f /etc/alternatives/javac | sed "s@/bin/javac@@")
     export JAVA_HOME
 
     export JAVA_OPTS=-Djava.awt.headless=true
@@ -96,6 +92,7 @@ if [ -n "$PRIVACY" ] ; then
     unset SHARE_HISTORY
 fi
 
+# Haxe
 export HAXE_STD_PATH="/usr/local/lib/haxe/std"
 
 # Krypton
