@@ -39,6 +39,8 @@ setopt pushdminus
 autoload -Uz compinit
 compinit
 
+export MAILCHECK=0
+
 eval "$(starship init zsh)"
 
 stty -ixon
