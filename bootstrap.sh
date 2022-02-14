@@ -14,6 +14,18 @@ if [ ! -e ~/.zshrc ] ; then
     ln -s "$DOTFILES/zshrc" ~/.zshrc
 fi
 
+if [ ! -e ~/.config/fish/config.fish ] ; then
+    echo "Creating config.fish..."
+    mkdir -p ~/.config/fish
+    ln -s "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
+fi
+
+if [ ! -e ~/.config/fish/identity.fish ] ; then
+    echo "Creating identity.fish..."
+    mkdir -p ~/.config/fish
+    ln -s "$DOTFILES/fish/identity.fish" ~/.config/fish/identity.fish
+fi
+
 if [ ! -e ~/.mkshrc ] ; then
     echo "Creating .mkshrc..."
     ln -s "$DOTFILES/mkshrc" ~/.mkshrc
