@@ -104,6 +104,18 @@ end
 set fish_color_command green
 set fish_color_comment white
 
+function setup_git
+    echo "Initializing git config..."
+    git config --global user.name "$ME"
+    git config --global user.email "$EMAIL"
+    git config --global push.default simple
+    git config --global init.defaultBranch main
+end
+
+if command -v git >/dev/null 2>&1 && test ! -f "$HOME/.gitconfig"
+    setup_git
+end
+
 # Aliases
 
 alias swap-underscores 'rename '\''s/_/ /g'\'
