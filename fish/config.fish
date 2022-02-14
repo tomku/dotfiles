@@ -63,6 +63,7 @@ path_guard /Users/tom/.mix/escripts
 path_guard ~/.cargo/bin
 path_guard $HOME/bin
 path_guard $HOME/.local/bin
+path_guard $HOME/.emacs.d/bin
 
 if test -d ~/.volta
     set -gx VOLTA_HOME "$HOME/.volta"
