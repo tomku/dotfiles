@@ -34,8 +34,6 @@ function update_all_repos
     end
 end
 
-alias rename_main="git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only"
-
 function update_any_repo
     pushd $argv
     echo $argv
@@ -49,6 +47,8 @@ function update_any_repo
     end
     popd
 end
+
+alias rename_main="git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only"
 
 if test -d /opt/homebrew/bin
     eval (/opt/homebrew/bin/brew shellenv)
@@ -65,6 +65,8 @@ path_guard $HOME/bin
 path_guard $HOME/.local/bin
 
 if test -d ~/.volta
+    set -gx VOLTA_HOME "$HOME/.volta"
+    set -gx PATH "$VOLTA_HOME/bin" $PATH
 end
 
 if test -d "$HOME/src/go"
@@ -73,20 +75,10 @@ if test -d "$HOME/src/go"
     path_guard $GOPATH/bin
 end
 
-function setup_xenv
-    if test -d $HOME/.$argv/shims
-        status --is-interactive; and source ($argv init -|psub)
-    end
-end
-
 if test -d /Users/tom/miniconda3
     /Users/tom/miniconda3/bin/conda shell.fish hook | source
     conda config --set auto_activate_base false
 end
-
-status --is-interactive; and setup_xenv "rbenv"
-# status --is-interactive; and setup_xenv "pyenv"
-# status --is-interactive; and setup_xenv "nodenv"
 
 if test -f /etc/alternatives/java
     set JAVA_HOME (readlink -f /etc/alternatives/javac | sed "s@/bin/javac@@")
@@ -94,10 +86,6 @@ end
 
 if test -d "$HOME/.local/share/man"
     set -gx MANPATH "$HOME/.local/share/man" (manpath | tr ':' '\n')
-end
-
-if test -d "/usr/local/lib/haxe/std"
-    set -gx HAXE_STD_PATH "/usr/local/lib/haxe/std"
 end
 
 set -gx GPG_TTY (tty)
@@ -125,9 +113,6 @@ alias mirror "rsync -avHLKx --progress --no-implied-dirs --delete --exclude 'los
 if command -v grm >/dev/null 2>&1
     alias rm="grm"
 end
-
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 if command -v direnv >/dev/null 2>&1
     direnv hook fish | source
