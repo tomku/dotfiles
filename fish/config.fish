@@ -1,0 +1,138 @@
+# Environment
+
+set -gx EDITOR "vim"
+set -gx PAGER "less"
+set -gx LESS "-M -R"
+set -gx LSCOLORS "Gxfxcxdxbxegedabagacad"
+set -gx CLICOLOR true
+
+if test -r ~/.dircolors
+    if command -v dircolors >/dev/null 2>&1
+        dircolors -c ~/.dircolors | source
+    else if command -v gdircolors >/dev/null 2>&1
+        gdircolors -c ~/.dircolors | source
+    end
+end
+
+if test -f ~/.config/fish/identity.fish
+    source ~/.config/fish/identity.fish
+end
+
+function path_guard
+    if string match -r "$argv" "$PATH" >/dev/null
+        return
+    end
+
+    if test -d $argv
+        set -gx PATH $argv $PATH
+    end
+end
+
+function update_all_repos
+    for x in (fd -t d -d 1)
+        update_any_repo $x
+    end
+end
+
+alias rename_main="git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only"
+
+function update_any_repo
+    pushd $argv
+    echo $argv
+    if test -d ".git"
+        git pull --ff-only >/dev/null
+        if test -f ".gitmodules"
+            git submodule update
+        end
+    else if test -d ".hg"
+        hg update
+    end
+    popd
+end
+
+if test -d /opt/homebrew/bin
+    eval (/opt/homebrew/bin/brew shellenv)
+end
+
+if test -d $HOME/.asdf
+    source $HOME/.asdf/asdf.fish
+end
+
+path_guard ~/.local/bin
+path_guard /Users/tom/.mix/escripts
+path_guard ~/.cargo/bin
+path_guard $HOME/bin
+path_guard $HOME/.local/bin
+
+if test -d ~/.volta
+end
+
+if test -d "$HOME/src/go"
+    set -gx GOPATH ~/src/go
+    set -gx GO111MODULE on
+    path_guard $GOPATH/bin
+end
+
+function setup_xenv
+    if test -d $HOME/.$argv/shims
+        status --is-interactive; and source ($argv init -|psub)
+    end
+end
+
+if test -d /Users/tom/miniconda3
+    /Users/tom/miniconda3/bin/conda shell.fish hook | source
+    conda config --set auto_activate_base false
+end
+
+status --is-interactive; and setup_xenv "rbenv"
+# status --is-interactive; and setup_xenv "pyenv"
+# status --is-interactive; and setup_xenv "nodenv"
+
+if test -f /etc/alternatives/java
+    set JAVA_HOME (readlink -f /etc/alternatives/javac | sed "s@/bin/javac@@")
+end
+
+if test -d "$HOME/.local/share/man"
+    set -gx MANPATH "$HOME/.local/share/man" (manpath | tr ':' '\n')
+end
+
+if test -d "/usr/local/lib/haxe/std"
+    set -gx HAXE_STD_PATH "/usr/local/lib/haxe/std"
+end
+
+set -gx GPG_TTY (tty)
+
+if test -d ~/.opam
+    eval (opam env)
+end
+
+if command -v starship  >/dev/null 2>&1
+    starship init fish | source
+else
+    echo "Install Starship! https://starship.rs/"
+end
+
+set fish_color_command green
+set fish_color_comment white
+
+# Aliases
+
+alias swap-underscores 'rename '\''s/_/ /g'\'
+alias swap-whitespace 'rename '\''s/ /_/g'\'
+alias checkhash 'rhash --check-embedded'
+alias mirror "rsync -avHLKx --progress --no-implied-dirs --delete --exclude 'lost+found' --exclude '.wh..*' --exclude '.Apple*'"
+
+if command -v grm >/dev/null 2>&1
+    alias rm="grm"
+end
+
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+if command -v direnv >/dev/null 2>&1
+    direnv hook fish | source
+end
+
+if test -f /Applications/Docker.app/Contents/Resources/etc/docker.fish-completion
+    source /Applications/Docker.app/Contents/Resources/etc/docker.fish-completion
+end
