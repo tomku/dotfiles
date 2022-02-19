@@ -38,12 +38,14 @@ function update_any_repo
     pushd $argv
     echo $argv
     if test -d ".git"
-        git pull --ff-only >/dev/null
+        git pull --ff-only
         if test -f ".gitmodules"
             git submodule update
         end
     else if test -d ".hg"
         hg update
+    else if test -d ".fossil-settings"
+        fossil pull
     end
     popd
 end
@@ -133,4 +135,8 @@ end
 
 if test -f /Applications/Docker.app/Contents/Resources/etc/docker.fish-completion
     source /Applications/Docker.app/Contents/Resources/etc/docker.fish-completion
+end
+
+if test -d "$HOME/.nix-profile/bin"
+    set -gx PATH "$HOME/.nix-profile/bin" $PATH
 end
