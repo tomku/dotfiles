@@ -89,6 +89,11 @@ if [ ! -e ~/.spacemacs ] ; then
     ln -s "$DOTFILES/spacemacs.el" ~/.spacemacs
 fi
 
+if [ ! -e ~/.doom.d ] ; then
+    echo "Creating .doom.d..."
+    ln -s "$DOTFILES/doom" ~/.doom.d
+fi
+
 if [ ! -d "$DOTFILES/zsh/completion/src" ] ; then
     echo "Installing zsh completion..."
     git clone https://github.com/zsh-users/zsh-completions "$DOTFILES/zsh/completion/"
