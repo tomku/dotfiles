@@ -66,6 +66,7 @@ path_guard ~/.cargo/bin
 path_guard $HOME/bin
 path_guard $HOME/.local/bin
 path_guard $HOME/.emacs.d/bin
+path_guard $HOME/.ghcup/bin
 
 if test -d ~/.volta
     set -gx VOLTA_HOME "$HOME/.volta"
@@ -140,3 +141,4 @@ end
 if test -d "$HOME/.nix-profile/bin"
     set -gx PATH "$HOME/.nix-profile/bin" $PATH
 end
+
