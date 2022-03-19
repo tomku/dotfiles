@@ -53,3 +53,4 @@
 (package! wat-mode :recipe
   (:host github :repo "devonsparks/wat-mode"))
 
+(package! gnu-apl-mode)

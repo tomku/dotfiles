@@ -19,7 +19,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'normal))
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 12 :weight 'normal))
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -93,8 +93,8 @@
                         (mu4e-trash-folder . "/fastmail/Trash")
                         (mu4e-refile-folder . "/fastmail/Archive")
                         (smtpmail-smtp-user . ,user-mail-address)
-                        (user-mail-address . ,user-mail-address))
-                        (user-full-name . ,user-full-name)
+                        (user-mail-address . ,user-mail-address)
+                        (user-full-name . ,user-full-name))
                       t))
 
 ;; WebAssembly
@@ -109,9 +109,9 @@
 (autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
 (autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
 (setq prolog-system 'swi)
-(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+(setq auto-mode-alist (append '(("\\.pl$" . perl-mode)
                                 ("\\.m$" . mercury-mode))
-                               auto-mode-alist))
+                              auto-mode-alist))
 
 ;; vertico
 (after! vertico
@@ -136,4 +136,9 @@
       :map 'org-mode-map
       :desc "org-lint"
       "!" #'org-lint)
+
+
+(map! :leader
+      :desc "Open a URL in eww"
+      "o w" #'eww)
 
