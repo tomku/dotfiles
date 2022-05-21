@@ -120,3 +120,4 @@ if test -d "$HOME/.nix-profile/bin"
     set -gx PATH "$HOME/.nix-profile/bin" $PATH
 end
 
+path_guard ~/flutter/bin
