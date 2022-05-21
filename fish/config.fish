@@ -28,28 +28,6 @@ function path_guard
     end
 end
 
-function update_all_repos
-    for x in (fd -t d -d 1)
-        update_any_repo $x
-    end
-end
-
-function update_any_repo
-    pushd $argv
-    echo $argv
-    if test -d ".git"
-        git pull --ff-only
-        if test -f ".gitmodules"
-            git submodule update
-        end
-    else if test -d ".hg"
-        hg update
-    else if test -d ".fossil-settings"
-        fossil pull
-    end
-    popd
-end
-
 alias rename_main="git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only"
 
 if test -d /opt/homebrew/bin
