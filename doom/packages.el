@@ -55,3 +55,6 @@
 
 (package! gnu-apl-mode)
 (package! sokoban)
+
+(package! fennel-mode
+  :recipe (:host nil :repo "https://git.sr.ht/~technomancy/fennel-mode"))
