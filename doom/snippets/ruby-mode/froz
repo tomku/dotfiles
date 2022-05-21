@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: frozen string pragma
+# uuid: tomku-ruby-frozen-string-pragma
+# key: froz
+# condition: t
+# --
+
+frozen_string_literal: true
