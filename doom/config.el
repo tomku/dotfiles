@@ -144,3 +144,12 @@
 (map! :leader
       :desc "Open the Emacs calculator"
       "o c" #'calc)
+
+(after! sokoban
+  (define-key sokoban-mode-map (kbd "j") 'sokoban-move-down)
+  (define-key sokoban-mode-map (kbd "k") 'sokoban-move-up)
+  (define-key sokoban-mode-map (kbd "h") 'sokoban-move-left)
+  (define-key sokoban-mode-map (kbd "l") 'sokoban-move-right)
+  (define-key sokoban-mode-map (kbd "L") 'sokoban-load)
+  (setq evil-escape-excluded-major-modes (append  '(sokoban-mode)
+                              evil-escape-excluded-major-modes)))

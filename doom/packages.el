@@ -54,3 +54,4 @@
   (:host github :repo "devonsparks/wat-mode"))
 
 (package! gnu-apl-mode)
+(package! sokoban)
