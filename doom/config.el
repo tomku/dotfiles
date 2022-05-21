@@ -137,8 +137,10 @@
       :desc "org-lint"
       "!" #'org-lint)
 
-
 (map! :leader
       :desc "Open a URL in eww"
       "o w" #'eww)
 
+(map! :leader
+      :desc "Open the Emacs calculator"
+      "o c" #'calc)
