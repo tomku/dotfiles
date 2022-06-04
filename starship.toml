@@ -11,3 +11,5 @@ style_user = "bold green"
 ssh_only = false
 style = "bold yellow"
 
+[rlang]
+detect_files = []
