@@ -57,8 +57,8 @@ if test -d "$HOME/src/go"
     path_guard $GOPATH/bin
 end
 
-if test -d /Users/tom/miniconda3
-    /Users/tom/miniconda3/bin/conda shell.fish hook | source
+if test -d ~/mambaforge
+    ~/mambaforge/bin/conda shell.fish hook | source
     conda config --set auto_activate_base false
 end
 
