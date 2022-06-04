@@ -2,3 +2,4 @@ tags
 zsh/completion
 .DS_Store
 /doom/local.el
+/shell/local.sh
