@@ -127,9 +127,10 @@
 (setq org-journal-date-format "%F, %A"
       org-journal-file-format "%F.org")
 
-(setq org-roam-directory "~/Sync/roam")
-(after! org-roam
-       (org-roam-db-autosync-mode))
+(when (file-directory-p "~/Sync/roam")
+  (setq org-roam-directory "~/Sync/roam")
+  (after! org-roam
+    (org-roam-db-autosync-mode)))
 
 (map! :localleader
       :mode 'org
