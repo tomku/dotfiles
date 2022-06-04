@@ -28,6 +28,7 @@ function path_guard
     end
 end
 
+alias git-open="git ls-remote --get-url | xargs open"
 alias rename_main="git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only"
 
 if test -d /opt/homebrew/bin
