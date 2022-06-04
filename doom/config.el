@@ -52,14 +52,14 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-hook 'window-setup-hook 'toggle-frame-fullscreen)
-
 (setq scroll-margin 10)
 
 (setq projectile-project-search-path '("~/proj/"))
 
 (add-hook 'doom-switch-frame-hook #'do-auto-save)
+
+(when (file-readable-p "~/.doom.d/local.el")
+  (load "~/.doom.d/local.el"))
 
 ;; mu4e
 (after! mu4e
