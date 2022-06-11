@@ -156,3 +156,11 @@
   (define-key sokoban-mode-map (kbd "L") 'sokoban-load)
   (setq evil-escape-excluded-major-modes (append  '(sokoban-mode)
                               evil-escape-excluded-major-modes)))
+
+(after! conda
+  (custom-set-variables
+   '(conda-anaconda-home (expand-file-name "~/mambaforge"))))
+
+(after! flycheck
+  (custom-set-variables
+   '(flycheck-gfortran-include-path '("../src" "../app"))))
