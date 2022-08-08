@@ -29,11 +29,15 @@ setup_git() {
     git config --global user.name "$ME"
     git config --global user.email "$EMAIL"
     git config --global push.default simple
+    git config --global init.defaultBranch main
 }
 
 if command -v git >/dev/null 2>&1 && [ ! -f "$HOME/.gitconfig" ] ; then
     setup_git
 fi
+
+alias git-open="git ls-remote --get-url | xargs open"
+alias rename_main="git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only"
 
 server() (
     port="${1:-8000}"
@@ -58,3 +62,11 @@ scala_repl() (
 )
 
 alias mirror="rsync -avHLKx --progress --no-implied-dirs --delete --exclude 'lost+found' --exclude '.wh..*' --exclude '.Apple*'"
+
+if command -v grm >/dev/null 2>&1 ; then
+    alias rm="grm"
+fi
+
+if command -v direnv >/dev/null 2>&1 ; then
+    eval "$(direnv hook zsh)"
+fi

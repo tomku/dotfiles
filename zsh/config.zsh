@@ -41,6 +41,8 @@ compinit
 
 export MAILCHECK=0
 
+precmd() { echo -ne "\e]1;${PWD/$HOME/~}\a" }
+
 eval "$(starship init zsh)"
 
 stty -ixon
