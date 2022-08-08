@@ -58,6 +58,8 @@
 
 (setq projectile-project-search-path '("~/proj/"))
 
+(repeat-mode)
+
 (add-hook 'doom-switch-frame-hook #'do-auto-save)
 
 (when (file-readable-p "~/.doom.d/local.el")
@@ -163,4 +165,5 @@
 
 (after! flycheck
   (custom-set-variables
-   '(flycheck-gfortran-include-path '("../src" "../app"))))
+   '(flycheck-gfortran-include-path '("../src" "../app"))
+   '(flycheck-gfortran-language-standard "f2008ts")))
