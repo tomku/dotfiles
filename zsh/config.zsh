@@ -2,7 +2,6 @@
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-  fpath=(/home/linuxbrew/.linuxbrew/share/zsh-completions $fpath)
 fi
 
 fpath+=~/.zfunc
