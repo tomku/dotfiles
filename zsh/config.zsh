@@ -42,6 +42,9 @@ export MAILCHECK=0
 
 precmd() { echo -ne "\e]1;${PWD/$HOME/~}\a" }
 
+unalias run-help
+autoload run-help
+
 eval "$(starship init zsh)"
 
 stty -ixon
