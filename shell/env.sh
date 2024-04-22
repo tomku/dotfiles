@@ -45,6 +45,11 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# Dart/pub
+if [ -d "$HOME/.pub-cache/bin" ] ; then
+    PATH="$HOME/.pub-cache/bin:$PATH"
+fi
+
 # R packages installed in my home directory
 if command -v R >/dev/null; then
     if [ ! -d "$HOME/.R" ] ; then
