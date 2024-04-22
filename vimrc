@@ -499,12 +499,6 @@ if (v:version > 7.04) || (v:version == 704 && has('patch2201'))
 endif
 
 " Language settings. {{{1
-" C language settings. {{{2
-augroup c
-    autocmd!
-    autocmd Filetype C compiler clang
-augroup END
-
 " C++ language settings. {{{2
 augroup cpp
     autocmd!
