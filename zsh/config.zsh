@@ -42,8 +42,9 @@ export MAILCHECK=0
 
 precmd() { echo -ne "\e]1;${PWD/$HOME/~}\a" }
 
-unalias run-help
+unalias run-help 2>/dev/null
 autoload run-help
+alias help=run-help
 
 eval "$(starship init zsh)"
 
