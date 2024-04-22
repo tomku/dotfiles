@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: Advent of Code 2022 tests
+# uuid: 68e4c170-10fb-4e17-b5d5-16aeea5133dc
+# key: aoct
+# condition: t
+# --
+
+(ns advent2022.day$1-test
+  (:require [clojure.test :refer [deftest is testing]]
+            [advent2022.day$1
+             :refer [input example parse]]))
+
+(deftest part1-test
+  (testing "Part 1, example"
+    (let [_ (parse example)]
+     (is (= 1 1)))))
+
+(deftest part2-test
+  (testing "Part 2, example"
+    (let [_ (parse example)]
+      (is (= 1 1)))))
+
+(deftest answer1-test
+  (testing "Part 1, puzzle input"
+    (let [_ (parse input)]
+      (is (= 1 1)))))
+
+(deftest answer2-test
+  (testing "Part 2, puzzle input"
+      (is (= 1 1))))

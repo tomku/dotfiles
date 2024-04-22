@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: Advent of Code 2022 problem
+# uuid: c1306959-7373-4694-99e5-024b26058a66
+# key: aoc
+# condition: t
+# --
+(ns advent2022.day$1
+  (:require
+   [clojure.java.io :as io]
+   [clojure.string :as str]))
+
+(def example
+  (str ""))
+
+(def input
+  (->
+   "day$1.txt"
+   io/resource
+   slurp))
+
+(defn parse [input] $0)
+
+(defn -main []
+  (let [_ (parse input)]
+    (println "Part 1")
+    (println "Part 2")))
