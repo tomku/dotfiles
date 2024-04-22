@@ -17,6 +17,16 @@ if [ -x /usr/libexec/path_helper  ]; then
     eval "$(/usr/libexec/path_helper -s)"
 fi
 
+# Homebrew
+if [ -d "/opt/homebrew/bin" ] ; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# asdf
+if [ -d "$HOME/.asdf" ] ; then
+    source $HOME/.asdf/asdf.sh
+fi
+
 # GOPATH and GOROOT
 if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
@@ -54,18 +64,6 @@ if command -v R >/dev/null; then
         mkdir ~/.R
     fi
     export R_LIBS_USER=$HOME/.R
-fi
-
-# Homebrew
-
-if [ -d "/opt/homebrew/bin" ] ; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# asdf
-
-if [ -d "$HOME/.asdf" ] ; then
-    source $HOME/.asdf/asdf.sh
 fi
 
 # Thanks for not reliably setting this, Ubuntu openjdk packages!
