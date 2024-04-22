@@ -40,19 +40,6 @@ if [ -d "$HOME/src/go" ] ; then
     PATH=$HOME/src/go/bin:$PATH
 fi
 
-# conda/MambaForge
-
-if [ -d "$HOME/mambaforge" ] ; then
-    eval "$(~/mambaforge/bin/conda shell.zsh hook)"
-    conda config --set auto_activate_base false
-fi
-
-# Volta
-if [ -d "$HOME/.volta/bin" ] ; then
-    export VOLTA_HOME="$HOME/.volta"
-    export PATH="$VOLTA_HOME/bin:$PATH"
-fi
-
 # rust/cargo
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
@@ -123,12 +110,6 @@ fi
 
 # Haxe
 export HAXE_STD_PATH="/usr/local/lib/haxe/std"
-
-# nix
-
-if [ -d "$HOME/.nix-profile/bin" ] ; then
-    PATH="$HOME/.nix-profile/bin:$PATH"
-fi
 
 if [ -d "$HOME/flutter/bin" ] ; then
     PATH="$HOME/flutter/bin:$PATH"
