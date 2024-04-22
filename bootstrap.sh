@@ -14,23 +14,6 @@ if [ ! -e ~/.zshrc ] ; then
     ln -s "$DOTFILES/zshrc" ~/.zshrc
 fi
 
-if [ ! -e ~/.config/fish/config.fish ] ; then
-    echo "Creating config.fish..."
-    mkdir -p ~/.config/fish
-    ln -s "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
-fi
-
-if [ ! -e ~/.config/fish/identity.fish ] ; then
-    echo "Creating identity.fish..."
-    mkdir -p ~/.config/fish
-    ln -s "$DOTFILES/fish/identity.fish" ~/.config/fish/identity.fish
-fi
-
-if [ ! -e ~/.mkshrc ] ; then
-    echo "Creating .mkshrc..."
-    ln -s "$DOTFILES/mkshrc" ~/.mkshrc
-fi
-
 if [ ! -e ~/.bash_profile ] ; then
     echo "Creating .bash_profile..."
     ln -s "$DOTFILES/shellrc" ~/.bash_profile
@@ -84,11 +67,6 @@ if [ ! -e ~/.tmux.conf ] ; then
     ln -s "$DOTFILES/tmux.conf" ~/.tmux.conf
 fi
 
-if [ ! -e ~/.spacemacs ] ; then
-    echo "Creating .spacemacs..."
-    ln -s "$DOTFILES/spacemacs.el" ~/.spacemacs
-fi
-
 if [ ! -e ~/.doom.d ] ; then
     echo "Creating .doom.d..."
     ln -s "$DOTFILES/doom" ~/.doom.d
@@ -103,4 +81,14 @@ if [ ! -e ~/.config/starship.toml ] ; then
     echo "Creating starship.toml..."
     mkdir -p ~/.config
     ln -s "$DOTFILES/starship.toml" ~/.config/starship.toml
+fi
+
+if [ ! -e ~/.default-gems  ] ; then
+    echo "Creating .default-gems..."
+    ln -s "$DOTFILES/default-gems" ~/.default-gems
+fi
+
+if [ ! -e ~/.default-npm-packages  ] ; then
+    echo "Creating .default-npm-packages..."
+    ln -s "$DOTFILES/default-npm-packages" ~/.default-npm-packages
 fi

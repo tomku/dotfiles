@@ -1,0 +1,12 @@
+async
+cocoapods
+pry
+puma
+rails
+rspec
+rubocop
+sinatra
+sqlite3
+standard
+thor
+rubygems-server
