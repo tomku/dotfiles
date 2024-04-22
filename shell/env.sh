@@ -85,20 +85,18 @@ if [ -d "$HOME/.mix/escripts" ] ; then
 fi
 
 # Doom Emacs
-
 if [ -d "$HOME/.emacs.d/bin" ] ; then
     PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
 # ghcup
-
 if [ -d "$HOME/.ghcup/bin" ] ; then
     PATH="$HOME/.ghcup/bin:$PATH"
 fi
 
 # Locally-installed man pages
 if [ -d "$HOME/.local/share/man" ] ; then
-    MANPATH="$HOME/.local/share/man:$(manpath -g)"
+    MANPATH="$HOME/.local/share/man:$(manpath -q)"
     export MANPATH
 fi
 
@@ -108,7 +106,6 @@ if [ -n "$PRIVACY" ] ; then
 fi
 
 # ocaml/opam
-
 if [ -d "$HOME/.opam" ] ; then
     eval "$(opam env)"
 fi
