@@ -27,6 +27,11 @@ if [ -d "$HOME/.asdf" ] ; then
     source $HOME/.asdf/asdf.sh
 fi
 
+# Manually installed Zig
+if [ -d "$HOME/.local/zig" ] ; then
+    PATH=$HOME/.local/zig:$PATH
+fi
+
 # GOPATH and GOROOT
 if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
