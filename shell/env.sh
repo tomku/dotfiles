@@ -61,6 +61,11 @@ if [ -d "$HOME/.pub-cache/bin" ] ; then
     PATH="$HOME/.pub-cache/bin:$PATH"
 fi
 
+# julia/juliaup
+if [ -d "$HOME/.juliaup/bin" ] ; then
+    PATH="$HOME/.juliaup/bin:$PATH"
+fi
+
 # R packages installed in my home directory
 if command -v R >/dev/null; then
     if [ ! -d "$HOME/.R" ] ; then
