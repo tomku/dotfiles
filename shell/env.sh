@@ -45,6 +45,12 @@ if [ -d "$HOME/src/go" ] ; then
     PATH=$HOME/src/go/bin:$PATH
 fi
 
+# conda/MambaForge
+if [ -d "$HOME/mambaforge" ] ; then
+    eval "$(~/mambaforge/bin/conda shell.zsh hook)"
+    conda config --set auto_activate_base false
+fi
+
 # rust/cargo
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
