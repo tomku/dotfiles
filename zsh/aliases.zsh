@@ -10,10 +10,17 @@ alias pull_dotfiles='(cd $DOTFILES; git pull)'
 autoload -U colors && colors
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
-if [[ "$OSTYPE" == (darwin|freebsd)* ]]; then
+if command -v eza >/dev/null; then
+  alias ls="eza --hyperlink --git --group-directories-first"
+elif [[ "$OSTYPE" == (darwin|freebsd)* ]]; then
     alias ls='ls -G'
 else
     alias ls='ls --color=tty'
+fi
+
+if command -v zoxide >/dev/null; then
+    eval "$(zoxide init zsh)"
+    alias cd="z"
 fi
 
 alias grep='grep --color=auto'
