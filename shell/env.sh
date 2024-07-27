@@ -32,17 +32,10 @@ if [ -d "$HOME/.local/zig" ] ; then
     PATH=$HOME/.local/zig:$PATH
 fi
 
-# GOPATH and GOROOT
+# GOPATH
 if [ -d "$HOME/src/go" ] ; then
     export GOPATH=$HOME/src/go
-    export GO111MODULE=on
-
-    if command -v go >/dev/null; then
-        GOROOT=$(go env GOROOT)
-        export GOROOT
-    fi
-
-    PATH=$HOME/src/go/bin:$PATH
+    PATH=$GOPATH/bin:$PATH
 fi
 
 # conda/MambaForge
