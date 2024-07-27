@@ -93,8 +93,7 @@ fi
 
 # Erlang/Elixir/mix/kerl/etc
 export KERL_BUILD_DOCS="yes"
-export KERL_DOC_TARGETS="man html pdf chunks"
-export KERL_INSTALL_MANPAGES="yes"
+export KERL_DOC_TARGETS="html chunks"
 
 if [ -d "$HOME/.mix/escripts" ] ; then
     PATH="$HOME/.mix/escripts:$PATH"
