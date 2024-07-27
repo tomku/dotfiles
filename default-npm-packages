@@ -1,4 +1,5 @@
 npm
+@typespec/compiler
 node-gyp
 @11ty/eleventy
 @mermaid-js/mermaid-cli
