@@ -272,8 +272,8 @@ set autoread
 " Is this a good idea? Not sure yet, we'll see
 set autowrite
 
-" Set window titles, and disable the audible bell.
-set title
+" Disable window titles and the audible bell.
+set notitle
 set visualbell
 
 " Use the X11 clipboard when available, unless we're on a Linux virtual
