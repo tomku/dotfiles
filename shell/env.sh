@@ -32,15 +32,18 @@ if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate)"
 fi
 
-# conda/MambaForge
-if [ -d "$HOME/mambaforge" ]; then
+# conda
+if [ -d "$HOME/miniconda3" ]; then
     # These are currently identical, but better safe than sorry.
     if [[ -n "$ZSH_VERSION" ]]; then
-        eval "$(~/mambaforge/bin/conda shell.zsh hook)"
+        eval "$(~/miniconda3/bin/conda shell.zsh hook)"
     else
-        eval "$(~/mambaforce/bin/conda shell.posix hook)"
+        eval "$(~/miniconda3/bin/conda shell.posix hook)"
     fi
-    conda config --set auto_activate_base false
+
+    if ! grep -sq "auto_activate_base" ~/.condarc; then
+        conda config --set auto_activate_base false
+    fi
 fi
 
 # Manually installed Zig
