@@ -2,8 +2,8 @@
 # This file is POSIX-compliant because it's shared between multiple shells.
 
 # For quick alias editing.
-alias reload_aliases='source $DOTFILES/shell/aliases.sh'
-alias edit_aliases='$EDITOR $DOTFILES/shell/aliases.sh'
+alias reload_aliases='source $DOTFILES/zsh/aliases.zsh'
+alias edit_aliases='$EDITOR $DOTFILES/zsh/aliases.zsh'
 alias pull_dotfiles='(cd $DOTFILES; git pull)'
 
 
