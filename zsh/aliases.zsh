@@ -84,7 +84,6 @@ if command -v direnv >/dev/null 2>&1 ; then
     eval "$(direnv hook zsh)"
 fi
 
-rename_main='git branch -m master main && git branch --unset-upstream && git branch -u origin/main && git pull --ff-only'
 
 rename_branch() {
     git branch -m $1 $2
