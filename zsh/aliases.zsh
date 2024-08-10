@@ -31,6 +31,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias nvs='nvim --headless "+Lazy! sync" +qa'
+
 # Short command for symmetric file encryption through gpg.
 alias gpg-encrypt='gpg -se --default-recipient-self'
 
