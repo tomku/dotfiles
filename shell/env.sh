@@ -27,11 +27,6 @@ if [ -d "/opt/homebrew/bin" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# mise
-if command -v mise >/dev/null 2>&1; then
-    eval "$(mise activate)"
-fi
-
 # conda
 if [ -d "$HOME/miniconda3" ]; then
     # These are currently identical, but better safe than sorry.
@@ -125,6 +120,11 @@ fi
 
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+# mise
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate)"
 fi
 
 # Locally-installed man pages
