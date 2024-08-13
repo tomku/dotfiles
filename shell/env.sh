@@ -62,6 +62,11 @@ if [ -d "$HOME/.ghcup/bin" ]; then
     PATH="$HOME/.ghcup/bin:$PATH"
 fi
 
+# lean/elan/lake
+if [ -d "$HOME/.elan/bin" ]; then
+    PATH="$HOME/.elan/bin:$PATH"
+fi
+
 # ocaml/opam
 if [ -d "$HOME/.opam" ]; then
     eval "$(opam env)"
