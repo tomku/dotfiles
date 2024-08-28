@@ -6,6 +6,7 @@ alias reload_aliases='source $DOTFILES/zsh/aliases.zsh'
 alias edit_aliases='$EDITOR $DOTFILES/zsh/aliases.zsh'
 alias pull_dotfiles='(cd $DOTFILES; git pull)'
 
+autoload -U zmv
 
 autoload -U colors && colors
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
