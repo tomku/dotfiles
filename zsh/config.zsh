@@ -51,4 +51,10 @@ alias help=run-help
 
 eval "$(starship init zsh)"
 
+# uv/uvx shell completion
+if command -v uv >/dev/null; then
+    eval "$(uv generate-shell-completion zsh)"
+    eval "$(uvx --generate-shell-completion zsh)"
+fi
+
 stty -ixon
