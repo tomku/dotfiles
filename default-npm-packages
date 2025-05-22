@@ -9,6 +9,8 @@ elm-format
 elm-test
 esbuild
 eslint
+pnpm
+corepack
 jest
 js-beautify
 jsdoc
