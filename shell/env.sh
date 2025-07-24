@@ -85,6 +85,9 @@ if [ -d "$HOME/.pub-cache/bin" ]; then
     PATH="$HOME/.pub-cache/bin:$PATH"
 fi
 
+# moonbit
+export PATH="$HOME/.moon/bin:$PATH"
+
 # Flutter
 if [ -d "$HOME/flutter/bin" ]; then
     PATH="$HOME/flutter/bin:$PATH"
