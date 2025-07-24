@@ -62,6 +62,11 @@ if [ ! -e ~/.ghci ]; then
     chmod 0600 ~/.ghci
 fi
 
+if [ ! -e ~/.pythonrc ]; then
+    echo "Creating .pythonrc..."
+    ln -s "$DOTFILES/pythonrc.py" ~/.pythonrc
+fi
+
 if [ ! -e ~/.tmux.conf ]; then
     echo "Creating .tmux.conf..."
     ln -s "$DOTFILES/tmux.conf" ~/.tmux.conf
@@ -86,6 +91,11 @@ fi
 if [ ! -e ~/.default-gems ]; then
     echo "Creating .default-gems..."
     ln -s "$DOTFILES/default-gems" ~/.default-gems
+fi
+
+if [ ! -e ~/.default-python-packages ]; then
+    echo "Creating .default-python-packages..."
+    ln -s "$DOTFILES/default-python-packages" ~/.default-python-packages
 fi
 
 if [ ! -e ~/.default-npm-packages ]; then

@@ -41,6 +41,10 @@ if [ -d "$HOME/miniconda3" ]; then
     fi
 fi
 
+if [ -f ~/.pythonrc ]; then
+    export PYTHONSTARTUP=~/.pythonrc
+fi
+
 # Manually installed Zig
 if [ -d "$HOME/.local/zig" ]; then
     PATH=$HOME/.local/zig:$PATH
