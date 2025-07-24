@@ -85,6 +85,8 @@ if command -v direnv >/dev/null 2>&1 ; then
     eval "$(direnv hook zsh)"
 fi
 
+alias yt-dlp-pl2='yt-dlp -o "%(playlist_index)02d - %(title)s.%(ext)s"'
+alias yt-dlp-pl3='yt-dlp -o "%(playlist_index)03d - %(title)s.%(ext)s"'
 
 rename_branch() {
     git branch -m $1 $2
