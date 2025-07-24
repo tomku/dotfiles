@@ -91,7 +91,7 @@ if [ -d "$HOME/flutter/bin" ]; then
 fi
 
 # Erlang/Elixir/mix/kerl/etc
-export KERL_BUILD_DOCS="no"
+unset KERL_BUILD_DOCS
 export KERL_DOC_TARGETS="html chunks"
 
 if [ -d "$HOME/.mix/escripts" ]; then
