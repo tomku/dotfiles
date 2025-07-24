@@ -10,6 +10,7 @@ elm-test
 esbuild
 eslint
 pnpm
+@google/gemini-cli
 corepack
 jest
 js-beautify
