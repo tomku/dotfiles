@@ -108,3 +108,9 @@ if [ ! -e ~/.config/mise/config.toml ]; then
     mkdir -p ~/.config/mise
     ln -s "$DOTFILES/mise/mise-config.toml" ~/.config/mise/config.toml
 fi
+
+if [ ! -e ~/.config/aquaproj-aqua/aqua.yaml ]; then
+    echo "Creating aqua config..."
+    mkdir -p ~/.config/aquaproj-aqua/
+    ln -s "$DOTFILES/aqua.yaml" ~/.config/aquaproj-aqua/aqua.yaml
+fi

@@ -139,6 +139,8 @@ if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate)"
 fi
 
+export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
+
 # Locally-installed man pages
 if [ -d "$HOME/.local/share/man" ]; then
     MANPATH="$HOME/.local/share/man:$(manpath -q)"
