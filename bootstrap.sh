@@ -102,3 +102,9 @@ if [ ! -e ~/.default-npm-packages ]; then
     echo "Creating .default-npm-packages..."
     ln -s "$DOTFILES/default-npm-packages" ~/.default-npm-packages
 fi
+
+if [ ! -e ~/.config/mise/config.toml ]; then
+    echo "Creating mise config..."
+    mkdir -p ~/.config/mise
+    ln -s "$DOTFILES/mise/mise-config.toml" ~/.config/mise/config.toml
+fi
