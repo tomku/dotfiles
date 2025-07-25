@@ -17,3 +17,4 @@ sympy
 polars
 duckdb
 pyarrow
+coverage
