@@ -62,3 +62,43 @@ java = "temurin-21"
 "aqua:Automattic/harper/harper-cli" = "latest"
 "aqua:jdx/usage" = "latest"
 "ubi:babashka/babashka" = { version = "latest", exe = "bb" }
+"aqua:chmln/sd" = "latest"
+"pipx:httpie" = "latest"
+"pipx:visidata" = "latest"
+"pipx:litecli" = "latest"
+"pipx:magic-wormhole" = "latest"
+"pipx:cookiecutter" = "latest"
+"pipx:asciinema" = "latest"
+"pipx:mkdocs" = "latest"
+"pipx:ruff" = "latest"
+"pipx:sphinx" = "latest"
+"pipx:frida-tools" = "latest"
+"pipx:hy" = "latest"
+"pipx:memray" = "latest"
+"pipx:llm" = "latest"
+"pipx:protobuf-inspector" = "latest"
+"pipx:pytest" = "latest"
+"pipx:doc2dash" = "latest"
+"pipx:qrcode" = { version = "latest", pil = "" }
+"pipx:csvkit" = { version = "latest", extras = "zstandard" }
+"pipx:xonsh" = { version = "latest", extras = "full" }
+"aqua:lycheeverse/lychee" = "latest"
+"aqua:duckdb/duckdb" = "latest"
+"aqua:ktr0731/evans" = "latest"
+"cargo:uiua" = { version = "latest", features = "full" }
+"aqua:joerdav/xc" = "latest"
+"aqua:Lifailon/lazyjournal" = "latest"
+"aqua:helix-editor/helix" = "latest"
+"aqua:bufbuild/buf" = "latest"
+"aqua:protocolbuffers/protobuf/protoc" = "latest"
+"aqua:protocolbuffers/protobuf-go/protoc-gen-go" = "latest"
+"aqua:restic/restic" = "latest"
+"aqua:typst/typst" = "latest"
+"aqua:aduros/wasm4" = "latest"
+"aqua:bytecodealliance/wasmtime" = "latest"
+"aqua:wasmerio/wasmer" = "latest"
+"aqua:vi/websocat" = "latest"
+"aqua:jedisct1/minisign" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
