@@ -18,3 +18,7 @@ polars
 duckdb
 pyarrow
 coverage
+django
+fastapi[standard]
+flask
+websockets
