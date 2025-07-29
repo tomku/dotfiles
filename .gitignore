@@ -3,3 +3,4 @@ zsh/completion
 .DS_Store
 /doom/local.el
 /shell/local.sh
+/nvim/lazy-lock.json
