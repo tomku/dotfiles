@@ -100,6 +100,8 @@ java = "temurin-21"
 "aqua:vi/websocat" = "latest"
 "aqua:jedisct1/minisign" = "latest"
 "aqua:ollama/ollama" = "latest"
+"aqua:goreleaser/goreleaser" = "latest"
+"aqua:neovim/neovim" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
