@@ -99,6 +99,7 @@ java = "temurin-21"
 "aqua:wasmerio/wasmer" = "latest"
 "aqua:vi/websocat" = "latest"
 "aqua:jedisct1/minisign" = "latest"
+"aqua:ollama/ollama" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
