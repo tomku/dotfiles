@@ -102,6 +102,7 @@ java = "temurin-21"
 "aqua:ollama/ollama" = "latest"
 "aqua:goreleaser/goreleaser" = "latest"
 "aqua:neovim/neovim" = "latest"
+"ubi:ggml-org/llama.cpp" = { version = "latest", extract_all = "true", bin_path = "bin/" }
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
