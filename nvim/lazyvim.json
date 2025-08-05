@@ -6,6 +6,8 @@
     "lazyvim.plugins.extras.editor.dial",
     "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.editor.mini-files",
+    "lazyvim.plugins.extras.editor.snacks_explorer",
+    "lazyvim.plugins.extras.editor.snacks_picker",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.clojure",
     "lazyvim.plugins.extras.lang.elixir",
@@ -34,6 +36,7 @@
     "lazyvim.plugins.extras.lang.zig",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.mini-indentscope",
+    "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "install_version": 7,
