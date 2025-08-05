@@ -102,6 +102,8 @@ java = "temurin-21"
 "aqua:ollama/ollama" = "latest"
 "aqua:goreleaser/goreleaser" = "latest"
 "aqua:neovim/neovim" = "latest"
+"aqua:TomWright/dasel" = "latest"
+"aqua:tailwindlabs/tailwindcss" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
