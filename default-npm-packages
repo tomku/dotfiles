@@ -4,9 +4,6 @@ node-gyp
 @11ty/eleventy
 @mermaid-js/mermaid-cli
 degit
-elm-review
-elm-format
-elm-test
 esbuild
 eslint
 pnpm
@@ -17,10 +14,12 @@ js-beautify
 jsdoc
 @angular/cli
 nbb
-spago@next
 stylelint
 tiddlywiki
 typescript
 typescript-language-server
 zx
 wasm4
+shadcn
+tsx
+prisma
