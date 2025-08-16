@@ -55,9 +55,11 @@ alias rename_main="git branch -m master main && git branch --unset-upstream && g
 
 server() (
     port="${1:-8000}"
-    open "http://localhost:${port}/"
-    python -mSimpleHTTPServer "${port}"
+    sh -c "sleep 1; open \"http://localhost:${port}/\"" &
+    python -m http.server "${port}"
 )
+
+alias py="ptipython"
 
 alias swap-underscores='rename '\''s/_/ /g'\'
 alias swap-whitespace='rename '\''s/ /_/g'\'

@@ -12,6 +12,7 @@ httpx
 ipython
 jupyter-console
 jupyterlab
+ptpython
 numpy
 scipy
 matplotlib
@@ -28,6 +29,7 @@ duckdb
 tensorflow
 coverage
 django
+django-extensions
 fastapi[standard]
 pydantic
 flask
