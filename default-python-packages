@@ -25,7 +25,7 @@ pandas
 narwhals
 polars
 duckdb
-pyarrow
+tensorflow
 coverage
 django
 fastapi[standard]
