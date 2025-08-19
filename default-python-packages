@@ -26,7 +26,6 @@ pandas
 narwhals
 polars
 duckdb
-tensorflow
 coverage
 django
 django-extensions
@@ -39,11 +38,6 @@ sqlalchemy
 sqlmodel
 greenlet
 websockets
-transformers[torch]
-diffusers[torch]
-torch
-torchvision
-fastai
 gradio
 gradio_client
 marimo
