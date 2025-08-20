@@ -105,6 +105,7 @@ java = "temurin-21"
 "aqua:tailwindlabs/tailwindcss" = "latest"
 "aqua:linebender/resvg" = "latest"
 "pipx:pgcli" = "latest"
+"aqua:terrastruct/d2" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
