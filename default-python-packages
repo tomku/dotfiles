@@ -32,6 +32,7 @@ django-extensions
 fastapi[standard]
 pydantic
 flask
+microdot
 starlette[full]
 uvicorn[standard]
 sqlalchemy
