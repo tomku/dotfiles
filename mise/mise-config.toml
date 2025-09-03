@@ -107,6 +107,8 @@ java = "temurin-21"
 "pipx:pgcli" = "latest"
 "aqua:terrastruct/d2" = "latest"
 "aqua:j178/prek" = "latest"
+"aqua:bats-core/bats-core" = "latest"
+"pipx:zulip-term" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
