@@ -109,6 +109,7 @@ java = "temurin-21"
 "aqua:j178/prek" = "latest"
 "aqua:bats-core/bats-core" = "latest"
 "pipx:zulip-term" = "latest"
+"aqua:wagoodman/dive" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
