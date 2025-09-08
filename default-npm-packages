@@ -6,6 +6,7 @@ node-gyp
 degit
 esbuild
 eslint
+npm-check-updates
 pnpm
 @google/gemini-cli
 corepack
