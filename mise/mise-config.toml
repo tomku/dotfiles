@@ -8,11 +8,9 @@ bun = "latest"
 rebar = "latest"
 python = ["3.13", "3.12"]
 node = ["22", "24"]
-"ubi:LostRuins/koboldcpp" = "latest"
 "cargo:bacon" = "latest"
 "cargo:fselect" = "latest"
 "cargo:rusty-man" = "latest"
-"ubi:aquaproj/aqua" = "latest"
 "aqua:rust-lang/mdBook" = "latest"
 java = "temurin-21"
 "aqua:jqlang/jq" = "latest"
@@ -61,7 +59,6 @@ java = "temurin-21"
 "aqua:marp-team/marp-cli" = "latest"
 "aqua:Automattic/harper/harper-cli" = "latest"
 "aqua:jdx/usage" = "latest"
-"ubi:babashka/babashka" = { version = "latest", exe = "bb" }
 "aqua:chmln/sd" = "latest"
 "pipx:httpie" = "latest"
 "pipx:visidata" = "latest"
@@ -111,6 +108,9 @@ java = "temurin-21"
 "pipx:zulip-term" = "latest"
 "aqua:wagoodman/dive" = "latest"
 "aqua:orhun/git-cliff" = "latest"
+"github:aquaproj/aqua" = "latest"
+"github:babashka/babashka" = { version = "latest", exe = "bb" }
+"github:LostRuins/koboldcpp" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
