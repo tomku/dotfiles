@@ -10,6 +10,7 @@ toolz
 wat
 httpx
 ipython
+ipykernel
 jupyter-console
 jupyterlab
 ptpython
