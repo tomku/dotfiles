@@ -111,6 +111,9 @@ java = "temurin-25"
 "github:aquaproj/aqua" = "latest"
 "github:babashka/babashka" = { version = "latest", exe = "bb" }
 "github:LostRuins/koboldcpp" = "latest"
+[tools."github:yt-dlp/yt-dlp"]
+version = "latest"
+bin = "yt-dlp"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
