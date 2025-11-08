@@ -111,6 +111,7 @@ java = "temurin-25"
 "github:aquaproj/aqua" = "latest"
 "github:babashka/babashka" = { version = "latest", exe = "bb" }
 "github:LostRuins/koboldcpp" = "latest"
+"pipx:datasette" = "latest"
 yt-dlp = "latest"
 
 [settings]
