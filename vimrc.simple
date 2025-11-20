@@ -1,0 +1,41 @@
+" This is basically https://github.com/tpope/vim-sensible without conditionals
+" and a few minor things I didn't think were worth the line count.
+set nocp
+set backspace=indent,eol,start
+set complete-=i
+set smarttab
+set ttimeout
+set ttimeoutlen=100
+set incsearch
+set laststatus=2
+set ruler
+set wildmenu
+set scrolloff=2
+set sidescroll=1
+set sidescrolloff=2
+set display+=lastline
+set display+=truncate
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set formatoptions+=j
+set autoread
+set history=1000
+set tabpagemax=50
+set sessionoptions-=options
+set viewoptions-=options
+set nolangremap
+let g:is_posix = 1
+
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+
+if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
+  filetype plugin indent on
+endif
+
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
+runtime! macros/matchit.vim
+runtime ftplugin/man.vim
