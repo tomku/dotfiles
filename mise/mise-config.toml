@@ -113,6 +113,7 @@ java = "temurin-25"
 "github:LostRuins/koboldcpp" = "latest"
 "pipx:datasette" = "latest"
 yt-dlp = "latest"
+unison = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
