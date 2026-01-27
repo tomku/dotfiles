@@ -114,6 +114,7 @@ java = "temurin-25"
 "pipx:datasette" = "latest"
 yt-dlp = "latest"
 unison = "latest"
+"github:ggml-org/llama.cpp" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
