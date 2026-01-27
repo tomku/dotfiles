@@ -1,5 +1,5 @@
 [tools]
-ruby = "latest"
+ruby = "3"
 go = "latest"
 erlang = "latest"
 elixir = "latest"
