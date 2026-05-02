@@ -116,6 +116,7 @@ yt-dlp = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+install_before = "2d"
 
 [settings.npm]
 package_manager = "pnpm"
