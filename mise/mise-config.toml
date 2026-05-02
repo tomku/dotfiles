@@ -113,6 +113,7 @@ java = "temurin-25"
 "pipx:datasette" = "latest"
 yt-dlp = "latest"
 "github:ggml-org/llama.cpp" = "latest"
+"pipx:standardebooks" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
