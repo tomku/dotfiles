@@ -113,6 +113,7 @@ java = "temurin-25"
 "pipx:datasette" = "latest"
 yt-dlp = "latest"
 "github:ggml-org/llama.cpp" = "latest"
+"go:golang.org/x/vuln/cmd/govulncheck" = "latest"
 "pipx:standardebooks" = "latest"
 "npm:codemod" = "latest"
 
