@@ -86,6 +86,9 @@ fi
 if command -v direnv >/dev/null 2>&1 ; then
     eval "$(direnv hook zsh)"
 fi
+func rand_pin() {
+    python -c "from random import choices; print(''.join(str(x) for x in choices(range(10), k=$1)))"
+}
 
 alias yt-dlp-pl2='yt-dlp -o "%(playlist_index)02d - %(title)s.%(ext)s"'
 alias yt-dlp-pl3='yt-dlp -o "%(playlist_index)03d - %(title)s.%(ext)s"'
