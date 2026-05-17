@@ -116,6 +116,7 @@ yt-dlp = "latest"
 "go:golang.org/x/vuln/cmd/govulncheck" = "latest"
 "pipx:standardebooks" = "latest"
 "npm:codemod" = "latest"
+eza = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
