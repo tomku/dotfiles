@@ -117,6 +117,7 @@ yt-dlp = "latest"
 "pipx:standardebooks" = "latest"
 "npm:codemod" = "latest"
 eza = "latest"
+"npm:web-features-cli" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
