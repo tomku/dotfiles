@@ -1,14 +1,12 @@
 npm
 @typespec/compiler
 node-gyp
-@11ty/eleventy
 @mermaid-js/mermaid-cli
 degit
 esbuild
 eslint
 npm-check-updates
 pnpm
-@google/gemini-cli
 corepack
 jest
 js-beautify
