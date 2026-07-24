@@ -26,8 +26,6 @@ if &shell =~# 'fish$'
 endif
 let g:is_posix=1
 
-set rtp+=$DOTFILES/vim
-
 " Workaround for https://github.com/vim/vim/issues/3117
 
 if has('python3')

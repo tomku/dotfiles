@@ -8,8 +8,8 @@ export LESS="-M -R"
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export CLICOLORS=true
 
-if [ -f "$DOTFILES/shell/local.sh" ]; then
-    . "$DOTFILES/shell/local.sh"
+if [ -f "$HOME/.config/shell/local.sh" ]; then
+    . "$HOME/.config/shell/local.sh"
 fi
 
 if [ -n "$PRIVACY" ]; then

@@ -2,9 +2,8 @@
 # This file is POSIX-compliant because it's shared between multiple shells.
 
 # For quick alias editing.
-alias reload_aliases='source $DOTFILES/zsh/aliases.zsh'
-alias edit_aliases='$EDITOR $DOTFILES/zsh/aliases.zsh'
-alias pull_dotfiles='(cd $DOTFILES; git pull)'
+alias reload_aliases='source $HOME/.config/zsh/aliases.zsh'
+alias edit_aliases='$EDITOR $HOME/.config/zsh/aliases.zsh'
 
 autoload -U zmv
 
@@ -95,7 +94,7 @@ alias yt-dlp-pl3='yt-dlp -o "%(playlist_index)03d - %(title)s.%(ext)s"'
 
 alias update-calibre="sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin"
 
-alias lazydot="lazygit -p $DOTFILES"
+alias lazydot="lazygit -p $HOME/.local/share/chezmoi"
 alias find-unduped='find -links 1 | sort | xargs -d "\n" ls -lh'
 
 rename_branch() {

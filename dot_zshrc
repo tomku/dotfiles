@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+for script in $HOME/.config/zsh/*.zsh
+do
+    source "$script"
+done

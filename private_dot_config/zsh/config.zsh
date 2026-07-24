@@ -4,8 +4,7 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-fpath+=~/.zfunc
-fpath=("$DOTFILES/zsh/completion/src" $fpath)
+fpath=("$HOME/.zfunc" "$HOME/.config/zsh/completion/src" $fpath)
 
 setopt complete_in_word
 setopt always_to_end

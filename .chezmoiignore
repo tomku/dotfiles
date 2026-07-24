@@ -1,0 +1,8 @@
+inactive/
+LICENSE
+*.md
+tags
+.zsh/completion/
+.doom.d/local.el
+.config/shell/local.sh
+.config/nvim/lazy-lock.json
