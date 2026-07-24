@@ -125,3 +125,6 @@ install_before = "2d"
 
 [settings.npm]
 package_manager = "pnpm"
+
+[settings.ruby]
+compile = false
