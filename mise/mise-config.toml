@@ -118,6 +118,8 @@ yt-dlp = "latest"
 eza = "latest"
 "npm:web-features-cli" = "latest"
 "pipx:internetarchive" = "latest"
+uv = "latest"
+tree-sitter = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
