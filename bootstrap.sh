@@ -114,3 +114,8 @@ if [ ! -e ~/.config/aquaproj-aqua/aqua.yaml ]; then
     mkdir -p ~/.config/aquaproj-aqua/
     ln -s "$DOTFILES/aqua.yaml" ~/.config/aquaproj-aqua/aqua.yaml
 fi
+
+if [ ! -e ~/.ncurc.json ]; then
+    echo "Creating node-check-updates config..."
+    ln -s "$DOTFILES/ncurc.json" ~/.ncurc.json
+fi
