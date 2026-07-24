@@ -128,6 +128,7 @@ pnpm = "latest"
 "npm:@angular/cli" = "latest"
 "github:pkgxdev/pkgx" = "latest"
 nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
+"aqua:twpayne/chezmoi" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
