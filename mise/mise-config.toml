@@ -120,6 +120,12 @@ eza = "latest"
 "pipx:internetarchive" = "latest"
 uv = "latest"
 tree-sitter = "latest"
+"npm:wasm4" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+pnpm = "latest"
+"npm:zx" = "latest"
+"npm:nbb" = "latest"
+"npm:@angular/cli" = "latest"
 "github:pkgxdev/pkgx" = "latest"
 nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 
