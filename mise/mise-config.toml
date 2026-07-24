@@ -120,6 +120,8 @@ eza = "latest"
 "pipx:internetarchive" = "latest"
 uv = "latest"
 tree-sitter = "latest"
+"github:pkgxdev/pkgx" = "latest"
+nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
