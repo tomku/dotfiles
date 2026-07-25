@@ -147,5 +147,10 @@ if [ -d "$HOME/.local/share/man" ]; then
     export MANPATH
 fi
 
+# SSH agent via systemd user service
+if [ $(uname) = "Linux" ]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
+
 # Done!
 export PATH
