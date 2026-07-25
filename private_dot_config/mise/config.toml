@@ -1,13 +1,13 @@
 [tools]
-ruby = "3"
+ruby = { version = "3", postinstall = "$HOME/.config/install-default-gems.sh"}
 go = "latest"
 erlang = "latest"
 elixir = "latest"
 deno = "latest"
 bun = "latest"
 rebar = "latest"
-python = ["3.13", "3.12"]
-node = "lts"
+python = { version = "3.13", postinstall = "uv pip install --requirements ~/.config/default-python-packages --python $MISE_TOOL_INSTALL_PATH" }
+node = { version = "lts", postinstall = "$MISE_TOOL_INSTALL_PATH/bin/npm install --global npm corepack" }
 "cargo:bacon" = "latest"
 "cargo:fselect" = "latest"
 "cargo:rusty-man" = "latest"

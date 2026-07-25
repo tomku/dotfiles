@@ -18,7 +18,7 @@ numpy
 scipy
 matplotlib
 networkx
-numba
+numba>=0.66
 scikit-learn
 statsmodels
 seaborn
