@@ -129,6 +129,15 @@ pnpm = "latest"
 "github:pkgxdev/pkgx" = "latest"
 nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 "aqua:twpayne/chezmoi" = "latest"
+"npm:npm-check-updates" = "latest"
+"npm:jest" = "latest"
+"npm:esbuild" = "latest"
+"npm:typescript" = "latest"
+"npm:degit" = "latest"
+"npm:shadcn" = "latest"
+"npm:tiddlywiki" = "latest"
+"npm:jsdoc" = "latest"
+"npm:publint" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
