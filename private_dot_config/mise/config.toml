@@ -138,6 +138,7 @@ nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 "npm:tiddlywiki" = "latest"
 "npm:jsdoc" = "latest"
 "npm:publint" = "latest"
+clojure = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
