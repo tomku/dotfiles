@@ -139,6 +139,7 @@ nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 "npm:jsdoc" = "latest"
 "npm:publint" = "latest"
 clojure = "latest"
+chezscheme = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
