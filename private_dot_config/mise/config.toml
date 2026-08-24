@@ -1,5 +1,5 @@
 [tools]
-ruby = { version = "3", postinstall = "$MISE_TOOL_INSTALL_PATH/bin/gem update --system && $MISE_TOOL_INSTALL_PATH/bin/gem install --file $HOME/.config/default-gems" }
+ruby = { version = "4", postinstall = "$MISE_TOOL_INSTALL_PATH/bin/gem update --system && $MISE_TOOL_INSTALL_PATH/bin/gem install --file $HOME/.config/default-gems" }
 go = "latest"
 erlang = "latest"
 elixir = "latest"
