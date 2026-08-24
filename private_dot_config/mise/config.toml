@@ -110,7 +110,6 @@ java = "temurin-25"
 "github:LostRuins/koboldcpp" = "latest"
 "pipx:datasette" = "latest"
 yt-dlp = "latest"
-"github:ggml-org/llama.cpp" = "latest"
 "go:golang.org/x/vuln/cmd/govulncheck" = "latest"
 "pipx:standardebooks" = "latest"
 "npm:codemod" = "latest"
@@ -139,6 +138,8 @@ nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
 "npm:publint" = "latest"
 clojure = "latest"
 chezscheme = "latest"
+dotnet = "latest"
+"llama.cpp" = { version = "latest", version_prefix = "b" }
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
