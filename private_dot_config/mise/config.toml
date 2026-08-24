@@ -6,7 +6,7 @@ elixir = "latest"
 deno = "latest"
 bun = "latest"
 rebar = "latest"
-python = { version = "3.13", postinstall = "uv pip install --requirements ~/.config/default-python-packages --python $MISE_TOOL_INSTALL_PATH" }
+python = { version = "3.14", postinstall = "uv pip install -U --requirements ~/.config/default-python-packages --python $MISE_TOOL_INSTALL_PATH" }
 node = { version = "lts", postinstall = "$MISE_TOOL_INSTALL_PATH/bin/npm install --global npm corepack" }
 "cargo:bacon" = "latest"
 "cargo:fselect" = "latest"
