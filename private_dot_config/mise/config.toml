@@ -145,6 +145,7 @@ dotnet = "latest"
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
 install_before = "2d"
+auto_update = true
 
 [settings.npm]
 package_manager = "pnpm"
