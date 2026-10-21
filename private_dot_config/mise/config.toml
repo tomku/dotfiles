@@ -125,7 +125,7 @@ pnpm = "latest"
 "npm:nbb" = "latest"
 "npm:@angular/cli" = "latest"
 "github:pkgxdev/pkgx" = "latest"
-nub = { version = "latest", allow_builds = ["@nubjs/nub"] }
+nub = "latest"
 "aqua:twpayne/chezmoi" = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:jest" = "latest"
