@@ -106,7 +106,7 @@ java = "temurin-25"
 "aqua:wagoodman/dive" = "latest"
 "aqua:orhun/git-cliff" = "latest"
 "github:aquaproj/aqua" = "latest"
-"github:babashka/babashka" = { version = "latest", exe = "bb" }
+"github:babashka/babashka" = "latest"
 "github:LostRuins/koboldcpp" = "latest"
 "pipx:datasette" = "latest"
 yt-dlp = "latest"
